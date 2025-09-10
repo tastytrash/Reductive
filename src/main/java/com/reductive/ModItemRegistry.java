@@ -1,5 +1,6 @@
 package com.reductive;
 
+import com.reductive.items.SlingshotItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -11,9 +12,17 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-public class ModItems {
+public class ModItemRegistry {
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Settings());
-    public static final Item SLINGSHOT = register("slingshot", Item::new, new Item.Settings());
+    public static final Item SLINGSHOT = register(
+            "slingshot",
+            SlingshotItem::new, // constructor reference
+            new Item.Settings().maxCount(1).maxDamage(256)
+    );
+
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, Reductive.MOD_ID, item);
+    }
 
     public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
         // Create the item key.
@@ -30,8 +39,8 @@ public class ModItems {
 
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.add(ModItems.PEBBLE));
+                .register((itemGroup) -> itemGroup.add(ModItemRegistry.PEBBLE));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
-                .register((itemGroup) -> itemGroup.add(ModItems.SLINGSHOT));
+                .register((itemGroup) -> itemGroup.add(ModItemRegistry.SLINGSHOT));
     }
 }
