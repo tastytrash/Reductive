@@ -19,7 +19,8 @@
 			"com.reductive.Reductive"
 		],
 		"client": [
-			"com.reductive.ReductiveClient"
+			"com.reductive.ReductiveClient",
+            "com.reductive.EntityRenderersRegistry"
 		]
 	},
 	"mixins": [

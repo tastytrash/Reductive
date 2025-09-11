@@ -1,8 +1,10 @@
 package com.reductive.items;
 
-import com.reductive.entities.PackedSnowballEntity;
+import com.reductive.ModEntityRegistry;
 import com.reductive.ModItemRegistry;
+import com.reductive.entities.PebbleEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
@@ -21,7 +23,6 @@ import java.util.function.Predicate;
 
 public class SlingshotItem extends RangedWeaponItem {
 
-    public static final int TICKS_PER_SECOND = 20;
     public static final int RANGE = 15;
     public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) -> stack.isOf(ModItemRegistry.PEBBLE);
 
@@ -33,29 +34,40 @@ public class SlingshotItem extends RangedWeaponItem {
     public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (!(user instanceof PlayerEntity player)) return false;
 
-        // find a pebble in the player's inventory
         ItemStack pebbleStack = ItemStack.EMPTY;
-        for (int i = 0; i < player.getInventory().size(); i++) {
-            ItemStack s = player.getInventory().getStack(i);
-            if (s.isOf(ModItemRegistry.PEBBLE)) {
-                pebbleStack = s;
-                break;
+
+        if (!player.isCreative()) {
+            // find a pebble in inventory
+            for (int i = 0; i < player.getInventory().size(); i++) {
+                ItemStack s = player.getInventory().getStack(i);
+                if (s.isOf(ModItemRegistry.PEBBLE)) {
+                    pebbleStack = s;
+                    break;
+                }
             }
+            if (pebbleStack.isEmpty()) return false; // no ammo
         }
-        if (pebbleStack.isEmpty()) return false; // no ammo
+
 
         int useTicks = this.getMaxUseTime(stack, user) - remainingUseTicks;
         float pull = getPullProgress(useTicks);
         if (pull < 0.1f) return false;
 
         if (!world.isClient) {
-            // spawn the PackedSnowballEntity
-            PackedSnowballEntity snowball = new PackedSnowballEntity(world, player, new ItemStack(ModItemRegistry.PEBBLE));
-            snowball.setVelocity(player, player.getPitch(), player.getYaw(), 0f, pull * 1.5f, 2f);
-            world.spawnEntity(snowball);
-
-            // consume one pebble if not in creative
             if (!player.isCreative()) pebbleStack.decrement(1);
+
+            // create the pebble entity
+            PebbleEntity pebble = new PebbleEntity(ModEntityRegistry.PEBBLE, world);
+            pebble.setOwner(player);
+            pebble.setPosition(player.getX(), player.getEyeY() - 0.1, player.getZ());
+
+            // set velocity
+            float speed = pull * 1.5f;        // adjust speed multiplier if needed
+            float divergence = 1.0f;          // spread/inaccuracy
+            pebble.setVelocity(player, player.getPitch(), player.getYaw(), 0.0f, speed, divergence);
+
+            // spawn it
+            world.spawnEntity(pebble);
         }
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -65,6 +77,7 @@ public class SlingshotItem extends RangedWeaponItem {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         return true;
     }
+
 
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
         projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw() + yaw, 0.0F, speed, divergence);
@@ -96,8 +109,9 @@ public class SlingshotItem extends RangedWeaponItem {
         return UseAction.BOW;
     }
 
+
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return 72000 / 2;
+        return 72000;
     }
 
     @Override

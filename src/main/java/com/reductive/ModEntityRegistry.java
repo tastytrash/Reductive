@@ -1,6 +1,6 @@
 package com.reductive;
 
-import com.reductive.entities.PackedSnowballEntity;
+import com.reductive.entities.PebbleEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -11,29 +11,26 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModEntityRegistry {
-
-    public static final EntityType<PackedSnowballEntity> PACKED_SNOWBALL = register(
-            "packed_snowball",
-            EntityType.Builder.<PackedSnowballEntity>create(PackedSnowballEntity::new, SpawnGroup.MISC)
-                    .dropsNothing()
-                    .dimensions(0.25F, 0.25F)
-                    .maxTrackingRange(4)
-                    .trackingTickInterval(10)
-    );
+    public static final EntityType<PebbleEntity> PEBBLE
+            = register("pebble", EntityType.Builder.create(PebbleEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
 
     public static void initialize() {
+
     }
 
-    private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder)  {
-        return register(Reductive.id(id), builder);
+    public static void register() {
     }
 
-    private static <T extends Entity> EntityType<T> register(Identifier id, EntityType.Builder<T> builder)  {
-        RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, id);
-        return register(key, builder);
+    private static <T extends Entity> EntityType<T> register(RegistryKey<EntityType<?>> key, EntityType.Builder<T> type) {
+        return Registry.register(Registries.ENTITY_TYPE, key, type.build(key));
     }
 
-    private static <T extends Entity> EntityType<T> register(RegistryKey<EntityType<?>> key, EntityType.Builder<T> builder) {
-        return Registry.register(Registries.ENTITY_TYPE, key, builder.build(key));
+    private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
+        return register(keyOf(id), type);
     }
+
+    private static RegistryKey<EntityType<?>> keyOf(String id) {
+        return RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Reductive.MOD_ID, id));
+    }
+
 }
