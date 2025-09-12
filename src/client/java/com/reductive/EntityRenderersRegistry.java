@@ -8,7 +8,7 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 public class EntityRenderersRegistry implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        System.out.println("registering pebble renderer");
-        EntityRendererRegistry.register(ModEntityRegistry.PEBBLE, context -> new FlyingItemEntityRenderer<>(context, 0.75F, true));
+        EntityRendererRegistry.register(ModEntityRegistry.PEBBLE, context -> new FlyingItemEntityRenderer<>(context, 0.75F, false));
+        EntityRendererRegistry.register(ModEntityRegistry.DYNAMITE, context -> new FlyingItemEntityRenderer<>(context, 1.0F, false));
     }
 }

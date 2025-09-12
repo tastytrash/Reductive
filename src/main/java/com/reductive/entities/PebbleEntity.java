@@ -47,10 +47,12 @@ public class PebbleEntity extends ThrownItemEntity {
 
         if (!(this.getWorld() instanceof ServerWorld serverWorld)) return;
 
+
+        float pebbleDamage = 2.0f * (float) this.getVelocity().length() + 1.0f;
         target.damage(
                 serverWorld,
                 this.getDamageSources().thrown(this, this.getOwner()),
-                2.0f
+                pebbleDamage
         );
 
         this.playSound(SoundEvents.BLOCK_STONE_HIT, 1.0f, 1.0f);
@@ -76,32 +78,4 @@ public class PebbleEntity extends ThrownItemEntity {
     public ItemStack getStack() {
         return new ItemStack(ModItemRegistry.PEBBLE);
     }
-
-//    @Override
-//    public void tick() {
-//        super.tick();
-//
-//        // only handle server-side collisions
-//        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
-//
-//        if (hitResult != null && hitResult.getType() != HitResult.Type.MISS) {
-//            this.onCollision(hitResult); // calls onBlockHit or onEntityHit
-//            this.discard();
-//        }
-//
-//        // apply gravity
-//        if (!this.hasNoGravity()) {
-//            this.setVelocity(this.getVelocity().add(0, -this.getGravity(), 0));
-//        }
-//
-//        // move entity
-//        this.move(MovementType.SELF, this.getVelocity());
-//
-//        // apply drag
-//        this.setVelocity(this.getVelocity().multiply(0.99f));
-//
-//        // update rotation based on current velocity
-//        ProjectileUtil.setRotationFromVelocity(this, 0.2f);
-//
-//    }
 }

@@ -1,5 +1,6 @@
 package com.reductive;
 
+import com.reductive.entities.DynamiteEntity;
 import com.reductive.entities.PebbleEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,6 +14,9 @@ import net.minecraft.util.Identifier;
 public class ModEntityRegistry {
     public static final EntityType<PebbleEntity> PEBBLE
             = register("pebble", EntityType.Builder.create(PebbleEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
+    public static final EntityType<DynamiteEntity> DYNAMITE
+            = register("dynamite", EntityType.Builder.create(DynamiteEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
+
 
     public static void initialize() {
 
