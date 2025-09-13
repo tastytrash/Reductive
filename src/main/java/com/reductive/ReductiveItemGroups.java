@@ -1,0 +1,30 @@
+package com.reductive;
+
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
+
+public class ReductiveItemGroups {
+    public static final ItemGroup REDUCTIVE = Registry.register(
+            Registries.ITEM_GROUP,
+            com.reductive.Reductive.id("reductive"),
+            FabricItemGroup.builder()
+                    .icon(() -> new ItemStack(ReductiveItemRegistry.DYNAMITE))
+                    .displayName(Text.translatable("itemGroup.reductive"))
+                    .entries((displayContext, entries) -> {
+                        entries.add(ReductiveItemRegistry.SLINGSHOT);
+                        entries.add(ReductiveItemRegistry.DYNAMITE);
+                        entries.add(ReductiveItemRegistry.IRON_DRILL_TIP);
+                        entries.add(ReductiveItemRegistry.DRILL_BODY_BASIC);
+                        entries.add(ReductiveItemRegistry.IRON_DRILL_BASIC);
+                        entries.add(ReductiveItemRegistry.PEBBLE);
+                    })
+                    .build()
+    );
+
+    public static void initialize() {
+    }
+}

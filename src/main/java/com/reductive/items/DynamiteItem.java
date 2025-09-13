@@ -1,6 +1,6 @@
 package com.reductive.items;
 
-import com.reductive.ModEntityRegistry;
+import com.reductive.ReductiveEntityRegistry;
 import com.reductive.entities.DynamiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -28,7 +28,7 @@ public class DynamiteItem extends Item {
                 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 
         if (world instanceof ServerWorld serverWorld) {
-            DynamiteEntity dynamite = new DynamiteEntity(ModEntityRegistry.DYNAMITE, serverWorld);
+            DynamiteEntity dynamite = new DynamiteEntity(ReductiveEntityRegistry.DYNAMITE, serverWorld);
             dynamite.setItem(stack.copy());
             dynamite.setOwner(user);
             dynamite.setPos(user.getX(), user.getEyeY() - 0.1, user.getZ());

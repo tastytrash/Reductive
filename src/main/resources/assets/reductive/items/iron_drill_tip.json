@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "reductive:item/iron_drill"
+    "model": "reductive:item/iron_drill_tip"
   }
 }

@@ -1,10 +1,9 @@
 package com.reductive.items;
 
-import com.reductive.ModEntityRegistry;
-import com.reductive.ModItemRegistry;
+import com.reductive.ReductiveEntityRegistry;
+import com.reductive.ReductiveItemRegistry;
 import com.reductive.entities.PebbleEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
@@ -24,7 +23,7 @@ import java.util.function.Predicate;
 public class SlingshotItem extends RangedWeaponItem {
 
     public static final int RANGE = 15;
-    public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) -> stack.isOf(ModItemRegistry.PEBBLE);
+    public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) -> stack.isOf(ReductiveItemRegistry.PEBBLE);
 
     public SlingshotItem(Item.Settings settings) {
         super(settings);
@@ -40,7 +39,7 @@ public class SlingshotItem extends RangedWeaponItem {
             // find a pebble in inventory
             for (int i = 0; i < player.getInventory().size(); i++) {
                 ItemStack s = player.getInventory().getStack(i);
-                if (s.isOf(ModItemRegistry.PEBBLE)) {
+                if (s.isOf(ReductiveItemRegistry.PEBBLE)) {
                     pebbleStack = s;
                     break;
                 }
@@ -57,7 +56,7 @@ public class SlingshotItem extends RangedWeaponItem {
             if (!player.isCreative()) pebbleStack.decrement(1);
 
             // create the pebble entity
-            PebbleEntity pebble = new PebbleEntity(ModEntityRegistry.PEBBLE, world);
+            PebbleEntity pebble = new PebbleEntity(ReductiveEntityRegistry.PEBBLE, world);
             pebble.setOwner(player);
             pebble.setPosition(player.getX(), player.getEyeY() - 0.1, player.getZ());
 

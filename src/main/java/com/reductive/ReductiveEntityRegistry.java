@@ -11,7 +11,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
-public class ModEntityRegistry {
+public class ReductiveEntityRegistry {
     public static final EntityType<PebbleEntity> PEBBLE
             = register("pebble", EntityType.Builder.create(PebbleEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
     public static final EntityType<DynamiteEntity> DYNAMITE

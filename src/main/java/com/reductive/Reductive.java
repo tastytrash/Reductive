@@ -14,12 +14,12 @@
         @Override
         public void onInitialize() {
             LOGGER.info("Initializing reductive");
-            ModItemRegistry.initialize();
-            ModEntityRegistry.initialize();
+            ReductiveItemRegistry.initialize();
+            ReductiveEntityRegistry.initialize();
+            ReductiveItemGroups.initialize();
         }
 
         public static Identifier id(String path) {
             return Identifier.of(MOD_ID, path);
         }
-
     }

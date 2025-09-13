@@ -1,6 +1,6 @@
 package com.reductive.entities;
 
-import com.reductive.ModItemRegistry;
+import com.reductive.ReductiveItemRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
@@ -22,7 +22,7 @@ public class DynamiteEntity extends ThrownItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItemRegistry.DYNAMITE;
+        return ReductiveItemRegistry.DYNAMITE;
     }
 
     @Override
@@ -47,6 +47,6 @@ public class DynamiteEntity extends ThrownItemEntity {
 
     @Override
     public ItemStack getStack() {
-        return new ItemStack(ModItemRegistry.DYNAMITE);
+        return new ItemStack(ReductiveItemRegistry.DYNAMITE);
     }
 }

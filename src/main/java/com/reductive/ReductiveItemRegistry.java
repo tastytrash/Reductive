@@ -1,20 +1,31 @@
 package com.reductive;
 
+import com.reductive.items.DrillItem;
 import com.reductive.items.DynamiteItem;
-import com.reductive.items.IronDrillItem;
 import com.reductive.items.SlingshotItem;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-public class ModItemRegistry {
+public class ReductiveItemRegistry {
+    public static final ToolMaterial IRON_DRILL_TOOL_MATERIAL = new ToolMaterial(
+            BlockTags.INCORRECT_FOR_WOODEN_TOOL,
+            384,
+            12.0F,
+            1.5F,
+            22,
+            ToolMaterial.IRON.repairItems()
+    );
+
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Settings());
     public static final Item SLINGSHOT = register(
             "slingshot",
@@ -26,12 +37,12 @@ public class ModItemRegistry {
             DynamiteItem::new,
             new Item.Settings().maxCount(16).useCooldown(0.5f)
     );
-    public static final Item IRON_DRILL = register(
-            "iron_drill",
-            IronDrillItem::new,
-            new Item.Settings()
+    public static final Item IRON_DRILL_TIP = register("iron_drill_tip", Item::new, new Item.Settings().maxCount(1) );
+    public static final Item DRILL_BODY_BASIC = register("drill_body_basic", Item::new, new Item.Settings().maxCount(1));
+    public static final Item IRON_DRILL_BASIC = register("iron_drill_basic",
+            settings -> new DrillItem(IRON_DRILL_TOOL_MATERIAL, settings, DRILL_BODY_BASIC),
+            new Item.Settings().pickaxe(IRON_DRILL_TOOL_MATERIAL, 1f, 0.5f)
     );
-
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Reductive.MOD_ID, item);
@@ -46,13 +57,5 @@ public class ModItemRegistry {
     }
 
     public static void initialize() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.add(ModItemRegistry.PEBBLE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
-                .register((itemGroup) -> itemGroup.add(ModItemRegistry.SLINGSHOT));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
-                .register((itemGroup) -> itemGroup.add(ModItemRegistry.DYNAMITE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS)
-                .register((itemGroup) -> itemGroup.add(ModItemRegistry.IRON_DRILL));
     }
 }

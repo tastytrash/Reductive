@@ -2,5 +2,8 @@
   "item.reductive.pebble": "Pebble",
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
-  "item.reductive.iron_drill": "Iron Drill"
+  "item.reductive.iron_drill_tip": "Iron Drill Tip",
+  "item.reductive.drill_body_basic": "Basic Drill Body",
+  "item.reductive.iron_drill_basic": "Basic Iron Drill",
+  "itemGroup.reductive": "Reductive"
 }

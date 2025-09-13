@@ -1,10 +1,8 @@
 package com.reductive.entities;
 
-import com.reductive.ModItemRegistry;
+import com.reductive.ReductiveItemRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +20,7 @@ public class PebbleEntity extends ThrownItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItemRegistry.PEBBLE;
+        return ReductiveItemRegistry.PEBBLE;
     }
 
     @Override
@@ -76,6 +74,6 @@ public class PebbleEntity extends ThrownItemEntity {
 
     @Override
     public ItemStack getStack() {
-        return new ItemStack(ModItemRegistry.PEBBLE);
+        return new ItemStack(ReductiveItemRegistry.PEBBLE);
     }
 }
