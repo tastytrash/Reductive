@@ -1,5 +1,6 @@
     package com.reductive;
 
+    import com.reductive.datagen.ReductiveComponents;
     import net.fabricmc.api.ModInitializer;
 
     import net.minecraft.util.Identifier;
@@ -17,6 +18,7 @@
             ReductiveItemRegistry.initialize();
             ReductiveEntityRegistry.initialize();
             ReductiveItemGroups.initialize();
+            ReductiveComponents.initialize();
         }
 
         public static Identifier id(String path) {

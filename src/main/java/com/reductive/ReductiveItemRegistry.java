@@ -17,16 +17,19 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ReductiveItemRegistry {
-    public static final ToolMaterial IRON_DRILL_TOOL_MATERIAL = new ToolMaterial(
+    public static ToolMaterial DRILL_TOOL_MATERIAL = new ToolMaterial(
             BlockTags.INCORRECT_FOR_WOODEN_TOOL,
-            384,
-            12.0F,
+            1,
+            0.0F,
             1.5F,
             22,
-            ToolMaterial.IRON.repairItems()
+            null
     );
 
+    // resources
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Settings());
+
+    // weapons & combat
     public static final Item SLINGSHOT = register(
             "slingshot",
             SlingshotItem::new,
@@ -37,11 +40,17 @@ public class ReductiveItemRegistry {
             DynamiteItem::new,
             new Item.Settings().maxCount(16).useCooldown(0.5f)
     );
-    public static final Item IRON_DRILL_TIP = register("iron_drill_tip", Item::new, new Item.Settings().maxCount(1) );
+
+    // drill tips
+    public static final Item IRON_DRILL_TIP = register("iron_drill_tip", Item::new, new Item.Settings().maxCount(1));
+    public static final Item GOLD_DRILL_TIP = register("gold_drill_tip", Item::new, new Item.Settings().maxCount(1));
+    public static final Item DIAMOND_DRILL_TIP = register("diamond_drill_tip", Item::new, new Item.Settings().maxCount(1));
+    public static final Item NETHERITE_DRILL_TIP = register("netherite_drill_tip", Item::new, new Item.Settings().maxCount(1));
+    // drill bodies
     public static final Item DRILL_BODY_BASIC = register("drill_body_basic", Item::new, new Item.Settings().maxCount(1));
-    public static final Item IRON_DRILL_BASIC = register("iron_drill_basic",
-            settings -> new DrillItem(IRON_DRILL_TOOL_MATERIAL, settings, DRILL_BODY_BASIC),
-            new Item.Settings().pickaxe(IRON_DRILL_TOOL_MATERIAL, 1f, 0.5f)
+    public static final Item DRILL_BASIC = register("drill_basic",
+            settings -> new DrillItem(settings, DRILL_BODY_BASIC),
+            new Item.Settings().maxCount(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, 0.4F)
     );
 
     private static Item registerItem(String name, Item item) {

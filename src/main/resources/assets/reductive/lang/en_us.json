@@ -1,9 +1,15 @@
 {
   "item.reductive.pebble": "Pebble",
+
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
+
   "item.reductive.iron_drill_tip": "Iron Drill Tip",
+  "item.reductive.gold_drill_tip": "Gold Drill Tip",
+  "item.reductive.diamond_drill_tip": "Diamond Drill Tip",
+  "item.reductive.netherite_drill_tip": "Netherite Drill Tip",
   "item.reductive.drill_body_basic": "Basic Drill Body",
-  "item.reductive.iron_drill_basic": "Basic Iron Drill",
+  "item.reductive.drill_basic": "Basic Drill",
+
   "itemGroup.reductive": "Reductive"
 }

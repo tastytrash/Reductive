@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "reductive:item/iron_drill_basic"
+    "layer0": "reductive:item/drill_basic_iron"
   }
 }

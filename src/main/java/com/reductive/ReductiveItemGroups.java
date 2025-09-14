@@ -18,8 +18,11 @@ public class ReductiveItemGroups {
                         entries.add(ReductiveItemRegistry.SLINGSHOT);
                         entries.add(ReductiveItemRegistry.DYNAMITE);
                         entries.add(ReductiveItemRegistry.IRON_DRILL_TIP);
+                        entries.add(ReductiveItemRegistry.GOLD_DRILL_TIP);
+                        entries.add(ReductiveItemRegistry.DIAMOND_DRILL_TIP);
+                        entries.add(ReductiveItemRegistry.NETHERITE_DRILL_TIP);
                         entries.add(ReductiveItemRegistry.DRILL_BODY_BASIC);
-                        entries.add(ReductiveItemRegistry.IRON_DRILL_BASIC);
+                        entries.add(ReductiveItemRegistry.DRILL_BASIC);
                         entries.add(ReductiveItemRegistry.PEBBLE);
                     })
                     .build()
