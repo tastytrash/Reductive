@@ -2,5 +2,17 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "reductive:item/drill_industrial_diamond"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [-45, -90, 0],
+      "translation": [0.0, -2.5, -4.0],
+      "scale": [0.8, 0.8, 0.8]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [-135, -90, 0],
+      "translation": [0.0, -2.5, -4.0],
+      "scale": [0.8, 0.8, 0.8]
+    }
   }
 }

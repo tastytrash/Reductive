@@ -18,6 +18,7 @@ public class ReductiveItemGroups {
                         entries.add(ReductiveItemRegistry.PEBBLE);
                         entries.add(ReductiveItemRegistry.COPPER_NUGGET);
                         entries.add(ReductiveItemRegistry.DIAMOND_SHARD);
+                        entries.add(ReductiveItemRegistry.NETHERITE_NUGGET);
 
                         entries.add(ReductiveItemRegistry.SLINGSHOT);
                         entries.add(ReductiveItemRegistry.DYNAMITE);
@@ -31,6 +32,7 @@ public class ReductiveItemGroups {
                         entries.add(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
                         entries.add(ReductiveItemRegistry.DRILL_INDUSTRIAL);
                         entries.add(ReductiveItemRegistry.BASIC_DRILL_ENGINE);
+                        entries.add(ReductiveItemRegistry.INDUSTRIAL_DRILL_ENGINE);
                     })
                     .build()
     );

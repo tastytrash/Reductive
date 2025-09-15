@@ -32,6 +32,7 @@ public class ReductiveItemRegistry {
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Settings());
     public static final Item COPPER_NUGGET = register("copper_nugget", Item::new, new Item.Settings());
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Settings());
+    public static final Item NETHERITE_NUGGET = register("netherite_nugget", Item::new, new Item.Settings());
 
     // weapons & combat
     public static final Item SLINGSHOT = register(
@@ -66,6 +67,8 @@ public class ReductiveItemRegistry {
     );
     // power cores
     public static final Item BASIC_DRILL_ENGINE = register("basic_drill_engine", Item::new, new Item.Settings().maxCount(1));
+    public static final Item INDUSTRIAL_DRILL_ENGINE = register("industrial_drill_engine", Item::new, new Item.Settings().maxCount(1));
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Reductive.MOD_ID, item);

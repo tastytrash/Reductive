@@ -2,6 +2,7 @@
   "item.reductive.pebble": "Pebble",
   "item.reductive.copper_nugget": "Copper Nugget",
   "item.reductive.diamond_shard": "Diamond Shard",
+  "item.reductive.netherite_nugget": "Netherite Nugget",
 
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
@@ -15,6 +16,7 @@
   "item.reductive.drill_body_industrial": "Industrial Drill Body",
   "item.reductive.drill_industrial": "Industrial Drill",
   "item.reductive.basic_drill_engine": "Basic Drill Engine",
+  "item.reductive.industrial_drill_engine": "Industrial Drill Engine",
 
   "itemGroup.reductive": "Reductive"
 }
