@@ -14,19 +14,6 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ReductiveBlockRegistry {
-    public static final Block REDSTONE_POWER_CORE = register(
-            "Redstone Power Core",
-            Block::new,
-            AbstractBlock.Settings.create().sounds(BlockSoundGroup.HEAVY_CORE),
-            true
-    );
-    public static final Block COAL_POWER_CORE = register(
-            "Coal Power Core",
-            Block::new,
-            AbstractBlock.Settings.create().sounds(BlockSoundGroup.HEAVY_CORE),
-            true
-    );
-
 
     private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
         RegistryKey<Block> blockKey = keyOfBlock(name);

@@ -30,9 +30,7 @@ public class ReductiveItemGroups {
                         entries.add(ReductiveItemRegistry.DRILL_BASIC);
                         entries.add(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
                         entries.add(ReductiveItemRegistry.DRILL_INDUSTRIAL);
-                        entries.add(ReductiveItemRegistry.COAL_POWER_CORE);
-
-                        entries.add(ReductiveBlockRegistry.REDSTONE_POWER_CORE.asItem());
+                        entries.add(ReductiveItemRegistry.BASIC_DRILL_ENGINE);
                     })
                     .build()
     );

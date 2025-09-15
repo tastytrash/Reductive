@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "reductive:item/coal_power_core"
+    "layer0": "reductive:item/basic_drill_engine"
   }
 }

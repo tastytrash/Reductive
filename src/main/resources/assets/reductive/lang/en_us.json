@@ -14,9 +14,7 @@
   "item.reductive.drill_basic": "Basic Drill",
   "item.reductive.drill_body_industrial": "Industrial Drill Body",
   "item.reductive.drill_industrial": "Industrial Drill",
-  "item.reductive.coal_power_core": "Coal Power Core",
+  "item.reductive.basic_drill_engine": "Basic Drill Engine",
 
-  "itemGroup.reductive": "Reductive",
-
-  "block.reductive.redstone_power_core": "Redstone Power Core"
+  "itemGroup.reductive": "Reductive"
 }

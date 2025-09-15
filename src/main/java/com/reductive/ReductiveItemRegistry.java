@@ -1,5 +1,6 @@
 package com.reductive;
 
+import com.reductive.datagen.ReductiveComponents;
 import com.reductive.items.DrillItem;
 import com.reductive.items.DynamiteItem;
 import com.reductive.items.IndustrialDrillItem;
@@ -56,13 +57,15 @@ public class ReductiveItemRegistry {
     public static final Item DRILL_BASIC = register("drill_basic",
             settings -> new DrillItem(settings, DRILL_BODY_BASIC),
             new Item.Settings().maxCount(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -1.0F)
+                    .component(ReductiveComponents.TIP_TYPE, "netherite")
     );
     public static final Item DRILL_INDUSTRIAL = register("drill_industrial",
-            settings -> new IndustrialDrillItem(settings, DRILL_BODY_BASIC),
+            settings -> new IndustrialDrillItem(settings, DRILL_BODY_INDUSTRIAL),
             new Item.Settings().maxCount(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -1.0F)
+                    .component(ReductiveComponents.TIP_TYPE, "netherite")
     );
     // power cores
-    public static final Item COAL_POWER_CORE = register("coal_power_core", Item::new, new Item.Settings().maxCount(1));
+    public static final Item BASIC_DRILL_ENGINE = register("basic_drill_engine", Item::new, new Item.Settings().maxCount(1));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Reductive.MOD_ID, item);

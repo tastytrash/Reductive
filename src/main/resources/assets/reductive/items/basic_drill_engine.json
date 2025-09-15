@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "reductive:item/coal_power_core"
+    "model": "reductive:item/basic_drill_engine"
   }
 }
