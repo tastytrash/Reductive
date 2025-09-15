@@ -19,6 +19,7 @@
             ReductiveEntityRegistry.initialize();
             ReductiveItemGroups.initialize();
             ReductiveComponents.initialize();
+            ReductiveBlockRegistry.initialize();
         }
 
         public static Identifier id(String path) {

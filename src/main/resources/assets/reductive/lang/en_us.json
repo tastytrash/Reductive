@@ -1,5 +1,7 @@
 {
   "item.reductive.pebble": "Pebble",
+  "item.reductive.copper_nugget": "Copper Nugget",
+  "item.reductive.diamond_shard": "Diamond Shard",
 
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
@@ -10,6 +12,11 @@
   "item.reductive.netherite_drill_tip": "Netherite Drill Tip",
   "item.reductive.drill_body_basic": "Basic Drill Body",
   "item.reductive.drill_basic": "Basic Drill",
+  "item.reductive.drill_body_industrial": "Industrial Drill Body",
+  "item.reductive.drill_industrial": "Industrial Drill",
+  "item.reductive.coal_power_core": "Coal Power Core",
 
-  "itemGroup.reductive": "Reductive"
+  "itemGroup.reductive": "Reductive",
+
+  "block.reductive.redstone_power_core": "Redstone Power Core"
 }

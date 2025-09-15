@@ -38,10 +38,6 @@ public class DrillItem extends Item {
 
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-//        if (state.getHardness(world, pos) != 0.0f) {
-//            stack.damage(1, miner, LivingEntity.getSlotForHand(miner.getActiveHand()));
-//        }
-
         if (stack.willBreakNextUse()) {
                 ItemStack bodyOnly = new ItemStack(bodyType);
                 stack.decrement(1);

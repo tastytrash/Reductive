@@ -12,7 +12,7 @@ public class ReductiveClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
-            if (!itemStack.isOf(ReductiveItemRegistry.DRILL_BASIC)) return;
+            if (!itemStack.isOf(ReductiveItemRegistry.DRILL_BASIC) && !itemStack.isOf(ReductiveItemRegistry.DRILL_INDUSTRIAL)) return;
 
             if (itemStack.getComponents().get(ReductiveComponents.TIP_TYPE) != null) {
                 String tip = itemStack.getComponents().get(ReductiveComponents.TIP_TYPE);

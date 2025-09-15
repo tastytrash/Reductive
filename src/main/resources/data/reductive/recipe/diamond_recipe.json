@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard",
+    "reductive:diamond_shard"
+  ],
+  "result": {
+    "id": "minecraft:diamond",
+    "count": 1
+  }
+}

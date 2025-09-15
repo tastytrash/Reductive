@@ -15,15 +15,24 @@ public class ReductiveItemGroups {
                     .icon(() -> new ItemStack(ReductiveItemRegistry.DYNAMITE))
                     .displayName(Text.translatable("itemGroup.reductive"))
                     .entries((displayContext, entries) -> {
+                        entries.add(ReductiveItemRegistry.PEBBLE);
+                        entries.add(ReductiveItemRegistry.COPPER_NUGGET);
+                        entries.add(ReductiveItemRegistry.DIAMOND_SHARD);
+
                         entries.add(ReductiveItemRegistry.SLINGSHOT);
                         entries.add(ReductiveItemRegistry.DYNAMITE);
+
                         entries.add(ReductiveItemRegistry.IRON_DRILL_TIP);
                         entries.add(ReductiveItemRegistry.GOLD_DRILL_TIP);
                         entries.add(ReductiveItemRegistry.DIAMOND_DRILL_TIP);
                         entries.add(ReductiveItemRegistry.NETHERITE_DRILL_TIP);
                         entries.add(ReductiveItemRegistry.DRILL_BODY_BASIC);
                         entries.add(ReductiveItemRegistry.DRILL_BASIC);
-                        entries.add(ReductiveItemRegistry.PEBBLE);
+                        entries.add(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
+                        entries.add(ReductiveItemRegistry.DRILL_INDUSTRIAL);
+                        entries.add(ReductiveItemRegistry.COAL_POWER_CORE);
+
+                        entries.add(ReductiveBlockRegistry.REDSTONE_POWER_CORE.asItem());
                     })
                     .build()
     );
