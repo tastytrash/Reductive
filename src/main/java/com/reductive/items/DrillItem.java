@@ -65,9 +65,9 @@ public class DrillItem extends Item {
         if (isPickaxeBlock || isShovelBlock) {
             return switch (tip) {
                 case "iron" -> 14.0f;
-                case "gold" -> 20.0f;
-                case "diamond" -> 16.0f;
-                case "netherite" -> 18.0f;
+                case "gold" -> 23.0f;
+                case "diamond" -> 18.0f;
+                case "netherite" -> 21.0f;
                 default -> 1.0f;
             };
         }

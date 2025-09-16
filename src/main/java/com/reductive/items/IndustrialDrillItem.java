@@ -1,6 +1,7 @@
 package com.reductive.items;
 
 import com.reductive.datagen.ReductiveComponents;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EnchantableComponent;
@@ -44,11 +45,11 @@ public class IndustrialDrillItem extends Item {
             return result;
         }
 
-        // only break area if block is mineable
+        // only break area if main block is mineable
         boolean isPickaxeBlock = state.isIn(BlockTags.PICKAXE_MINEABLE);
         boolean isShovelBlock = state.isIn(BlockTags.SHOVEL_MINEABLE);
-        boolean isWoodenBlock = state.isIn(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
-        if (!isPickaxeBlock && !isShovelBlock && isWoodenBlock) {
+        boolean isNotWoodenBlock = state.isIn(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+        if (!isPickaxeBlock && !isShovelBlock || isNotWoodenBlock) {
             return result;
         }
 
@@ -88,7 +89,6 @@ public class IndustrialDrillItem extends Item {
             }
         }
 
-        final int breakProgress = 10;
         int entityId = miner.getId();
 
         for (BlockPos targetPos : toBreak) {
@@ -99,15 +99,15 @@ public class IndustrialDrillItem extends Item {
             // check if its mineable
             boolean isPickaxe = targetState.isIn(BlockTags.PICKAXE_MINEABLE);
             boolean isShovel = targetState.isIn(BlockTags.SHOVEL_MINEABLE);
-            boolean isWooden = targetState.isIn(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
-            if (!isPickaxe && !isShovel && isWooden) continue;
+            boolean isNotWooden = targetState.isIn(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+            if (!(isPickaxe || isShovel) || isNotWooden) continue;
 
             // skip block if block hardness is greater than target
             float targetHardness = targetState.getHardness(world, targetPos);
             if (targetHardness > originalHardness) continue;
 
             // multiplayer (not tested)
-            BlockBreakingProgressS2CPacket packet = new BlockBreakingProgressS2CPacket(entityId, targetPos, breakProgress);
+            BlockBreakingProgressS2CPacket packet = new BlockBreakingProgressS2CPacket(entityId, targetPos, 10);
             double sendRadiusSq = 64.0 * 64.0;
             for (ServerPlayerEntity other : serverWorld.getPlayers()) {
                 if (other.squaredDistanceTo(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5) <= sendRadiusSq) {
@@ -116,7 +116,9 @@ public class IndustrialDrillItem extends Item {
             }
 
             // break
-            serverWorld.breakBlock(targetPos, true, miner);
+            if (serverWorld.removeBlock(targetPos, false)) {
+                Block.dropStacks(targetState, serverWorld, targetPos, serverWorld.getBlockEntity(targetPos), miner, stack);
+            }
 
             // damage for each block
             if (!stack.isEmpty()) {
@@ -146,9 +148,9 @@ public class IndustrialDrillItem extends Item {
         if (isPickaxeBlock || isShovelBlock) {
             return switch (tip) {
                 case "iron" -> 14.0f;
-                case "gold" -> 20.0f;
-                case "diamond" -> 16.0f;
-                case "netherite" -> 18.0f;
+                case "gold" -> 23.0f;
+                case "diamond" -> 18.0f;
+                case "netherite" -> 21.0f;
                 default -> 1.0f;
             };
         }
@@ -202,10 +204,10 @@ public class IndustrialDrillItem extends Item {
         if (tip == null) return;
 
         int durability = switch (tip) {
-            case "iron" -> 512;
-            case "gold" -> 192;
-            case "diamond" -> 2304;
-            case "netherite"-> 3456;
+            case "iron" -> 1024;
+            case "gold" -> 384;
+            case "diamond" -> 4608;
+            case "netherite"-> 6912;
             default -> 0;
         };
 
