@@ -1,1 +1,4 @@
 slingshot can shoot fireballs, flint pieces, dynamite
+
+coal chunks/dust
+matchstick

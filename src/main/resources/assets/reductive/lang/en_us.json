@@ -1,22 +1,35 @@
 {
   "item.reductive.pebble": "Pebble",
-  "item.reductive.copper_nugget": "Copper Nugget",
+  "item.reductive.coal_chunk": "Coal Chunk",
+  "item.reductive.quartz_shard": "Quartz Shard",
   "item.reductive.diamond_shard": "Diamond Shard",
   "item.reductive.netherite_nugget": "Netherite Nugget",
 
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
 
-  "item.reductive.iron_drill_tip": "Iron Drill Tip",
-  "item.reductive.gold_drill_tip": "Gold Drill Tip",
-  "item.reductive.diamond_drill_tip": "Diamond Drill Tip",
-  "item.reductive.netherite_drill_tip": "Netherite Drill Tip",
+  "item.reductive.matchstick": "Matchstick",
+
+  "item.reductive.drill_tip_iron": "Iron Drill Tip",
+  "item.reductive.drill_tip_gold": "Gold Drill Tip",
+  "item.reductive.drill_tip_diamond": "Diamond Drill Tip",
+  "item.reductive.drill_tip_netherite": "Netherite Drill Tip",
   "item.reductive.drill_body_basic": "Basic Drill Body",
   "item.reductive.drill_basic": "Basic Drill",
   "item.reductive.drill_body_industrial": "Industrial Drill Body",
   "item.reductive.drill_industrial": "Industrial Drill",
-  "item.reductive.basic_drill_engine": "Basic Drill Engine",
-  "item.reductive.industrial_drill_engine": "Industrial Drill Engine",
+
+  "item.reductive.chainsaw_tip_iron": "Iron Chainsaw Tip",
+  "item.reductive.chainsaw_tip_gold": "Gold Chainsaw Tip",
+  "item.reductive.chainsaw_tip_diamond": "Diamond Chainsaw Tip",
+  "item.reductive.chainsaw_tip_netherite": "Netherite Chainsaw Tip",
+  "item.reductive.chainsaw_body_basic": "Basic Chainsaw Body",
+  "item.reductive.chainsaw_basic": "Basic Chainsaw",
+  "item.reductive.chainsaw_body_industrial": "Industrial Chainsaw Body",
+  "item.reductive.chainsaw_industrial": "Industrial Chainsaw",
+
+  "item.reductive.basic_engine": "Basic Engine",
+  "item.reductive.industrial_engine": "Industrial Engine",
 
   "itemGroup.reductive": "Reductive"
 }

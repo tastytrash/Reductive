@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nnn",
+    "GBR",
+    "ggg"
+  ],
+  "key": {
+    "n": "minecraft:netherite_ingot",
+    "G": "minecraft:gold_nugget",
+    "B": "minecraft:blaze_powder",
+    "R": "reductive:netherite_nugget",
+    "g": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "reductive:industrial_engine",
+    "count": 1
+  }
+}

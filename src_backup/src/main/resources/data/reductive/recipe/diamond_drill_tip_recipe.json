@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#D#",
+    "DDD"
+  ],
+  "key": {
+    "#": "reductive:diamond_shard",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "reductive:diamond_drill_tip",
+    "count": 1
+  }
+}

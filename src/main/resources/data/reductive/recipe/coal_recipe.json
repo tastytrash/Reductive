@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk",
+    "reductive:coal_chunk"
+  ],
+  "result": {
+    "id": "minecraft:coal",
+    "count": 1
+  }
+}

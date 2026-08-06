@@ -15,22 +15,36 @@ public class ReductiveItemGroups {
                     .title(Component.translatable("itemGroup.reductive"))
                     .displayItems((displayContext, entries) -> {
                         entries.accept(ReductiveItemRegistry.PEBBLE);
+                        entries.accept(ReductiveItemRegistry.COAL_CHUNK);
+                        entries.accept(ReductiveItemRegistry.QUARTZ_SHARD);
                         entries.accept(ReductiveItemRegistry.DIAMOND_SHARD);
                         entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
 
                         entries.accept(ReductiveItemRegistry.SLINGSHOT);
                         entries.accept(ReductiveItemRegistry.DYNAMITE);
 
-                        entries.accept(ReductiveItemRegistry.IRON_DRILL_TIP);
-                        entries.accept(ReductiveItemRegistry.GOLD_DRILL_TIP);
-                        entries.accept(ReductiveItemRegistry.DIAMOND_DRILL_TIP);
-                        entries.accept(ReductiveItemRegistry.NETHERITE_DRILL_TIP);
+                        entries.accept(ReductiveItemRegistry.MATCHSTICK);
+
+                        entries.accept(ReductiveItemRegistry.DRILL_TIP_IRON);
+                        entries.accept(ReductiveItemRegistry.DRILL_TIP_GOLD);
+                        entries.accept(ReductiveItemRegistry.DRILL_TIP_DIAMOND);
+                        entries.accept(ReductiveItemRegistry.DRILL_TIP_NETHERITE);
                         entries.accept(ReductiveItemRegistry.DRILL_BODY_BASIC);
                         entries.accept(ReductiveItemRegistry.DRILL_BASIC);
                         entries.accept(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
                         entries.accept(ReductiveItemRegistry.DRILL_INDUSTRIAL);
-                        entries.accept(ReductiveItemRegistry.BASIC_DRILL_ENGINE);
-                        entries.accept(ReductiveItemRegistry.INDUSTRIAL_DRILL_ENGINE);
+
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_IRON);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_GOLD);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_DIAMOND);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_NETHERITE);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BODY_BASIC);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BASIC);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BODY_INDUSTRIAL);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL);
+
+                        entries.accept(ReductiveItemRegistry.BASIC_ENGINE);
+                        entries.accept(ReductiveItemRegistry.INDUSTRIAL_ENGINE);
                     })
                     .build()
     );

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "RCI",
+    "iii"
+  ],
+  "key": {
+    "c": "minecraft:copper_ingot",
+    "R": "reductive:copper_nugget",
+    "C": "minecraft:coal",
+    "I": "minecraft:iron_nugget",
+    "i": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "reductive:basic_drill_engine",
+    "count": 1
+  }
+}

@@ -10,7 +10,7 @@
     "D": "minecraft:diamond"
   },
   "result": {
-    "id": "reductive:diamond_drill_tip",
+    "id": "reductive:drill_tip_diamond",
     "count": 1
   }
 }

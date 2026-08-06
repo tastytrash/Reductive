@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": "reductive:diamond_drill_tip",
+  "addition": "minecraft:netherite_ingot",
+  "result": "reductive:netherite_drill_tip",
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

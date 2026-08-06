@@ -48,8 +48,6 @@ public class SlingshotItem extends ProjectileWeaponItem {
         if (pull < 0.1f) return false;
 
         if (!world.isClientSide()) {
-            if (!player.isCreative()) draw(stack, ammoStack, player);
-
             float speed = pull * 1.5f;        // adjust speed multiplier if needed
             float divergence = 1.0f;          // spread/inaccuracy
 
@@ -71,7 +69,7 @@ public class SlingshotItem extends ProjectileWeaponItem {
                 fireball.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
 
                 // direction/velocity
-                fireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0f, speed, divergence);
+                fireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0f, speed * speed, divergence);
 
                 // spawn
                 world.addFreshEntity(fireball);
@@ -88,6 +86,7 @@ public class SlingshotItem extends ProjectileWeaponItem {
                 world.addFreshEntity(dynamite);
             }
 
+            if (!player.isCreative()) draw(stack, ammoStack, player);
         }
 
         if (ammoStack.is(Items.FIRE_CHARGE)) {
@@ -105,7 +104,6 @@ public class SlingshotItem extends ProjectileWeaponItem {
         return true;
     }
 
-
     protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
         projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + yaw, 0.0F, speed, divergence);
     }
@@ -120,13 +118,13 @@ public class SlingshotItem extends ProjectileWeaponItem {
         return f;
     }
 
-    public InteractionResult use(Level world, Player user, InteractionHand hand) {
-        ItemStack itemStack = user.getItemInHand(hand);
-        boolean bl = !user.getProjectile(itemStack).isEmpty();
-        if (!user.hasInfiniteMaterials() && !bl) {
+    public InteractionResult use(final Level world, final Player player, final InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        boolean bl = !player.getProjectile(itemStack).isEmpty();
+        if (!player.hasInfiniteMaterials() && !bl) {
             return InteractionResult.FAIL;
         } else {
-            user.startUsingItem(hand);
+            player.startUsingItem(hand);
             return InteractionResult.CONSUME;
         }
     }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:quartz_shard",
+    "reductive:quartz_shard",
+    "reductive:quartz_shard",
+    "reductive:quartz_shard"
+  ],
+  "result": {
+    "id": "minecraft:quartz",
+    "count": 1
+  }
+}

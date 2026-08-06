@@ -1,10 +1,8 @@
 package com.reductive;
 
 import com.reductive.datagen.ReductiveComponents;
-import com.reductive.items.DrillItem;
-import com.reductive.items.DynamiteItem;
-import com.reductive.items.IndustrialDrillItem;
-import com.reductive.items.SlingshotItem;
+import com.reductive.items.*;
+
 import java.util.function.Function;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,10 +23,21 @@ public class ReductiveItemRegistry {
             null
     );
 
+    public static ToolMaterial CHAINSAW_TOOL_MATERIAL = new ToolMaterial(
+            BlockTags.MINEABLE_WITH_AXE,
+            1,
+            0.0F,
+            1.5F,
+            22,
+            null
+    );
+
     // resources
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Properties());
+    public static final Item COAL_CHUNK = register("coal_chunk", Item::new, new Item.Properties());
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Properties());
     public static final Item NETHERITE_NUGGET = register("netherite_nugget", Item::new, new Item.Properties());
+    public static final Item QUARTZ_SHARD = register("quartz_shard", Item::new, new Item.Properties());
 
     // weapons & combat
     public static final Item SLINGSHOT = register(
@@ -42,11 +51,14 @@ public class ReductiveItemRegistry {
             new Item.Properties().stacksTo(16).useCooldown(0.5f)
     );
 
+    // utility
+    public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
+
     // drill tips
-    public static final Item IRON_DRILL_TIP = register("iron_drill_tip", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item GOLD_DRILL_TIP = register("gold_drill_tip", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item DIAMOND_DRILL_TIP = register("diamond_drill_tip", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item NETHERITE_DRILL_TIP = register("netherite_drill_tip", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item DRILL_TIP_IRON = register("drill_tip_iron", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item DRILL_TIP_GOLD = register("drill_tip_gold", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item DRILL_TIP_DIAMOND = register("drill_tip_diamond", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item DRILL_TIP_NETHERITE = register("drill_tip_netherite", Item::new, new Item.Properties().stacksTo(1));
     // drill bodies
     public static final Item DRILL_BODY_BASIC = register("drill_body_basic", Item::new, new Item.Properties().stacksTo(1));
     public static final Item DRILL_BODY_INDUSTRIAL = register("drill_body_industrial", Item::new, new Item.Properties().stacksTo(1));
@@ -61,14 +73,30 @@ public class ReductiveItemRegistry {
             new Item.Properties().stacksTo(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -1.0F)
                     .component(ReductiveComponents.TIP_TYPE, "netherite")
     );
-    // power cores
-    public static final Item BASIC_DRILL_ENGINE = register("basic_drill_engine", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item INDUSTRIAL_DRILL_ENGINE = register("industrial_drill_engine", Item::new, new Item.Properties().stacksTo(1));
 
+    // chainsaw tips
+    public static final Item CHAINSAW_TIP_IRON = register("chainsaw_tip_iron", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_TIP_GOLD = register("chainsaw_tip_gold", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_TIP_DIAMOND = register("chainsaw_tip_diamond", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_TIP_NETHERITE = register("chainsaw_tip_netherite", Item::new, new Item.Properties().stacksTo(1));
+    // chainsaw bodies
+    public static final Item CHAINSAW_BODY_BASIC = register("chainsaw_body_basic", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_BODY_INDUSTRIAL = register("chainsaw_body_industrial", Item::new, new Item.Properties().stacksTo(1));
+    // chainsaws
+    public static final Item CHAINSAW_BASIC = register("chainsaw_basic",
+            settings -> new ChainsawItem(settings, CHAINSAW_BODY_BASIC),
+            new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
+                    .component(ReductiveComponents.TIP_TYPE, "netherite")
+    );
+    public static final Item CHAINSAW_INDUSTRIAL = register("chainsaw_industrial",
+            settings -> new ChainsawItem(settings, CHAINSAW_BODY_INDUSTRIAL),
+            new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
+                    .component(ReductiveComponents.TIP_TYPE, "netherite")
+    );
 
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(BuiltInRegistries.ITEM, Reductive.MOD_ID, item);
-    }
+    // engines
+    public static final Item BASIC_ENGINE = register("basic_engine", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item INDUSTRIAL_ENGINE = register("industrial_engine", Item::new, new Item.Properties().stacksTo(1));
 
     public static Item register(String name, Function<Item.Properties, Item> itemFactory, Item.Properties settings) {
         ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Reductive.MOD_ID, name));

@@ -106,15 +106,6 @@ public class IndustrialDrillItem extends Item {
             float targetHardness = targetState.getDestroySpeed(world, targetPos);
             if (targetHardness > originalHardness) continue;
 
-            // multiplayer (not tested)
-            ClientboundBlockDestructionPacket packet = new ClientboundBlockDestructionPacket(entityId, targetPos, 10);
-            double sendRadiusSq = 64.0 * 64.0;
-            for (ServerPlayer other : serverWorld.players()) {
-                if (other.distanceToSqr(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5) <= sendRadiusSq) {
-                    other.connection.send(packet);
-                }
-            }
-
             // break
             if (serverWorld.removeBlock(targetPos, false)) {
                 Block.dropResources(targetState, serverWorld, targetPos, serverWorld.getBlockEntity(targetPos), miner, stack);

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:iron_drill_tip",
+    "reductive:drill_body_basic"
+  ],
+  "result": {
+    "id": "reductive:drill_basic",
+    "components": {
+      "reductive:tip": "iron"
+    },
+    "count": 1
+  }
+}

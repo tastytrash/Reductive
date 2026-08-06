@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "GRG",
+    "HHH"
+  ],
+  "key": {
+    "#": "minecraft:cobbled_deepslate",
+    "G": "minecraft:gold_nugget",
+    "R": "reductive:industrial_drill_engine",
+    "H": "reductive:netherite_nugget"
+  },
+  "result": {
+    "id": "reductive:drill_body_industrial",
+    "count": 1
+  }
+}

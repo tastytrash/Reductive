@@ -13,7 +13,7 @@
     "i": "minecraft:iron_ingot"
   },
   "result": {
-    "id": "reductive:basic_drill_engine",
+    "id": "reductive:basic_engine",
     "count": 1
   }
 }
