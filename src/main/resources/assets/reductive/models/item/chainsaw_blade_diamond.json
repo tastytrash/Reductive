@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "reductive:item/chainsaw_tip_netherite"
+    "layer0": "reductive:item/chainsaw_blade_diamond"
   }
 }

@@ -52,14 +52,13 @@ public class ChainsawItem extends Item {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        String tip = stack.get(ReductiveComponents.TIP_TYPE);
-        if (tip == null) return 1.0f;
+        String blade = stack.get(ReductiveComponents.BLADE_TYPE);
+        if (blade == null) return 1.0f;
 
-        boolean isPickaxeBlock = state.is(BlockTags.MINEABLE_WITH_PICKAXE);
-        boolean isShovelBlock = state.is(BlockTags.MINEABLE_WITH_SHOVEL);
+        boolean isAxeBlock = state.is(BlockTags.MINEABLE_WITH_AXE);
 
-        if (isPickaxeBlock || isShovelBlock) {
-            return switch (tip) {
+        if (isAxeBlock) {
+            return switch (blade) {
                 case "iron" -> 14.0f;
                 case "gold" -> 23.0f;
                 case "diamond" -> 18.0f;
@@ -72,11 +71,11 @@ public class ChainsawItem extends Item {
     }
 
     private void applyDynamicComponents(ItemStack stack) {
-        String tip = stack.get(ReductiveComponents.TIP_TYPE);
-        if (tip == null) return;
+        String blade = stack.get(ReductiveComponents.BLADE_TYPE);
+        if (blade == null) return;
 
         // 1. Dynamic Durability Management
-        int durability = switch (tip) {
+        int durability = switch (blade) {
             case "iron" -> 512;
             case "gold" -> 192;
             case "diamond" -> 2304;

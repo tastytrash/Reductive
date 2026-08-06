@@ -34,10 +34,10 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
                         entries.accept(ReductiveItemRegistry.DRILL_INDUSTRIAL);
 
-                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_IRON);
-                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_GOLD);
-                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_DIAMOND);
-                        entries.accept(ReductiveItemRegistry.CHAINSAW_TIP_NETHERITE);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BLADE_IRON);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BLADE_GOLD);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BLADE_DIAMOND);
+                        entries.accept(ReductiveItemRegistry.CHAINSAW_BLADE_NETHERITE);
                         entries.accept(ReductiveItemRegistry.CHAINSAW_BODY_BASIC);
                         entries.accept(ReductiveItemRegistry.CHAINSAW_BASIC);
                         entries.accept(ReductiveItemRegistry.CHAINSAW_BODY_INDUSTRIAL);

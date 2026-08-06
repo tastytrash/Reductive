@@ -75,10 +75,10 @@ public class ReductiveItemRegistry {
     );
 
     // chainsaw tips
-    public static final Item CHAINSAW_TIP_IRON = register("chainsaw_tip_iron", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item CHAINSAW_TIP_GOLD = register("chainsaw_tip_gold", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item CHAINSAW_TIP_DIAMOND = register("chainsaw_tip_diamond", Item::new, new Item.Properties().stacksTo(1));
-    public static final Item CHAINSAW_TIP_NETHERITE = register("chainsaw_tip_netherite", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_BLADE_IRON = register("chainsaw_blade_iron", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_BLADE_GOLD = register("chainsaw_blade_gold", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_BLADE_DIAMOND = register("chainsaw_blade_diamond", Item::new, new Item.Properties().stacksTo(1));
+    public static final Item CHAINSAW_BLADE_NETHERITE = register("chainsaw_blade_netherite", Item::new, new Item.Properties().stacksTo(1));
     // chainsaw bodies
     public static final Item CHAINSAW_BODY_BASIC = register("chainsaw_body_basic", Item::new, new Item.Properties().stacksTo(1));
     public static final Item CHAINSAW_BODY_INDUSTRIAL = register("chainsaw_body_industrial", Item::new, new Item.Properties().stacksTo(1));
@@ -86,12 +86,12 @@ public class ReductiveItemRegistry {
     public static final Item CHAINSAW_BASIC = register("chainsaw_basic",
             settings -> new ChainsawItem(settings, CHAINSAW_BODY_BASIC),
             new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
-                    .component(ReductiveComponents.TIP_TYPE, "netherite")
+                    .component(ReductiveComponents.BLADE_TYPE, "netherite")
     );
     public static final Item CHAINSAW_INDUSTRIAL = register("chainsaw_industrial",
             settings -> new ChainsawItem(settings, CHAINSAW_BODY_INDUSTRIAL),
             new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
-                    .component(ReductiveComponents.TIP_TYPE, "netherite")
+                    .component(ReductiveComponents.BLADE_TYPE, "netherite")
     );
 
     // engines
