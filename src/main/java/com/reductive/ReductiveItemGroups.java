@@ -1,38 +1,36 @@
 package com.reductive;
 
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.text.Text;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class ReductiveItemGroups {
-    public static final ItemGroup REDUCTIVE = Registry.register(
-            Registries.ITEM_GROUP,
+    public static final CreativeModeTab REDUCTIVE = Registry.register(
+            BuiltInRegistries.CREATIVE_MODE_TAB,
             com.reductive.Reductive.id("reductive"),
-            FabricItemGroup.builder()
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ReductiveItemRegistry.DYNAMITE))
-                    .displayName(Text.translatable("itemGroup.reductive"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ReductiveItemRegistry.PEBBLE);
-                        entries.add(ReductiveItemRegistry.COPPER_NUGGET);
-                        entries.add(ReductiveItemRegistry.DIAMOND_SHARD);
-                        entries.add(ReductiveItemRegistry.NETHERITE_NUGGET);
+                    .title(Component.translatable("itemGroup.reductive"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ReductiveItemRegistry.PEBBLE);
+                        entries.accept(ReductiveItemRegistry.DIAMOND_SHARD);
+                        entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
 
-                        entries.add(ReductiveItemRegistry.SLINGSHOT);
-                        entries.add(ReductiveItemRegistry.DYNAMITE);
+                        entries.accept(ReductiveItemRegistry.SLINGSHOT);
+                        entries.accept(ReductiveItemRegistry.DYNAMITE);
 
-                        entries.add(ReductiveItemRegistry.IRON_DRILL_TIP);
-                        entries.add(ReductiveItemRegistry.GOLD_DRILL_TIP);
-                        entries.add(ReductiveItemRegistry.DIAMOND_DRILL_TIP);
-                        entries.add(ReductiveItemRegistry.NETHERITE_DRILL_TIP);
-                        entries.add(ReductiveItemRegistry.DRILL_BODY_BASIC);
-                        entries.add(ReductiveItemRegistry.DRILL_BASIC);
-                        entries.add(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
-                        entries.add(ReductiveItemRegistry.DRILL_INDUSTRIAL);
-                        entries.add(ReductiveItemRegistry.BASIC_DRILL_ENGINE);
-                        entries.add(ReductiveItemRegistry.INDUSTRIAL_DRILL_ENGINE);
+                        entries.accept(ReductiveItemRegistry.IRON_DRILL_TIP);
+                        entries.accept(ReductiveItemRegistry.GOLD_DRILL_TIP);
+                        entries.accept(ReductiveItemRegistry.DIAMOND_DRILL_TIP);
+                        entries.accept(ReductiveItemRegistry.NETHERITE_DRILL_TIP);
+                        entries.accept(ReductiveItemRegistry.DRILL_BODY_BASIC);
+                        entries.accept(ReductiveItemRegistry.DRILL_BASIC);
+                        entries.accept(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL);
+                        entries.accept(ReductiveItemRegistry.DRILL_INDUSTRIAL);
+                        entries.accept(ReductiveItemRegistry.BASIC_DRILL_ENGINE);
+                        entries.accept(ReductiveItemRegistry.INDUSTRIAL_DRILL_ENGINE);
                     })
                     .build()
     );

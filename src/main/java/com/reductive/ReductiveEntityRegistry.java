@@ -2,20 +2,20 @@ package com.reductive;
 
 import com.reductive.entities.DynamiteEntity;
 import com.reductive.entities.PebbleEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 
 public class ReductiveEntityRegistry {
     public static final EntityType<PebbleEntity> PEBBLE
-            = register("pebble", EntityType.Builder.create(PebbleEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
+            = register("pebble", EntityType.Builder.of(PebbleEntity::new, MobCategory.MISC).sized(0.25f, 0.25f));
     public static final EntityType<DynamiteEntity> DYNAMITE
-            = register("dynamite", EntityType.Builder.create(DynamiteEntity::new, SpawnGroup.MISC).dimensions(0.25f, 0.25f));
+            = register("dynamite", EntityType.Builder.of(DynamiteEntity::new, MobCategory.MISC).sized(0.25f, 0.25f));
 
 
     public static void initialize() {
@@ -25,16 +25,16 @@ public class ReductiveEntityRegistry {
     public static void register() {
     }
 
-    private static <T extends Entity> EntityType<T> register(RegistryKey<EntityType<?>> key, EntityType.Builder<T> type) {
-        return Registry.register(Registries.ENTITY_TYPE, key, type.build(key));
+    private static <T extends Entity> EntityType<T> register(ResourceKey<EntityType<?>> key, EntityType.Builder<T> type) {
+        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, type.build(key));
     }
 
     private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
         return register(keyOf(id), type);
     }
 
-    private static RegistryKey<EntityType<?>> keyOf(String id) {
-        return RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(Reductive.MOD_ID, id));
+    private static ResourceKey<EntityType<?>> keyOf(String id) {
+        return ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(Reductive.MOD_ID, id));
     }
 
 }

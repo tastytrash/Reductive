@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:netherite_drill_tip",
+    "reductive:drill_body_industrial"
+  ],
+  "result": {
+    "id": "reductive:drill_industrial",
+    "components": {
+      "reductive:tip": "netherite"
+    },
+    "count": 1
+  }
+}

@@ -2,84 +2,112 @@ package com.reductive.items;
 
 import com.reductive.ReductiveEntityRegistry;
 import com.reductive.ReductiveItemRegistry;
+import com.reductive.entities.DynamiteEntity;
 import com.reductive.entities.PebbleEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.RangedWeaponItem;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Predicate;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.Level;
 
-public class SlingshotItem extends RangedWeaponItem {
+public class SlingshotItem extends ProjectileWeaponItem {
 
     public static final int RANGE = 15;
-    public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) -> stack.isOf(ReductiveItemRegistry.PEBBLE);
+    public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) ->
+            stack.is(ReductiveItemRegistry.PEBBLE) || stack.is(Items.FIRE_CHARGE) || stack.is(ReductiveItemRegistry.DYNAMITE);
 
-    public SlingshotItem(Item.Settings settings) {
+    public SlingshotItem(Item.Properties settings) {
         super(settings);
     }
 
     @Override
-    public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (!(user instanceof PlayerEntity player)) return false;
+    public boolean releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
+        if (!(user instanceof Player player)) return false;
 
-        ItemStack pebbleStack = ItemStack.EMPTY;
+        // find a projectile in inventory
+        ItemStack ammoStack = player.getProjectile(stack);
 
-        if (!player.isCreative()) {
-            // find a pebble in inventory
-            for (int i = 0; i < player.getInventory().size(); i++) {
-                ItemStack s = player.getInventory().getStack(i);
-                if (s.isOf(ReductiveItemRegistry.PEBBLE)) {
-                    pebbleStack = s;
-                    break;
-                }
-            }
-            if (pebbleStack.isEmpty()) return false; // no ammo
+        if (ammoStack.isEmpty() && player.isCreative()) {
+            ammoStack = new ItemStack(ReductiveItemRegistry.PEBBLE);
+        } else if (ammoStack.isEmpty()) {
+            return false; // no ammo and survival
         }
 
-
-        int useTicks = this.getMaxUseTime(stack, user) - remainingUseTicks;
+        int useTicks = this.getUseDuration(stack, user) - remainingUseTicks;
         float pull = getPullProgress(useTicks);
         if (pull < 0.1f) return false;
 
-        if (!world.isClient) {
-            if (!player.isCreative()) pebbleStack.decrement(1);
+        if (!world.isClientSide()) {
+            if (!player.isCreative()) draw(stack, ammoStack, player);
 
-            // create the pebble entity
-            PebbleEntity pebble = new PebbleEntity(ReductiveEntityRegistry.PEBBLE, world);
-            pebble.setOwner(player);
-            pebble.setPosition(player.getX(), player.getEyeY() - 0.1, player.getZ());
-
-            // set velocity
             float speed = pull * 1.5f;        // adjust speed multiplier if needed
             float divergence = 1.0f;          // spread/inaccuracy
-            pebble.setVelocity(player, player.getPitch(), player.getYaw(), 0.0f, speed, divergence);
 
-            // spawn it
-            world.spawnEntity(pebble);
+            if (ammoStack.is(ReductiveItemRegistry.PEBBLE)) {
+                // create the pebble entity
+                PebbleEntity pebble = new PebbleEntity(ReductiveEntityRegistry.PEBBLE, world);
+                pebble.setOwner(player);
+                pebble.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
+
+                // set velocity
+                pebble.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0f, speed, divergence);
+
+                // spawn it
+                world.addFreshEntity(pebble);
+            } else if (ammoStack.is(Items.FIRE_CHARGE)) {
+                // create entity
+                SmallFireball fireball = new SmallFireball(world, player, player.getLookAngle());
+                fireball.setOwner(player);
+                fireball.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
+
+                // direction/velocity
+                fireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0f, speed, divergence);
+
+                // spawn
+                world.addFreshEntity(fireball);
+            } else if (ammoStack.is(ReductiveItemRegistry.DYNAMITE)) {
+                // create the pebble entity
+                DynamiteEntity dynamite = new DynamiteEntity(ReductiveEntityRegistry.DYNAMITE, world);
+                dynamite.setOwner(player);
+                dynamite.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
+
+                // set velocity
+                dynamite.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0f, speed, divergence);
+
+                // spawn it
+                world.addFreshEntity(dynamite);
+            }
+
         }
 
-        world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS,
-                1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + pull * 0.5f);
+        if (ammoStack.is(Items.FIRE_CHARGE)) {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.GHAST_SHOOT, SoundSource.PLAYERS,
+                    1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + pull * 0.5f);
+        } else {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS,
+                    1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + pull * 0.5f);
+        }
 
-        player.incrementStat(Stats.USED.getOrCreateStat(this));
+
+        player.awardStat(Stats.ITEM_USED.get(this));
         return true;
     }
 
 
-    protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
-        projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw() + yaw, 0.0F, speed, divergence);
+    protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
+        projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + yaw, 0.0F, speed, divergence);
     }
 
     public static float getPullProgress(int useTicks) {
@@ -92,34 +120,34 @@ public class SlingshotItem extends RangedWeaponItem {
         return f;
     }
 
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        boolean bl = !user.getProjectileType(itemStack).isEmpty();
-        if (!user.isInCreativeMode() && !bl) {
-            return ActionResult.FAIL;
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        boolean bl = !user.getProjectile(itemStack).isEmpty();
+        if (!user.hasInfiniteMaterials() && !bl) {
+            return InteractionResult.FAIL;
         } else {
-            user.setCurrentHand(hand);
-            return ActionResult.CONSUME;
+            user.startUsingItem(hand);
+            return InteractionResult.CONSUME;
         }
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.BOW;
     }
 
 
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(ItemStack stack, LivingEntity user) {
         return 72000;
     }
 
     @Override
-    public Predicate<ItemStack> getProjectiles() {
+    public Predicate<ItemStack> getAllSupportedProjectiles() {
         return SLING_PROJECTILES;
     }
 
     @Override
-    public int getRange() {
+    public int getDefaultProjectileRange() {
         return RANGE;
     }
 }

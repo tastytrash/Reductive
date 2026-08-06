@@ -1,66 +1,62 @@
 package com.reductive.items;
 
 import com.reductive.datagen.ReductiveComponents;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.EnchantableComponent;
-import net.minecraft.component.type.RepairableComponent;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantable;
+import net.minecraft.world.item.enchantment.Repairable;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class DrillItem extends Item {
     private final Item bodyType;
 
-    public DrillItem(Settings settings, Item bodyType) {
+    public DrillItem(Properties settings, Item bodyType) {
         super(settings);
         this.bodyType = bodyType;
     }
 
-
     @Override
-    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        if (stack.willBreakNextUse()) {
+    public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity miner) {
+        if (stack.nextDamageWillBreak()) {
                 ItemStack bodyOnly = new ItemStack(bodyType);
-                stack.decrement(1);
-                miner.giveOrDropStack(bodyOnly);
+                stack.shrink(1);
+                miner.handleExtraItemsCreatedOnUse(bodyOnly);
                 world.playSound(
                         null,
                         miner.getX(),
                         miner.getY(),
                         miner.getZ(),
-                        SoundEvents.ENTITY_ITEM_BREAK,
-                        SoundCategory.PLAYERS,
+                        SoundEvents.ITEM_BREAK,
+                        SoundSource.PLAYERS,
                         1.0f,
                         1.0f
                 );
         }
 
-        return super.postMine(stack, world, state, pos, miner);
+        return super.mineBlock(stack, world, state, pos, miner);
     }
 
 
     @Override
-    public float getMiningSpeed(ItemStack stack, BlockState state) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         String tip = stack.get(ReductiveComponents.TIP_TYPE);
         if (tip == null) return 1.0f;
 
-        boolean isPickaxeBlock = state.isIn(BlockTags.PICKAXE_MINEABLE);
-        boolean isShovelBlock = state.isIn(BlockTags.SHOVEL_MINEABLE);
+        boolean isPickaxeBlock = state.is(BlockTags.MINEABLE_WITH_PICKAXE);
+        boolean isShovelBlock = state.is(BlockTags.MINEABLE_WITH_SHOVEL);
 
         if (isPickaxeBlock || isShovelBlock) {
             return switch (tip) {
@@ -75,58 +71,52 @@ public class DrillItem extends Item {
         return 1.0f;
     }
 
-    @Override
-    public void postProcessComponents(ItemStack stack) {
+    private void applyDynamicComponents(ItemStack stack) {
         String tip = stack.get(ReductiveComponents.TIP_TYPE);
-
         if (tip == null) return;
 
+        // 1. Dynamic Durability Management
+        int durability = switch (tip) {
+            case "iron" -> 512;
+            case "gold" -> 192;
+            case "diamond" -> 2304;
+            case "netherite" -> 3456;
+            default -> 0;
+        };
+
+        Integer currentMax = stack.get(DataComponents.MAX_DAMAGE);
+        if (currentMax == null || currentMax != durability) {
+            stack.set(DataComponents.MAX_DAMAGE, durability);
+        }
+
+        // 2. Dynamic Enchantable & Repairable Management (Moved from deleted postComponentsLoad method)
         switch (tip) {
             case "iron" -> {
-                stack.set(DataComponentTypes.ENCHANTABLE, new EnchantableComponent(14));
-                stack.set(DataComponentTypes.REPAIRABLE,
-                        new RepairableComponent(RegistryEntryList.of(Items.IRON_INGOT.getRegistryEntry())));
+                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(14));
+                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.IRON_INGOT.builtInRegistryHolder())));
             }
             case "gold" -> {
-                stack.set(DataComponentTypes.ENCHANTABLE, new EnchantableComponent(22));
-                stack.set(DataComponentTypes.REPAIRABLE,
-                        new RepairableComponent(RegistryEntryList.of(Items.GOLD_INGOT.getRegistryEntry())));
+                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(22));
+                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.GOLD_INGOT.builtInRegistryHolder())));
             }
             case "diamond" -> {
-                stack.set(DataComponentTypes.ENCHANTABLE, new EnchantableComponent(10));
-                stack.set(DataComponentTypes.REPAIRABLE,
-                        new RepairableComponent(RegistryEntryList.of(Items.DIAMOND.getRegistryEntry())));
+                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(10));
+                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.DIAMOND.builtInRegistryHolder())));
             }
             case "netherite" -> {
-                stack.set(DataComponentTypes.ENCHANTABLE, new EnchantableComponent(15));
-                stack.set(DataComponentTypes.REPAIRABLE,
-                        new RepairableComponent(RegistryEntryList.of(Items.NETHERITE_INGOT.getRegistryEntry())));
+                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(15));
+                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.NETHERITE_INGOT.builtInRegistryHolder())));
             }
         }
     }
 
     @Override
-    public void onCraft(ItemStack stack, World world) {
-        applyTipComponents(stack);
+    public void onCraftedPostProcess(ItemStack stack, Level world) {
+        applyDynamicComponents(stack);
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
-        applyTipComponents(stack);
-    }
-
-    private void applyTipComponents(ItemStack stack) {
-        String tip = stack.get(ReductiveComponents.TIP_TYPE);
-        if (tip == null) return;
-
-        int durability = switch (tip) {
-            case "iron" -> 512;
-            case "gold" -> 192;
-            case "diamond" -> 2304;
-            case "netherite"-> 3456;
-            default -> 0;
-        };
-
-        stack.set(DataComponentTypes.MAX_DAMAGE, durability);
+    public void inventoryTick(ItemStack stack, ServerLevel world, Entity entity, @Nullable EquipmentSlot slot) {
+        applyDynamicComponents(stack);
     }
 }

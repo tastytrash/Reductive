@@ -1,9 +1,0 @@
- iron drill - requires coal for fuel, no durability just fuel, no speed enchant?, cant mine ores, 1.5x iron pickaxe speed
- no cooldown?
-
- iron, gold, diamond, netherite tip
- 12, 18, 14, 16 speed
- 384, 100, 2304, 3456 durability
-
- basic, advanced, precision, industrial
- nothing, 1.2x speed, 1.5x fastest speed, 1.15x speed 3x3 mining
