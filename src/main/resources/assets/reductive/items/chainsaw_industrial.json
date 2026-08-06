@@ -1,0 +1,41 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:component",
+    "component": "reductive:tip",
+    "cases": [
+      {
+        "when": "iron",
+        "model": {
+          "type": "minecraft:model",
+          "model": "reductive:item/chainsaw_industrial_iron"
+        }
+      },
+      {
+        "when": "gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "reductive:item/chainsaw_industrial_gold"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "reductive:item/chainsaw_industrial_diamond"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "reductive:item/chainsaw_industrial_netherite"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "reductive:item/chainsaw_body_industrial"
+    }
+  }
+}
