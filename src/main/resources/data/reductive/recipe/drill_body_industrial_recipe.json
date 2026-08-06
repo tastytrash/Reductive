@@ -8,7 +8,7 @@
   "key": {
     "#": "minecraft:cobbled_deepslate",
     "G": "minecraft:gold_nugget",
-    "R": "reductive:industrial_drill_engine",
+    "R": "reductive:industrial_engine",
     "H": "reductive:netherite_nugget"
   },
   "result": {

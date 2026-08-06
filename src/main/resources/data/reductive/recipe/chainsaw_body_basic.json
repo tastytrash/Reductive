@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##P",
+    "#BP",
+    "..."
+  ],
+  "key": {
+    "#": "minecraft:iron_ingot",
+    "P": "reductive:pebble",
+    "B": "reductive:basic_engine",
+    ".": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "reductive:chainsaw_body_basic"
+  }
+}

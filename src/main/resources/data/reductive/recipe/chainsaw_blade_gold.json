@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "=# ",
+    "#=#",
+    " #="
+  ],
+  "key": {
+    "=": "minecraft:gold_ingot",
+    "#": "minecraft:gold_nugget"
+  },
+  "result": {
+    "id": "reductive:chainsaw_blade_gold"
+  }
+}

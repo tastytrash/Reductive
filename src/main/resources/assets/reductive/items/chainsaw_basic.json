@@ -2,7 +2,7 @@
   "model": {
     "type": "minecraft:select",
     "property": "minecraft:component",
-    "component": "reductive:tip",
+    "component": "reductive:blade",
     "cases": [
       {
         "when": "iron",

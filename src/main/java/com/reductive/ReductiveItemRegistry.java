@@ -10,6 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 
@@ -18,8 +19,8 @@ public class ReductiveItemRegistry {
             BlockTags.INCORRECT_FOR_WOODEN_TOOL,
             1,
             0.0F,
-            1.5F,
-            22,
+            0.0F,
+            1,
             null
     );
 
@@ -27,8 +28,8 @@ public class ReductiveItemRegistry {
             BlockTags.MINEABLE_WITH_AXE,
             1,
             0.0F,
-            1.5F,
-            22,
+            0.0F,
+            1,
             null
     );
 
@@ -65,12 +66,12 @@ public class ReductiveItemRegistry {
     // drills
     public static final Item DRILL_BASIC = register("drill_basic",
             settings -> new DrillItem(settings, DRILL_BODY_BASIC),
-            new Item.Properties().stacksTo(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -1.0F)
+            new Item.Properties().stacksTo(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -2.0F)
                     .component(ReductiveComponents.TIP_TYPE, "netherite")
     );
     public static final Item DRILL_INDUSTRIAL = register("drill_industrial",
             settings -> new IndustrialDrillItem(settings, DRILL_BODY_INDUSTRIAL),
-            new Item.Properties().stacksTo(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -1.0F)
+            new Item.Properties().stacksTo(1).pickaxe(DRILL_TOOL_MATERIAL, 1.0F, -2.0F)
                     .component(ReductiveComponents.TIP_TYPE, "netherite")
     );
 
@@ -85,12 +86,12 @@ public class ReductiveItemRegistry {
     // chainsaws
     public static final Item CHAINSAW_BASIC = register("chainsaw_basic",
             settings -> new ChainsawItem(settings, CHAINSAW_BODY_BASIC),
-            new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
+            new Item.Properties().stacksTo(1).axe(CHAINSAW_TOOL_MATERIAL, 1.0F, -2.8F)
                     .component(ReductiveComponents.BLADE_TYPE, "netherite")
     );
     public static final Item CHAINSAW_INDUSTRIAL = register("chainsaw_industrial",
-            settings -> new ChainsawItem(settings, CHAINSAW_BODY_INDUSTRIAL),
-            new Item.Properties().stacksTo(1).pickaxe(CHAINSAW_TOOL_MATERIAL, 1.0F, -1.0F)
+            settings -> new IndustrialChainsawItem(settings, CHAINSAW_BODY_INDUSTRIAL),
+            new Item.Properties().stacksTo(1).axe(CHAINSAW_TOOL_MATERIAL, 1.0F, -2.8F)
                     .component(ReductiveComponents.BLADE_TYPE, "netherite")
     );
 

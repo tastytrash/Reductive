@@ -1,6 +1,12 @@
 package com.reductive.items;
 
+import com.reductive.Reductive;
 import com.reductive.datagen.ReductiveComponents;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -39,6 +45,22 @@ public class IndustrialDrillItem extends Item {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity miner) {
+        if (stack.nextDamageWillBreak()) {
+            ItemStack bodyOnly = new ItemStack(bodyType);
+            stack.shrink(1);
+            miner.handleExtraItemsCreatedOnUse(bodyOnly);
+            world.playSound(
+                    null,
+                    miner.getX(),
+                    miner.getY(),
+                    miner.getZ(),
+                    SoundEvents.ITEM_BREAK,
+                    SoundSource.PLAYERS,
+                    1.0f,
+                    1.0f
+            );
+        }
+
         boolean result = super.mineBlock(stack, world, state, pos, miner);
 
         if (!(world instanceof ServerLevel serverWorld) || !(miner instanceof ServerPlayer player)) {
@@ -89,8 +111,6 @@ public class IndustrialDrillItem extends Item {
             }
         }
 
-        int entityId = miner.getId();
-
         for (BlockPos targetPos : toBreak) {
             BlockState targetState = serverWorld.getBlockState(targetPos);
 
@@ -106,23 +126,11 @@ public class IndustrialDrillItem extends Item {
             float targetHardness = targetState.getDestroySpeed(world, targetPos);
             if (targetHardness > originalHardness) continue;
 
-            // break
-            if (serverWorld.removeBlock(targetPos, false)) {
-                Block.dropResources(targetState, serverWorld, targetPos, serverWorld.getBlockEntity(targetPos), miner, stack);
-            }
-
-            // damage for each block
-            if (!stack.isEmpty()) {
-                stack.hurtWithoutBreaking(1, (Player) miner);
-                if (stack.isEmpty()) {
-                    ItemStack bodyOnly = new ItemStack(bodyType);
-                    miner.handleExtraItemsCreatedOnUse(bodyOnly);
-                    serverWorld.playSound(null, miner.getX(), miner.getY(), miner.getZ(),
-                            SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);
-                }
-            }
+            serverWorld.destroyBlock(targetPos, true, miner);
 
             if (stack.isEmpty()) break;
+
+            stack.hurtWithoutBreaking(1, player);
         }
 
         return result;
@@ -149,53 +157,44 @@ public class IndustrialDrillItem extends Item {
         return 1.0f;
     }
 
+    public static void applyTipProperties(ItemStack stack) {
+        String blade = stack.get(ReductiveComponents.TIP_TYPE);
+        if (blade == null) return;
 
-    private void applyDynamicComponents(ItemStack stack) {
-        String tip = stack.get(ReductiveComponents.TIP_TYPE);
-        if (tip == null) return;
-
-        // 1. Dynamic Durability Management
-        int durability = switch (tip) {
-            case "iron" -> 1024;
-            case "gold" -> 384;
-            case "diamond" -> 4608;
-            case "netherite" -> 6912;
-            default -> 0;
+        IndustrialDrillItem.TipProperties properties = switch (blade) {
+            case "iron" -> new IndustrialDrillItem.TipProperties(512, 14, Items.IRON_INGOT, 2.0F);
+            case "gold" -> new IndustrialDrillItem.TipProperties(192, 22, Items.GOLD_INGOT, 2.0F);
+            case "diamond" -> new IndustrialDrillItem.TipProperties(2304, 10, Items.DIAMOND, 3.0F);
+            case "netherite" -> new IndustrialDrillItem.TipProperties(3456, 15, Items.NETHERITE_INGOT, 4.0F);
+            default -> null;
         };
+        if (properties == null) return;
 
         Integer currentMax = stack.get(DataComponents.MAX_DAMAGE);
-        if (currentMax == null || currentMax != durability) {
-            stack.set(DataComponents.MAX_DAMAGE, durability);
+        if (currentMax == null || currentMax != properties.durability()) {
+            stack.set(DataComponents.MAX_DAMAGE, properties.durability());
         }
 
-        // 2. Dynamic Enchantable & Repairable Management (Moved from deleted postComponentsLoad method)
-        switch (tip) {
-            case "iron" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(14));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.IRON_INGOT.builtInRegistryHolder())));
-            }
-            case "gold" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(22));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.GOLD_INGOT.builtInRegistryHolder())));
-            }
-            case "diamond" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(10));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.DIAMOND.builtInRegistryHolder())));
-            }
-            case "netherite" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(15));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.NETHERITE_INGOT.builtInRegistryHolder())));
-            }
+        Enchantable enchantable = new Enchantable(properties.enchantability());
+        if (!enchantable.equals(stack.get(DataComponents.ENCHANTABLE))) {
+            stack.set(DataComponents.ENCHANTABLE, enchantable);
+        }
+
+        Repairable repairable = new Repairable(HolderSet.direct(properties.repairItem().builtInRegistryHolder()));
+        if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
+            stack.set(DataComponents.REPAIRABLE, repairable);
         }
     }
 
+    private record TipProperties(int durability, int enchantability, Item repairItem, float attackDamage) {}
+
     @Override
     public void onCraftedPostProcess(ItemStack stack, Level world) {
-        applyDynamicComponents(stack);
+        applyTipProperties(stack);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel world, Entity entity, @Nullable EquipmentSlot slot) {
-        applyDynamicComponents(stack);
+        applyTipProperties(stack);
     }
 }

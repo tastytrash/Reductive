@@ -2,32 +2,99 @@ package com.reductive;
 
 import com.reductive.datagen.ReductiveComponents;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 
 public class ReductiveClient implements ClientModInitializer {
+	private EngineSound engineSound;
+
 	@Override
 	public void onInitializeClient() {
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
-            if (!itemStack.is(ReductiveItemRegistry.DRILL_BASIC) && !itemStack.is(ReductiveItemRegistry.DRILL_INDUSTRIAL)) return;
+            boolean isDrill = itemStack.is(ReductiveItemRegistry.DRILL_BASIC)
+                    || itemStack.is(ReductiveItemRegistry.DRILL_INDUSTRIAL);
 
-            if (itemStack.getComponents().get(ReductiveComponents.TIP_TYPE) != null) {
-                String tip = itemStack.getComponents().get(ReductiveComponents.TIP_TYPE);
+            boolean isChainsaw = itemStack.is(ReductiveItemRegistry.CHAINSAW_BASIC)
+                    || itemStack.is(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL);
 
-                assert tip != null;
-                ChatFormatting formatting = switch (tip) {
-                    case "iron" -> ChatFormatting.WHITE;
-                    case "gold" -> ChatFormatting.GOLD;
-                    case "diamond" -> ChatFormatting.AQUA;
-                    case "netherite" -> ChatFormatting.GRAY;
-                    default -> ChatFormatting.RED;
-                };
+            if (!isDrill && !isChainsaw) return;
 
-                String capitalizedTip = tip.substring(0, 1).toUpperCase() + tip.substring(1);
-                list.add(Component.literal("Tip: " + capitalizedTip).withStyle(formatting));
+            String material = isDrill ? itemStack.get(ReductiveComponents.TIP_TYPE) : itemStack.get(ReductiveComponents.BLADE_TYPE);
 
+            if (material == null) return;
+
+            ChatFormatting formatting = switch (material) {
+                case "iron" -> ChatFormatting.WHITE;
+                case "gold" -> ChatFormatting.GOLD;
+                case "diamond" -> ChatFormatting.AQUA;
+                case "netherite" -> ChatFormatting.GRAY;
+                default -> ChatFormatting.RED;
+            };
+
+            String capitalized = material.substring(0, 1).toUpperCase() + material.substring(1);
+            String label = isDrill ? "Tip" : "Blade";
+
+            list.add(Component.literal(label + ": " + capitalized).withStyle(formatting));
+        });
+
+
+        // tool engine (bee) sound
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            boolean shouldPlay =
+                    client.player != null
+                    && client.options.keyAttack.isDown()
+                    && isEngineTool(client.player.getMainHandItem());
+
+            if (shouldPlay) {
+                if (engineSound == null || engineSound.isStopped()) {
+                    engineSound = new EngineSound(client.player);
+                    client.getSoundManager().play(engineSound);
+                }
+            } else if (engineSound != null) {
+                engineSound.stopLoop();
+                engineSound = null;
             }
         });
+    }
+
+    private static boolean isEngineTool(ItemStack stack) {
+        return stack.is(ReductiveItemRegistry.CHAINSAW_BASIC)
+                || stack.is(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL)
+                || stack.is(ReductiveItemRegistry.DRILL_BASIC)
+                || stack.is(ReductiveItemRegistry.DRILL_INDUSTRIAL);
+    }
+
+    private static class EngineSound extends AbstractTickableSoundInstance {
+        private final LocalPlayer player;
+
+        private EngineSound(LocalPlayer player) {
+            super(SoundEvents.BEE_LOOP, SoundSource.PLAYERS, RandomSource.create(0));
+            this.player = player;
+            this.looping = true;
+            this.relative = true;
+            this.volume = 0.65F;
+            this.pitch = 0.65F;
+        }
+
+        @Override
+        public void tick() {
+            Minecraft client = Minecraft.getInstance();
+            if (!client.options.keyAttack.isDown() || !isEngineTool(player.getMainHandItem())) {
+                stop();
+            }
+        }
+
+        private void stopLoop() {
+            stop();
+        }
     }
 }

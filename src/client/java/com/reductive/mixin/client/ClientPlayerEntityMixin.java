@@ -1,6 +1,8 @@
 package com.reductive.mixin.client;
 
+import com.reductive.items.ChainsawItem;
 import com.reductive.items.DrillItem;
+import com.reductive.items.IndustrialChainsawItem;
 import com.reductive.items.IndustrialDrillItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -21,14 +23,20 @@ public class ClientPlayerEntityMixin {
         Minecraft mc = Minecraft.getInstance();
         if (mc == null) return;
 
-        HitResult target = mc.hitResult;
-        if (target == null || target.getType() != Type.BLOCK) {
-            return;
-        }
+//        HitResult target = mc.hitResult;
+//        if (target == null || target.getType() != Type.BLOCK) {
+//            return;
+//        }
 
         // cancel swing animation for drills
-        ItemStack stack = hand == InteractionHand.MAIN_HAND ? mc.player.getMainHandItem() : mc.player.getOffhandItem();
-        if (stack != null && stack.getItem() instanceof IndustrialDrillItem || stack.getItem() instanceof DrillItem) {
+        ItemStack drill = hand == InteractionHand.MAIN_HAND ? mc.player.getMainHandItem() : mc.player.getOffhandItem();
+        if (drill != null && drill.getItem() instanceof IndustrialDrillItem || drill.getItem() instanceof DrillItem) {
+            ci.cancel();
+        }
+
+        // cancel swing animation for chainsaws
+        ItemStack chainsaw = hand == InteractionHand.MAIN_HAND ? mc.player.getMainHandItem() : mc.player.getOffhandItem();
+        if (chainsaw != null && chainsaw.getItem() instanceof IndustrialChainsawItem || chainsaw.getItem() instanceof ChainsawItem) {
             ci.cancel();
         }
     }

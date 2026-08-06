@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##.",
+    "#I.",
+    "GGG"
+  ],
+  "key": {
+    "#": "minecraft:cobbled_deepslate",
+    ".": "reductive:netherite_nugget",
+    "I": "reductive:industrial_engine",
+    "G": "minecraft:gold_nugget"
+  },
+  "result": {
+    "id": "reductive:chainsaw_body_industrial"
+  }
+}

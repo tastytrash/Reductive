@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:chainsaw_blade_iron",
+    "reductive:chainsaw_body_basic"
+  ],
+  "result": {
+    "id": "reductive:chainsaw_basic",
+    "components": {
+      "reductive:blade": "iron"
+    },
+    "count": 1
+  }
+}

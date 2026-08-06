@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "reductive:diamond_drill_tip",
+    "reductive:drill_tip_diamond",
     "reductive:drill_body_basic"
   ],
   "result": {

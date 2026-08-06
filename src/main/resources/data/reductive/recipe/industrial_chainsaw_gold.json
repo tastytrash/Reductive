@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:chainsaw_blade_gold",
+    "reductive:chainsaw_body_industrial"
+  ],
+  "result": {
+    "id": "reductive:chainsaw_industrial",
+    "components": {
+      "reductive:blade": "gold"
+    },
+    "count": 1
+  }
+}

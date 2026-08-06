@@ -1,19 +1,25 @@
 package com.reductive.items;
 
+import com.reductive.Reductive;
 import com.reductive.datagen.ReductiveComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.level.Level;
@@ -71,52 +77,44 @@ public class DrillItem extends Item {
         return 1.0f;
     }
 
-    private void applyDynamicComponents(ItemStack stack) {
-        String tip = stack.get(ReductiveComponents.TIP_TYPE);
-        if (tip == null) return;
+    public static void applyTipProperties(ItemStack stack) {
+        String blade = stack.get(ReductiveComponents.TIP_TYPE);
+        if (blade == null) return;
 
-        // 1. Dynamic Durability Management
-        int durability = switch (tip) {
-            case "iron" -> 512;
-            case "gold" -> 192;
-            case "diamond" -> 2304;
-            case "netherite" -> 3456;
-            default -> 0;
+        DrillItem.TipProperties properties = switch (blade) {
+            case "iron" -> new DrillItem.TipProperties(512, 14, Items.IRON_INGOT, 2.0F);
+            case "gold" -> new DrillItem.TipProperties(192, 22, Items.GOLD_INGOT, 2.0F);
+            case "diamond" -> new DrillItem.TipProperties(2304, 10, Items.DIAMOND, 3.0F);
+            case "netherite" -> new DrillItem.TipProperties(3456, 15, Items.NETHERITE_INGOT, 4.0F);
+            default -> null;
         };
+        if (properties == null) return;
 
         Integer currentMax = stack.get(DataComponents.MAX_DAMAGE);
-        if (currentMax == null || currentMax != durability) {
-            stack.set(DataComponents.MAX_DAMAGE, durability);
+        if (currentMax == null || currentMax != properties.durability()) {
+            stack.set(DataComponents.MAX_DAMAGE, properties.durability());
         }
 
-        // 2. Dynamic Enchantable & Repairable Management (Moved from deleted postComponentsLoad method)
-        switch (tip) {
-            case "iron" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(14));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.IRON_INGOT.builtInRegistryHolder())));
-            }
-            case "gold" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(22));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.GOLD_INGOT.builtInRegistryHolder())));
-            }
-            case "diamond" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(10));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.DIAMOND.builtInRegistryHolder())));
-            }
-            case "netherite" -> {
-                if (!stack.has(DataComponents.ENCHANTABLE)) stack.set(DataComponents.ENCHANTABLE, new Enchantable(15));
-                if (!stack.has(DataComponents.REPAIRABLE)) stack.set(DataComponents.REPAIRABLE, new Repairable(HolderSet.direct(Items.NETHERITE_INGOT.builtInRegistryHolder())));
-            }
+        Enchantable enchantable = new Enchantable(properties.enchantability());
+        if (!enchantable.equals(stack.get(DataComponents.ENCHANTABLE))) {
+            stack.set(DataComponents.ENCHANTABLE, enchantable);
+        }
+
+        Repairable repairable = new Repairable(HolderSet.direct(properties.repairItem().builtInRegistryHolder()));
+        if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
+            stack.set(DataComponents.REPAIRABLE, repairable);
         }
     }
 
+    private record TipProperties(int durability, int enchantability, Item repairItem, float attackDamage) {}
+
     @Override
     public void onCraftedPostProcess(ItemStack stack, Level world) {
-        applyDynamicComponents(stack);
+        applyTipProperties(stack);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel world, Entity entity, @Nullable EquipmentSlot slot) {
-        applyDynamicComponents(stack);
+        applyTipProperties(stack);
     }
 }

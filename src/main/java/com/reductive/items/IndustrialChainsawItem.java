@@ -7,14 +7,15 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,12 +25,16 @@ import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ChainsawItem extends Item {
-    private final Item bodyType;
+import java.util.*;
 
-    public ChainsawItem(Properties settings, Item bodyType) {
+public class IndustrialChainsawItem extends Item {
+    private final Item bodyType;
+    private static final int MAX_BLOCKS = 5;
+
+    public IndustrialChainsawItem(Properties settings, Item bodyType) {
         super(settings);
         this.bodyType = bodyType;
     }
@@ -52,7 +57,82 @@ public class ChainsawItem extends Item {
                 );
         }
 
-        return super.mineBlock(stack, world, state, pos, miner);
+        boolean result = super.mineBlock(stack, world, state, pos, miner);
+
+        if (!(world instanceof ServerLevel serverWorld) || !(miner instanceof ServerPlayer player)) {
+            return result;
+        }
+
+        // only break area if main block is mineable
+        if (!state.is(BlockTags.MINEABLE_WITH_AXE)) {
+            return result;
+        }
+
+        // get original block hardness
+        float originalHardness = state.getDestroySpeed(world, pos);
+        if (originalHardness <= 0) {
+            return result;
+        }
+
+        // bfs
+        List<BlockPos> toBreak = new ArrayList<>();
+        Queue<BlockPos> queue = new LinkedList<>();
+        Set<BlockPos> visited = new HashSet<>();
+
+        // original position
+        queue.add(pos);
+        visited.add(pos);
+
+        // check all neighbours, including adjacent
+        List<int[]> directions = new ArrayList<>();
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    if (dx == 0 && dy == 0 && dz == 0) continue; // Skip the center block itself
+                    directions.add(new int[]{dx, dy, dz});
+                }
+            }
+        }
+
+        while (!queue.isEmpty() && toBreak.size() < MAX_BLOCKS) {
+            BlockPos current = queue.poll();
+
+            if (!current.equals(pos)) {
+                toBreak.add(current);
+            }
+
+            for (int[] dir : directions) {
+                BlockPos neighbor = current.offset(dir[0], dir[1], dir[2]);
+
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    BlockState neighborState = serverWorld.getBlockState(neighbor);
+
+                    // must be mineable
+                    if (!neighborState.isAir() && neighborState.getDestroySpeed(world, neighbor) != -1.0f) {
+                        if (neighborState.is(BlockTags.MINEABLE_WITH_AXE)) {
+
+                            // check the block hardness
+                            float targetHardness = neighborState.getDestroySpeed(world, neighbor);
+                            if (targetHardness <= originalHardness) {
+                                queue.add(neighbor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // break all blocks
+        for (BlockPos targetPos : toBreak) {
+            serverWorld.destroyBlock(targetPos, true, miner);
+
+            if (stack.isEmpty()) break;
+
+            stack.hurtWithoutBreaking(1, player);
+        }
+
+        return result;
     }
 
     @Override
@@ -102,23 +182,6 @@ public class ChainsawItem extends Item {
         if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
             stack.set(DataComponents.REPAIRABLE, repairable);
         }
-
-//        // attack damage modifier
-//        ItemAttributeModifiers attributes = ItemAttributeModifiers.builder()
-//                .add(
-//                        Attributes.ATTACK_DAMAGE,
-//                        new AttributeModifier(
-//                                Identifier.fromNamespaceAndPath(Reductive.MOD_ID, "chainsaw_blade_damage"),
-//                                properties.attackDamage(),
-//                                AttributeModifier.Operation.ADD_VALUE
-//                        ),
-//                        EquipmentSlotGroup.MAINHAND
-//                )
-//                .build();
-//
-//        if (!attributes.equals(stack.get(DataComponents.ATTRIBUTE_MODIFIERS))) {
-//            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, attributes);
-//        }
     }
 
     private record BladeProperties(int durability, int enchantability, Item repairItem, float attackDamage) {}
