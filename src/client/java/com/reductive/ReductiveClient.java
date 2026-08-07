@@ -43,7 +43,22 @@ public class ReductiveClient implements ClientModInitializer {
             String capitalized = material.substring(0, 1).toUpperCase() + material.substring(1);
             String label = isDrill ? "Tip" : "Blade";
 
+            // list.add(Component.empty());
             list.add(Component.literal(label + ": " + capitalized).withStyle(formatting));
+
+            // chainsaw max blocks
+            if (isChainsaw) {
+                int maxBlocks = switch (material) {
+                    case "iron" -> 7;
+                    case "gold" -> 3;
+                    case "diamond" -> 11;
+                    case "netherite" -> 15;
+                    default -> 0;
+                };
+
+                list.add(Component.literal("Breaks " + maxBlocks + " blocks")
+                        .withStyle(formatting));
+            }
         });
 
 

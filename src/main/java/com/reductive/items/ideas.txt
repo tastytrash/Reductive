@@ -1,4 +1,12 @@
-slingshot can shoot fireballs, flint pieces, dynamite
+slingshot can shoot flint pieces?
 
-coal chunks/dust
-matchstick
+
+copper coil | redstone processor | copper coil
+?           | crafting table     | ?
+quartz shard| redstone dust      | quartz shard
+
+
+ redstone processor
+ redstone dust | redstone dust   | redstone dust
+ repeater      | comparator       | redstone torch
+ quartz shard  | redstone dust    | quartz shard

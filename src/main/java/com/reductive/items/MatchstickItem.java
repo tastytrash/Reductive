@@ -25,6 +25,7 @@ public class MatchstickItem extends Item {
     }
 
     public InteractionResult useOn(final UseOnContext context) {
+        // basically the flint and steel code
         Player player = context.getPlayer();
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();

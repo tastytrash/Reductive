@@ -5,10 +5,14 @@
   "item.reductive.diamond_shard": "Diamond Shard",
   "item.reductive.netherite_nugget": "Netherite Nugget",
 
+  "item.reductive.copper_coil": "Copper Coil",
+  "item.reductive.redstone_processor": "Redstone Processor",
+
   "item.reductive.slingshot": "Slingshot",
   "item.reductive.dynamite": "Dynamite",
 
   "item.reductive.matchstick": "Matchstick",
+  "item.reductive.portable_crafter": "Portable Crafter",
 
   "item.reductive.drill_tip_iron": "Iron Drill Tip",
   "item.reductive.drill_tip_gold": "Gold Drill Tip",

@@ -20,10 +20,14 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.DIAMOND_SHARD);
                         entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
 
+                        entries.accept(ReductiveItemRegistry.COPPER_COIL);
+                        entries.accept(ReductiveItemRegistry.REDSTONE_PROCESSOR);
+
                         entries.accept(ReductiveItemRegistry.SLINGSHOT);
                         entries.accept(ReductiveItemRegistry.DYNAMITE);
 
                         entries.accept(ReductiveItemRegistry.MATCHSTICK);
+                        entries.accept(ReductiveItemRegistry.PORTABLE_CRAFTER);
 
                         entries.accept(ReductiveItemRegistry.DRILL_TIP_IRON);
                         entries.accept(ReductiveItemRegistry.DRILL_TIP_GOLD);

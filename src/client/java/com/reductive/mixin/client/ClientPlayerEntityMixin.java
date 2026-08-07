@@ -21,22 +21,21 @@ public class ClientPlayerEntityMixin {
     @Inject(method = "swing", at = @At("HEAD"), cancellable = true)
     private void onSwingHand(InteractionHand hand, CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc == null) return;
-
-//        HitResult target = mc.hitResult;
-//        if (target == null || target.getType() != Type.BLOCK) {
-//            return;
-//        }
 
         // cancel swing animation for drills
-        ItemStack drill = hand == InteractionHand.MAIN_HAND ? mc.player.getMainHandItem() : mc.player.getOffhandItem();
-        if (drill != null && drill.getItem() instanceof IndustrialDrillItem || drill.getItem() instanceof DrillItem) {
+        ItemStack item;
+        assert mc.player != null;
+        if (hand == InteractionHand.MAIN_HAND) {
+            item = mc.player.getMainHandItem();
+        } else {
+            item = mc.player.getOffhandItem();
+        }
+        if (item.getItem() instanceof IndustrialDrillItem || item.getItem() instanceof DrillItem) {
             ci.cancel();
         }
 
         // cancel swing animation for chainsaws
-        ItemStack chainsaw = hand == InteractionHand.MAIN_HAND ? mc.player.getMainHandItem() : mc.player.getOffhandItem();
-        if (chainsaw != null && chainsaw.getItem() instanceof IndustrialChainsawItem || chainsaw.getItem() instanceof ChainsawItem) {
+        if (item.getItem() instanceof IndustrialChainsawItem || item.getItem() instanceof ChainsawItem) {
             ci.cancel();
         }
     }

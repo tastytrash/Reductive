@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#.#",
+    "CcC",
+    "oQo"
+  ],
+  "key": {
+    "#": "minecraft:redstone_torch",
+    ".": "minecraft:redstone",
+    "C": "reductive:copper_coil",
+    "c": "minecraft:comparator",
+    "o": "reductive:quartz_shard",
+    "Q": "minecraft:quartz"
+  },
+  "result": {
+    "id": "reductive:redstone_processor"
+  }
+}

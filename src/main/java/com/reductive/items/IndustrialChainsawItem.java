@@ -32,7 +32,6 @@ import java.util.*;
 
 public class IndustrialChainsawItem extends Item {
     private final Item bodyType;
-    private static final int MAX_BLOCKS = 5;
 
     public IndustrialChainsawItem(Properties settings, Item bodyType) {
         super(settings);
@@ -75,6 +74,8 @@ public class IndustrialChainsawItem extends Item {
         }
 
         // bfs
+        int maxBlocks = getMaxBlocks(stack);
+
         List<BlockPos> toBreak = new ArrayList<>();
         Queue<BlockPos> queue = new LinkedList<>();
         Set<BlockPos> visited = new HashSet<>();
@@ -94,7 +95,7 @@ public class IndustrialChainsawItem extends Item {
             }
         }
 
-        while (!queue.isEmpty() && toBreak.size() < MAX_BLOCKS) {
+        while (!queue.isEmpty() && toBreak.size() < maxBlocks) {
             BlockPos current = queue.poll();
 
             if (!current.equals(pos)) {
@@ -133,6 +134,22 @@ public class IndustrialChainsawItem extends Item {
         }
 
         return result;
+    }
+
+    private static int getMaxBlocks(ItemStack stack) {
+        String blade = stack.get(ReductiveComponents.BLADE_TYPE);
+
+        if (blade == null) {
+            return 0;
+        }
+
+        return switch (blade) {
+            case "iron" -> 7;
+            case "gold" -> 3;
+            case "diamond" -> 11;
+            case "netherite" -> 15;
+            default -> 0;
+        };
     }
 
     @Override
