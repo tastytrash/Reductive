@@ -57,7 +57,7 @@ public class ReductiveItemRegistry {
 
     // utility
     public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
-    public static final Item PORTABLE_CRAFTER = register("portable_crafter", PortableCrafterItem::new, new Item.Properties());
+    public static final Item PORTABLE_CRAFTER = register("portable_crafter", PortableCrafterItem::new, new Item.Properties().stacksTo(1));
 
     // drill tips
     public static final Item DRILL_TIP_IRON = register("drill_tip_iron", Item::new, new Item.Properties().stacksTo(1));

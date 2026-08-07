@@ -2,11 +2,5 @@ slingshot can shoot flint pieces?
 
 
 copper coil | redstone processor | copper coil
-?           | crafting table     | ?
+iron           | crafting table     | iron
 quartz shard| redstone dust      | quartz shard
-
-
- redstone processor
- redstone dust | redstone dust   | redstone dust
- repeater      | comparator       | redstone torch
- quartz shard  | redstone dust    | quartz shard

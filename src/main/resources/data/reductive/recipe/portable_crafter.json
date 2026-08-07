@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#.#",
+    "ICI",
+    "oRo"
+  ],
+  "key": {
+    "#": "reductive:copper_coil",
+    ".": "reductive:redstone_processor",
+    "I": "minecraft:iron_nugget",
+    "C": "minecraft:crafting_table",
+    "o": "reductive:quartz_shard",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "reductive:portable_crafter"
+  }
+}
