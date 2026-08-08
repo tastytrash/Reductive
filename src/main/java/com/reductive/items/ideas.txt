@@ -2,13 +2,6 @@ slingshot can shoot flint pieces?
 
 craft a monster spawner?
 
-Glass | Lapis Bottle | Glass
-
-Glass | Cauldron | Glass
-
-Iron Ingot | Redstone | Iron Ingot
-
-
-lapis infused bottle, holds more
+FIX DURABILITY NOT BEING USED ON SLINGSHOT
 
 change chainsaw speeds
