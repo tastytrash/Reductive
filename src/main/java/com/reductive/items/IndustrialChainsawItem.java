@@ -1,6 +1,7 @@
 package com.reductive.items;
 
 import com.reductive.Reductive;
+import com.reductive.ReductiveItemRegistry;
 import com.reductive.datagen.ReductiveComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
@@ -24,6 +25,8 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -44,17 +47,8 @@ public class IndustrialChainsawItem extends Item {
                 ItemStack bodyOnly = new ItemStack(bodyType);
                 stack.shrink(1);
                 miner.handleExtraItemsCreatedOnUse(bodyOnly);
-                world.playSound(
-                        null,
-                        miner.getX(),
-                        miner.getY(),
-                        miner.getZ(),
-                        SoundEvents.ITEM_BREAK,
-                        SoundSource.PLAYERS,
-                        1.0f,
-                        1.0f
-                );
-        }
+                world.playSound(null, miner.getX(), miner.getY(), miner.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);}
+
 
         boolean result = super.mineBlock(stack, world, state, pos, miner);
 
@@ -126,12 +120,14 @@ public class IndustrialChainsawItem extends Item {
 
         // break all blocks
         for (BlockPos targetPos : toBreak) {
-            serverWorld.destroyBlock(targetPos, true, miner);
+            BlockEntity blockEntity = serverWorld.getBlockEntity(targetPos);
+            Block.dropResources(state, serverWorld, targetPos, blockEntity, miner, stack);
+            serverWorld.destroyBlock(targetPos, false, miner);
 
             if (stack.isEmpty()) break;
 
-            stack.hurtWithoutBreaking(1, player);
         }
+        stack.hurtWithoutBreaking(1, player);
 
         return result;
     }
@@ -161,9 +157,9 @@ public class IndustrialChainsawItem extends Item {
 
         if (isAxeBlock) {
             return switch (blade) {
-                case "iron" -> 14.0f;
-                case "gold" -> 23.0f;
-                case "diamond" -> 18.0f;
+                case "iron" -> 20.0f;
+                case "gold" -> 44.0f;
+                case "diamond" -> 28.0f;
                 case "netherite" -> 34.0f;
                 default -> 1.0f;
             };

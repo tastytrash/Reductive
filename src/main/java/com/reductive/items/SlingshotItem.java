@@ -86,6 +86,7 @@ public class SlingshotItem extends ProjectileWeaponItem {
             }
 
             if (!player.isCreative()) draw(stack, ammoStack, player);
+            stack.hurtAndBreak(1, player, user.getUsedItemHand());
         }
 
         if (ammoStack.is(Items.FIRE_CHARGE)) {

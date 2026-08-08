@@ -1,0 +1,11 @@
+slingshot can shoot flint pieces?
+
+craft a monster spawner?
+
+change chainsaw speeds
+
+fix enchantments from anvil
+
+fix xp bank not dropping from industrial drill aoe
+
+fix industrial drill and chainsaw not working in creative

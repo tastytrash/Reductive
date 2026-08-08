@@ -1,7 +1,0 @@
-slingshot can shoot flint pieces?
-
-craft a monster spawner?
-
-FIX DURABILITY NOT BEING USED ON SLINGSHOT
-
-change chainsaw speeds

@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -49,17 +50,8 @@ public class IndustrialDrillItem extends Item {
             ItemStack bodyOnly = new ItemStack(bodyType);
             stack.shrink(1);
             miner.handleExtraItemsCreatedOnUse(bodyOnly);
-            world.playSound(
-                    null,
-                    miner.getX(),
-                    miner.getY(),
-                    miner.getZ(),
-                    SoundEvents.ITEM_BREAK,
-                    SoundSource.PLAYERS,
-                    1.0f,
-                    1.0f
-            );
-        }
+            world.playSound(null, miner.getX(), miner.getY(), miner.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);}
+
 
         boolean result = super.mineBlock(stack, world, state, pos, miner);
 
@@ -126,7 +118,9 @@ public class IndustrialDrillItem extends Item {
             float targetHardness = targetState.getDestroySpeed(world, targetPos);
             if (targetHardness > originalHardness) continue;
 
-            serverWorld.destroyBlock(targetPos, true, miner);
+            BlockEntity blockEntity = serverWorld.getBlockEntity(targetPos);
+            Block.dropResources(targetState, serverWorld, targetPos, blockEntity, miner, stack);
+            serverWorld.destroyBlock(targetPos, false, miner);
 
             if (stack.isEmpty()) break;
 

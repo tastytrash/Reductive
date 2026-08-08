@@ -37,20 +37,10 @@ public class DrillItem extends Item {
     @Override
     public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (stack.nextDamageWillBreak()) {
-                ItemStack bodyOnly = new ItemStack(bodyType);
-                stack.shrink(1);
-                miner.handleExtraItemsCreatedOnUse(bodyOnly);
-                world.playSound(
-                        null,
-                        miner.getX(),
-                        miner.getY(),
-                        miner.getZ(),
-                        SoundEvents.ITEM_BREAK,
-                        SoundSource.PLAYERS,
-                        1.0f,
-                        1.0f
-                );
-        }
+            ItemStack bodyOnly = new ItemStack(bodyType);
+            stack.shrink(1);
+            miner.handleExtraItemsCreatedOnUse(bodyOnly);
+            world.playSound(null, miner.getX(), miner.getY(), miner.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);}
 
         return super.mineBlock(stack, world, state, pos, miner);
     }
