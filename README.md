@@ -9,7 +9,7 @@ A Fabric mod for Minecraft that adds utility items and blocks, centred around re
 - **Industrial Drill**: An upgraded drill that breaks in a 3x3 area.
 - **Chainsaw (Basic)**: A chainsaw for cutting wood more efficiently than an axe.
 - **Industrial Chainsaw**: An upgraded chainsaw that breaks multiple wood blocks.
-- **Slingshot**: A weapon that fires pebbles, dynamite or fire charges.
+- **Slingshot**: A weapon that fires pebbles, dynamite or fire charges. (supports crossbow enchantments)
 
 ### Utility
 - **Matchstick**: A single-use flint and steel.

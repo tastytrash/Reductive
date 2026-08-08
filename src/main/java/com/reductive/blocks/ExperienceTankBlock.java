@@ -132,7 +132,8 @@ public class ExperienceTankBlock extends Block implements EntityBlock {
             int storedXp = tankEntity.getStoredXp();
 
             if (storedXp > 0 && level instanceof ServerLevel serverLevel) {
-                this.tryDropExperience(serverLevel, pos, tool, ConstantInt.of(storedXp));
+//              this.tryDropExperience(serverLevel, pos, tool, ConstantInt.of(storedXp));
+                this.popExperience(serverLevel, pos, storedXp);
             }
         }
     }

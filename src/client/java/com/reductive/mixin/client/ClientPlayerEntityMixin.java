@@ -1,9 +1,6 @@
 package com.reductive.mixin.client;
 
-import com.reductive.items.ChainsawItem;
-import com.reductive.items.DrillItem;
-import com.reductive.items.IndustrialChainsawItem;
-import com.reductive.items.IndustrialDrillItem;
+import com.reductive.items.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;

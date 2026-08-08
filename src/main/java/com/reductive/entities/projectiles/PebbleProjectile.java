@@ -1,6 +1,7 @@
 package com.reductive.entities.projectiles;
 
 import com.reductive.ReductiveItemRegistry;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -14,9 +15,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
+import java.util.HashSet;
+
 public class PebbleProjectile extends ThrowableItemProjectile {
     public PebbleProjectile(EntityType<? extends ThrowableItemProjectile> type, Level world) {
         super(type, world);
+    }
+    private byte pierceLevel = 0;
+    private IntOpenHashSet hitEntities;
+
+    public void setPierceLevel(byte pierceLevel) {
+        this.pierceLevel = pierceLevel;
     }
 
     @Override
@@ -42,21 +51,33 @@ public class PebbleProjectile extends ThrowableItemProjectile {
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        Entity target = entityHitResult.getEntity();
+        Entity entity = entityHitResult.getEntity();
 
         if (!(this.level() instanceof ServerLevel serverWorld)) return;
 
 
         float pebbleDamage = 2.0f * (float) this.getDeltaMovement().length() + 1.0f;
-        target.hurtServer(
+
+        entity.hurtServer(
                 serverWorld,
                 this.damageSources().thrown(this, this.getOwner()),
                 pebbleDamage
         );
 
-        this.playSound(SoundEvents.STONE_HIT, 1.0f, 1.0f);
+        if (this.hitEntities == null) {
+            this.hitEntities = new IntOpenHashSet(5);
+        }
 
-        this.discard();
+        if (this.hitEntities.add(entity.getId())) {
+            if (this.pierceLevel > 0) {
+                this.pierceLevel--;
+            } else {
+                System.out.println("test");
+                this.discard(); // discard if no more pierce
+            }
+        }
+
+        this.playSound(SoundEvents.STONE_HIT, 1.0f, 1.0f);
     }
 
     @Override
@@ -70,7 +91,6 @@ public class PebbleProjectile extends ThrowableItemProjectile {
     protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
         this.playSound(SoundEvents.STONE_HIT, 1.0f, 1.0f);
-        this.discard();
     }
 
     @Override

@@ -121,7 +121,8 @@ public class IndustrialChainsawItem extends Item {
         // break all blocks
         for (BlockPos targetPos : toBreak) {
             BlockEntity blockEntity = serverWorld.getBlockEntity(targetPos);
-            Block.dropResources(state, serverWorld, targetPos, blockEntity, miner, stack);
+            BlockState targetState = serverWorld.getBlockState(targetPos);
+            Block.dropResources(targetState, serverWorld, targetPos, blockEntity, miner, stack);
             serverWorld.destroyBlock(targetPos, false, miner);
 
             if (stack.isEmpty()) break;

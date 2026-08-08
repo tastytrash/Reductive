@@ -119,8 +119,8 @@ public class IndustrialDrillItem extends Item {
             if (targetHardness > originalHardness) continue;
 
             BlockEntity blockEntity = serverWorld.getBlockEntity(targetPos);
-            Block.dropResources(targetState, serverWorld, targetPos, blockEntity, miner, stack);
-            serverWorld.destroyBlock(targetPos, false, miner);
+            targetState.getBlock().playerDestroy(serverWorld, player, targetPos, targetState, blockEntity, stack);
+            serverWorld.destroyBlock(targetPos, false);
 
             if (stack.isEmpty()) break;
 
