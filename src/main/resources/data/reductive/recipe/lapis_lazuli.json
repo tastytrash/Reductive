@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment",
+    "reductive:lapis_fragment"
+  ],
+  "result": {
+    "id": "minecraft:lapis_lazuli",
+    "count": 1
+  }
+}

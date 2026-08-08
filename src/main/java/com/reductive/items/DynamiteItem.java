@@ -1,7 +1,7 @@
 package com.reductive.items;
 
 import com.reductive.ReductiveEntityRegistry;
-import com.reductive.entities.DynamiteEntity;
+import com.reductive.entities.projectiles.DynamiteProjectile;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,7 +28,7 @@ public class DynamiteItem extends Item {
                 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 
         if (world instanceof ServerLevel serverWorld) {
-            DynamiteEntity dynamite = new DynamiteEntity(ReductiveEntityRegistry.DYNAMITE, serverWorld);
+            DynamiteProjectile dynamite = new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, serverWorld);
             dynamite.setItem(stack.copy());
             dynamite.setOwner(user);
             dynamite.setPosRaw(user.getX(), user.getEyeY() - 0.1, user.getZ());

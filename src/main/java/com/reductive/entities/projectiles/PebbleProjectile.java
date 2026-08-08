@@ -1,4 +1,4 @@
-package com.reductive.entities;
+package com.reductive.entities.projectiles;
 
 import com.reductive.ReductiveItemRegistry;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -14,8 +14,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
-public class PebbleEntity extends ThrowableItemProjectile {
-    public PebbleEntity(EntityType<? extends ThrowableItemProjectile> type, Level world) {
+public class PebbleProjectile extends ThrowableItemProjectile {
+    public PebbleProjectile(EntityType<? extends ThrowableItemProjectile> type, Level world) {
         super(type, world);
     }
 

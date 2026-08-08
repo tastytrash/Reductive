@@ -1,4 +1,4 @@
-package com.reductive.entities;
+package com.reductive.entities.projectiles;
 
 import com.reductive.ReductiveItemRegistry;
 import net.minecraft.core.particles.ParticleOptions;
@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
-public class DynamiteEntity extends  ThrowableItemProjectile {
-    public DynamiteEntity(EntityType<? extends DynamiteEntity> type, Level world) {
+public class DynamiteProjectile extends  ThrowableItemProjectile {
+    public DynamiteProjectile(EntityType<? extends DynamiteProjectile> type, Level world) {
         super(type, world);
     }
 

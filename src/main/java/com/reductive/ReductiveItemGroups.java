@@ -16,6 +16,7 @@ public class ReductiveItemGroups {
                     .displayItems((displayContext, entries) -> {
                         entries.accept(ReductiveItemRegistry.PEBBLE);
                         entries.accept(ReductiveItemRegistry.COAL_CHUNK);
+                        entries.accept(ReductiveItemRegistry.LAPIS_FRAGMENT);
                         entries.accept(ReductiveItemRegistry.QUARTZ_SHARD);
                         entries.accept(ReductiveItemRegistry.DIAMOND_SHARD);
                         entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
@@ -27,6 +28,8 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.DYNAMITE);
 
                         entries.accept(ReductiveItemRegistry.MATCHSTICK);
+                        entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);
+                        entries.accept(ReductiveItemRegistry.LAPIS_EXPERIENCE_BOTTLE);
                         entries.accept(ReductiveItemRegistry.PORTABLE_CRAFTER);
 
                         entries.accept(ReductiveItemRegistry.DRILL_TIP_IRON);
@@ -49,6 +52,8 @@ public class ReductiveItemGroups {
 
                         entries.accept(ReductiveItemRegistry.BASIC_ENGINE);
                         entries.accept(ReductiveItemRegistry.INDUSTRIAL_ENGINE);
+
+                        entries.accept(ReductiveBlockRegistry.EXPERIENCE_TANK.asItem());
                     })
                     .build()
     );

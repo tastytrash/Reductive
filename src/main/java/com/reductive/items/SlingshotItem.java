@@ -2,13 +2,12 @@ package com.reductive.items;
 
 import com.reductive.ReductiveEntityRegistry;
 import com.reductive.ReductiveItemRegistry;
-import com.reductive.entities.DynamiteEntity;
-import com.reductive.entities.PebbleEntity;
+import com.reductive.entities.projectiles.DynamiteProjectile;
+import com.reductive.entities.projectiles.PebbleProjectile;
 import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -53,7 +52,7 @@ public class SlingshotItem extends ProjectileWeaponItem {
 
             if (ammoStack.is(ReductiveItemRegistry.PEBBLE)) {
                 // create the pebble entity
-                PebbleEntity pebble = new PebbleEntity(ReductiveEntityRegistry.PEBBLE, world);
+                PebbleProjectile pebble = new PebbleProjectile(ReductiveEntityRegistry.PEBBLE, world);
                 pebble.setOwner(player);
                 pebble.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
 
@@ -75,7 +74,7 @@ public class SlingshotItem extends ProjectileWeaponItem {
                 world.addFreshEntity(fireball);
             } else if (ammoStack.is(ReductiveItemRegistry.DYNAMITE)) {
                 // create the pebble entity
-                DynamiteEntity dynamite = new DynamiteEntity(ReductiveEntityRegistry.DYNAMITE, world);
+                DynamiteProjectile dynamite = new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world);
                 dynamite.setOwner(player);
                 dynamite.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
 

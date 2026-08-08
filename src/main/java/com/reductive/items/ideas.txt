@@ -1,6 +1,14 @@
 slingshot can shoot flint pieces?
 
+craft a monster spawner?
 
-copper coil | redstone processor | copper coil
-iron           | crafting table     | iron
-quartz shard| redstone dust      | quartz shard
+Glass | Lapis Bottle | Glass
+
+Glass | Cauldron | Glass
+
+Iron Ingot | Redstone | Iron Ingot
+
+
+lapis infused bottle, holds more
+
+change chainsaw speeds

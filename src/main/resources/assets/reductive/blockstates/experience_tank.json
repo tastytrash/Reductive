@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "reductive:block/experience_tank"
+    },
+    "level=1": {
+      "model": "reductive:block/experience_tank1"
+    },
+    "level=2": {
+      "model": "reductive:block/experience_tank2"
+    },
+    "level=3": {
+      "model": "reductive:block/experience_tank3"
+    },
+    "level=4": {
+      "model": "reductive:block/experience_tank4"
+    },
+    "level=5": {
+      "model": "reductive:block/experience_tank5"
+    },
+    "level=6": {
+      "model": "reductive:block/experience_tank6"
+    },
+    "level=7": {
+      "model": "reductive:block/experience_tank7"
+    },
+    "level=8": {
+      "model": "reductive:block/experience_tank8"
+    },
+    "level=9": {
+      "model": "reductive:block/experience_tank9"
+    },
+    "level=10": {
+      "model": "reductive:block/experience_tank10"
+    },
+    "level=11": {
+      "model": "reductive:block/experience_tank11"
+    },
+    "level=12": {
+      "model": "reductive:block/experience_tank12"
+    },
+    "level=13": {
+      "model": "reductive:block/experience_tank13"
+    },
+    "level=14": {
+      "model": "reductive:block/experience_tank14"
+    },
+    "level=15": {
+      "model": "reductive:block/experience_tank15"
+    },
+    "level=16": {
+      "model": "reductive:block/experience_tank16"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "reductive:lapis_fragment"
+  ],
+  "result": {
+    "id": "reductive:lapis_bottle",
+    "count": 1
+  }
+}

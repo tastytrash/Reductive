@@ -19,6 +19,7 @@ import org.slf4j.Logger;
             ReductiveItemGroups.initialize();
             ReductiveComponents.initialize();
             ReductiveBlockRegistry.initialize();
+            ReductiveBlockEntityRegistry.initialize();
         }
 
         public static Identifier id(String path) {

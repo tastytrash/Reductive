@@ -1,6 +1,7 @@
 {
   "item.reductive.pebble": "Pebble",
   "item.reductive.coal_chunk": "Coal Chunk",
+  "item.reductive.lapis_fragment": "Lapis Lazuli Fragment",
   "item.reductive.quartz_shard": "Quartz Shard",
   "item.reductive.diamond_shard": "Diamond Shard",
   "item.reductive.netherite_nugget": "Netherite Nugget",
@@ -12,6 +13,8 @@
   "item.reductive.dynamite": "Dynamite",
 
   "item.reductive.matchstick": "Matchstick",
+  "item.reductive.lapis_bottle": "Lapis Infused Bottle",
+  "item.reductive.lapis_experience_bottle": "Lapis Bottle o' Enchanting",
   "item.reductive.portable_crafter": "Portable Crafter",
 
   "item.reductive.drill_tip_iron": "Iron Drill Tip",
@@ -34,6 +37,8 @@
 
   "item.reductive.basic_engine": "Basic Engine",
   "item.reductive.industrial_engine": "Industrial Engine",
+
+  "block.reductive.experience_tank": "Experience Tank",
 
   "itemGroup.reductive": "Reductive"
 }

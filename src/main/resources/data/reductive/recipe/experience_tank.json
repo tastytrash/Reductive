@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#u#",
+    "#C#"
+  ],
+  "key": {
+    "#": "minecraft:glass_pane",
+    "u": "reductive:lapis_bottle",
+    "C": "minecraft:cauldron"
+  },
+  "result": {
+    "id": "reductive:experience_tank"
+  }
+}

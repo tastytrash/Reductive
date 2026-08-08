@@ -1,38 +1,55 @@
 package com.reductive;
 
 import java.util.function.Function;
+
+import com.reductive.blocks.ExperienceTankBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class ReductiveBlockRegistry {
+    public static final Block EXPERIENCE_TANK = register(
+            ReductiveBlockItemIds.EXPERIENCE_TANK,
+            ExperienceTankBlock::new,
+            BlockBehaviour.Properties.of()
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F)
+                    .sound(SoundType.IRON)
+                    .noOcclusion()
+                    .isSuffocating(Blocks::never)
+                    .lightLevel(ExperienceTankBlock::getLuminance)
+    );
 
-    private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
-        ResourceKey<Block> blockKey = keyOfBlock(name);
-        Block block = blockFactory.apply(settings.setId(blockKey));
-        if (shouldRegisterItem) {
-            ResourceKey<Item> itemKey = keyOfItem(name);
+    private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties) {
+        // Create the block instance
+        Block block = register(id.block(), blockFactory, properties);
 
-            BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey));
-            Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
-        }
+        // Create the block item instance
+        BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item()));
+        Registry.register(BuiltInRegistries.ITEM, id.item(), blockItem);
 
-        return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+        return block;
     }
 
-    private static ResourceKey<Block> keyOfBlock(String name) {
-        return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Reductive.MOD_ID, name));
-    }
+    public static Block register(
+            ResourceKey<Block> id,
+            Function<BlockBehaviour.Properties, Block> blockFactory,
+            BlockBehaviour.Properties properties
+    ) {
+        Block block = blockFactory.apply(properties.setId(id));
 
-    private static ResourceKey<Item> keyOfItem(String name) {
-        return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Reductive.MOD_ID, name));
+        return Registry.register(
+                BuiltInRegistries.BLOCK,
+                id,
+                block
+        );
     }
-
     public static void initialize() {}
 }

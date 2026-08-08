@@ -12,6 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 
 public class ReductiveItemRegistry {
@@ -36,9 +37,10 @@ public class ReductiveItemRegistry {
     // resources
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Properties());
     public static final Item COAL_CHUNK = register("coal_chunk", Item::new, new Item.Properties());
+    public static final Item LAPIS_FRAGMENT = register("lapis_fragment", Item::new, new Item.Properties());
+    public static final Item QUARTZ_SHARD = register("quartz_shard", Item::new, new Item.Properties());
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Properties());
     public static final Item NETHERITE_NUGGET = register("netherite_nugget", Item::new, new Item.Properties());
-    public static final Item QUARTZ_SHARD = register("quartz_shard", Item::new, new Item.Properties());
 
     public static final Item COPPER_COIL = register("copper_coil", Item::new, new Item.Properties());
     public static final Item REDSTONE_PROCESSOR = register("redstone_processor", Item::new, new Item.Properties());
@@ -57,6 +59,8 @@ public class ReductiveItemRegistry {
 
     // utility
     public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
+    public static final Item LAPIS_BOTTLE = register("lapis_bottle", Item::new, new Item.Properties());
+    public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)));
     public static final Item PORTABLE_CRAFTER = register("portable_crafter", PortableCrafterItem::new, new Item.Properties().stacksTo(1));
 
     // drill tips
