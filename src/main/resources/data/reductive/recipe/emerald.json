@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel",
+    "reductive:emerald_jewel"
+  ],
+  "result": {
+    "id": "minecraft:emerald",
+    "count": 1
+  }
+}

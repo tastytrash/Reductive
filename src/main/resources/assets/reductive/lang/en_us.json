@@ -2,9 +2,14 @@
   "item.reductive.pebble": "Pebble",
   "item.reductive.coal_chunk": "Coal Chunk",
   "item.reductive.lapis_fragment": "Lapis Lazuli Fragment",
+  "item.reductive.emerald_jewel": "Emerald Jewel",
   "item.reductive.quartz_shard": "Quartz Shard",
   "item.reductive.diamond_shard": "Diamond Shard",
   "item.reductive.netherite_nugget": "Netherite Nugget",
+  "item.reductive.nether_star_fragment": "Nether Star Fragment",
+
+  "item.reductive.spawn_core_lesser": "Lesser Spawn Core",
+  "item.reductive.spawn_core_greater": "Greater Spawn Core",
 
   "item.reductive.copper_coil": "Copper Coil",
   "item.reductive.redstone_processor": "Redstone Processor",

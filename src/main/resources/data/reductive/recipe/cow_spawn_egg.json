@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L#L",
+    "WSW",
+    "L#L"
+  ],
+  "key": {
+    "#": "minecraft:beef",
+    "L": "minecraft:leather",
+    "W": "minecraft:wheat",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:cow_spawn_egg"
+  }
+}

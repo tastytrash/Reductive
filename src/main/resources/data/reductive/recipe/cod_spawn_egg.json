@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C#C",
+    "#S#",
+    "C#C"
+  ],
+  "key": {
+    "C": "minecraft:cod",
+    "#": "minecraft:kelp",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:cod_spawn_egg"
+  }
+}

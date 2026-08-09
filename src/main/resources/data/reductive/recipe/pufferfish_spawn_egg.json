@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P#P",
+    "#S#",
+    "P#P"
+  ],
+  "key": {
+    "P": "minecraft:pufferfish",
+    "#": "minecraft:kelp",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:pufferfish_spawn_egg"
+  }
+}

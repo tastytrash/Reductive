@@ -5,15 +5,18 @@ import com.reductive.items.*;
 
 import java.util.function.Function;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.component.DamageResistant;
 
 public class ReductiveItemRegistry {
     public static ToolMaterial DRILL_TOOL_MATERIAL = new ToolMaterial(
@@ -38,9 +41,14 @@ public class ReductiveItemRegistry {
     public static final Item PEBBLE = register("pebble", Item::new, new Item.Properties());
     public static final Item COAL_CHUNK = register("coal_chunk", Item::new, new Item.Properties());
     public static final Item LAPIS_FRAGMENT = register("lapis_fragment", Item::new, new Item.Properties());
+    public static final Item EMERALD_JEWEL = register("emerald_jewel", Item::new, new Item.Properties());
     public static final Item QUARTZ_SHARD = register("quartz_shard", Item::new, new Item.Properties());
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Properties());
     public static final Item NETHERITE_NUGGET = register("netherite_nugget", Item::new, new Item.Properties());
+    public static final Item NETHER_STAR_FRAGMENT = register("nether_star_fragment", Item::new, new Item.Properties().rarity(Rarity.RARE).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true).delayedComponent(DataComponents.DAMAGE_RESISTANT, (context) -> new DamageResistant(context.getOrThrow(DamageTypeTags.IS_EXPLOSION))));
+
+    public static final Item SPAWN_CORE_LESSER = register("spawn_core_lesser", Item::new, new Item.Properties());
+    public static final Item SPAWN_CORE_GREATER = register("spawn_core_greater", Item::new, new Item.Properties());
 
     public static final Item COPPER_COIL = register("copper_coil", Item::new, new Item.Properties());
     public static final Item REDSTONE_PROCESSOR = register("redstone_processor", Item::new, new Item.Properties());

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o#o",
+    "#E#",
+    "o#o"
+  ],
+  "key": {
+    "o": "minecraft:amethyst_shard",
+    "#": "reductive:emerald_jewel",
+    "E": "#minecraft:eggs"
+  },
+  "result": {
+    "id": "reductive:spawn_core_lesser"
+  }
+}

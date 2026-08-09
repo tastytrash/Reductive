@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I#I",
+    "#S#",
+    "I#I"
+  ],
+  "key": {
+    "I": "minecraft:ink_sac",
+    "#": "minecraft:kelp",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:squid_spawn_egg"
+  }
+}

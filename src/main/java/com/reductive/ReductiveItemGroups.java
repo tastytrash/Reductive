@@ -17,9 +17,14 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.PEBBLE);
                         entries.accept(ReductiveItemRegistry.COAL_CHUNK);
                         entries.accept(ReductiveItemRegistry.LAPIS_FRAGMENT);
+                        entries.accept(ReductiveItemRegistry.EMERALD_JEWEL);
                         entries.accept(ReductiveItemRegistry.QUARTZ_SHARD);
                         entries.accept(ReductiveItemRegistry.DIAMOND_SHARD);
                         entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
+                        entries.accept(ReductiveItemRegistry.NETHER_STAR_FRAGMENT);
+
+                        entries.accept(ReductiveItemRegistry.SPAWN_CORE_LESSER);
+                        entries.accept(ReductiveItemRegistry.SPAWN_CORE_GREATER);
 
                         entries.accept(ReductiveItemRegistry.COPPER_COIL);
                         entries.accept(ReductiveItemRegistry.REDSTONE_PROCESSOR);

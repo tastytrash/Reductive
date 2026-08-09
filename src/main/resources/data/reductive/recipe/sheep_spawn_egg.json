@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#M#",
+    "WSW",
+    "#M#"
+  ],
+  "key": {
+    "#": "#minecraft:wool",
+    "M": "minecraft:mutton",
+    "W": "minecraft:wheat",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:sheep_spawn_egg"
+  }
+}

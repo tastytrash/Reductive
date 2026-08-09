@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment",
+    "reductive:nether_star_fragment"
+  ],
+  "result": {
+    "id": "minecraft:nether_star"
+  }
+}

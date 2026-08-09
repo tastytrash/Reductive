@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G#G",
+    "#S#",
+    "G#G"
+  ],
+  "key": {
+    "G": "minecraft:glow_ink_sac",
+    "#": "minecraft:kelp",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:glow_squid_spawn_egg"
+  }
+}

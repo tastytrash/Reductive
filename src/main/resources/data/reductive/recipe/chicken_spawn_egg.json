@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    ".S.",
+    "#C#"
+  ],
+  "key": {
+    "#": "minecraft:feather",
+    "C": "minecraft:chicken",
+    ".": "minecraft:wheat_seeds",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:chicken_spawn_egg"
+  }
+}

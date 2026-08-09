@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S#S",
+    "#s#",
+    "S#S"
+  ],
+  "key": {
+    "S": "minecraft:salmon",
+    "#": "minecraft:kelp",
+    "s": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:salmon_spawn_egg"
+  }
+}

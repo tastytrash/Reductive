@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C#C",
+    "#S#",
+    "C#C"
+  ],
+  "key": {
+    "C": "minecraft:carrot",
+    "#": "minecraft:porkchop",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "minecraft:pig_spawn_egg"
+  }
+}
