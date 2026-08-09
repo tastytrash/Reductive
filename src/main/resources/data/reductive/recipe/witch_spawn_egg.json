@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#Su",
+    ".sG",
+    "RCU"
+  ],
+  "key": {
+    "#": "minecraft:stick",
+    "S": "minecraft:spider_eye",
+    "u": "minecraft:glass_bottle",
+    ".": "minecraft:glowstone_dust",
+    "s": "reductive:spawn_core_greater",
+    "G": "minecraft:gunpowder",
+    "R": "minecraft:redstone",
+    "C": "minecraft:cauldron",
+    "U": "minecraft:sugar"
+  },
+  "result": {
+    "id": "minecraft:witch_spawn_egg"
+  }
+}

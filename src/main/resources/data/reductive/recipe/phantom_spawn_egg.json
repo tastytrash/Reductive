@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#S#",
+    "#B#"
+  ],
+  "key": {
+    "#": "minecraft:phantom_membrane",
+    "S": "reductive:spawn_core_greater",
+    "B": "#minecraft:beds"
+  },
+  "result": {
+    "id": "minecraft:phantom_spawn_egg"
+  }
+}

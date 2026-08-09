@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#F#",
+    "TST",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:gunpowder",
+    "F": "minecraft:flint_and_steel",
+    "T": "minecraft:tnt",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:creeper_spawn_egg"
+  }
+}

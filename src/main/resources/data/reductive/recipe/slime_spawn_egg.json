@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o#o",
+    "#S#",
+    "o#o"
+  ],
+  "key": {
+    "o": "minecraft:slime_ball",
+    "#": "minecraft:slime_block",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:slime_spawn_egg"
+  }
+}

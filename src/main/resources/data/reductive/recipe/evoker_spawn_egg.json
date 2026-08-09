@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#o#",
+    "#S#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:totem_of_undying",
+    "o": "reductive:emerald_jewel",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:evoker_spawn_egg"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#N#",
+    "=S=",
+    "#=#"
+  ],
+  "key": {
+    "#": "minecraft:rotten_flesh",
+    "N": "minecraft:nautilus_shell",
+    "=": "minecraft:copper_ingot",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:drowned_spawn_egg"
+  }
+}

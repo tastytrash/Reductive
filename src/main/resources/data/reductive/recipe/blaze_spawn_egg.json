@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#=#",
+    ".S.",
+    "#=#"
+  ],
+  "key": {
+    "#": "minecraft:blaze_rod",
+    "=": "minecraft:nether_brick",
+    ".": "minecraft:blaze_powder",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:blaze_spawn_egg"
+  }
+}

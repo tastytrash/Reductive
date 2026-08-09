@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M#M",
+    "#S#",
+    "M#M"
+  ],
+  "key": {
+    "M": "minecraft:magma_cream",
+    "#": "minecraft:magma_block",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:magma_cube_spawn_egg"
+  }
+}

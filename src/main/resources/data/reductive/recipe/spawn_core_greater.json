@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#N#",
+    "oSo",
+    "#N#"
+  ],
+  "key": {
+    "#": "minecraft:ender_pearl",
+    "N": "reductive:nether_star_fragment",
+    "o": "minecraft:echo_shard",
+    "S": "reductive:spawn_core_lesser"
+  },
+  "result": {
+    "id": "reductive:spawn_core_greater"
+  }
+}

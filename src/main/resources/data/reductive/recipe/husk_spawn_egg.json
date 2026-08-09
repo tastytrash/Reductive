@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#=#",
+    "CSP",
+    "#s#"
+  ],
+  "key": {
+    "#": "minecraft:rotten_flesh",
+    "=": "minecraft:iron_ingot",
+    "C": "minecraft:carrot",
+    "S": "reductive:spawn_core_greater",
+    "P": "minecraft:potato",
+    "s": "minecraft:sand"
+  },
+  "result": {
+    "id": "minecraft:husk_spawn_egg"
+  }
+}

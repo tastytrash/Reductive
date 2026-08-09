@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#D#",
+    "GSG",
+    "#M#"
+  ],
+  "key": {
+    "#": "minecraft:gunpowder",
+    "D": "minecraft:dried_ghast",
+    "G": "minecraft:ghast_tear",
+    "S": "reductive:spawn_core_greater",
+    "M": "minecraft:music_disc_tears"
+  },
+  "result": {
+    "id": "minecraft:ghast_spawn_egg"
+  }
+}

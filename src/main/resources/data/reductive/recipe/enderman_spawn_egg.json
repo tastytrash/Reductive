@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o#o",
+    "#S#",
+    "o#o"
+  ],
+  "key": {
+    "o": "minecraft:ender_pearl",
+    "#": "minecraft:chorus_fruit",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:enderman_spawn_egg"
+  }
+}

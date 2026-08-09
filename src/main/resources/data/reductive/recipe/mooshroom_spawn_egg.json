@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BMR",
+    "#S#",
+    "LML"
+  ],
+  "key": {
+    "B": "minecraft:brown_mushroom",
+    "M": "minecraft:mushroom_stew",
+    "R": "minecraft:red_mushroom",
+    "#": "minecraft:beef",
+    "S": "reductive:spawn_core_lesser",
+    "L": "minecraft:leather"
+  },
+  "result": {
+    "id": "minecraft:mooshroom_spawn_egg"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o#o",
+    "#S#",
+    "o#o"
+  ],
+  "key": {
+    "o": "minecraft:prismarine_shard",
+    "#": "minecraft:prismarine_crystals",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:guardian_spawn_egg"
+  }
+}

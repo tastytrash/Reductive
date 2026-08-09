@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "sCs",
+    "#s#"
+  ],
+  "key": {
+    "#": "minecraft:chorus_fruit",
+    "S": "minecraft:shulker_box",
+    "s": "minecraft:shulker_shell",
+    "C": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:shulker_spawn_egg"
+  }
+}

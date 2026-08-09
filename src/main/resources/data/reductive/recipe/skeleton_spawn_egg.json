@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#/#",
+    ")S)",
+    "#/#"
+  ],
+  "key": {
+    "#": "minecraft:bone",
+    "/": "minecraft:arrow",
+    ")": "minecraft:bow",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:skeleton_spawn_egg"
+  }
+}

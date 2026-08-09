@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    "ISI",
+    "#I#"
+  ],
+  "key": {
+    "#": "minecraft:poppy",
+    "C": "minecraft:carved_pumpkin",
+    "I": "minecraft:iron_block",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:iron_golem_spawn_egg"
+  }
+}

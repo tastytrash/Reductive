@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "ISI",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:emerald",
+    "I": "minecraft:iron_axe",
+    "S": "reductive:spawn_core_greater"
+  },
+  "result": {
+    "id": "minecraft:vindicator_spawn_egg"
+  }
+}

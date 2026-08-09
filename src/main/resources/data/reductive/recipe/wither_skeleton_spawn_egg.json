@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#",
+    "SsS",
+    "#C#"
+  ],
+  "key": {
+    "#": "minecraft:bone",
+    "W": "minecraft:wither_skeleton_skull",
+    "S": "minecraft:stone_sword",
+    "s": "reductive:spawn_core_greater",
+    "C": "minecraft:coal"
+  },
+  "result": {
+    "id": "minecraft:wither_skeleton_spawn_egg"
+  }
+}
