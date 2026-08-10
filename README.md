@@ -82,6 +82,6 @@ Mob spawners are now craftable, so there is now recipes for certain spawn eggs i
 - **Chainsaw Bodies** (Basic, Industrial): Used to craft either the basic or industrial chainsaw.
 - **Engines** (Basic, Industrial): Crafting material used for their respective body.
 
-## Blocks
+# Blocks
 
 - **Experience Tank**: A storage block for experience, holds up to 1600 xp. Use a lapis or normal bottle to extract 100/10 xp. Standard Bottle o' Enchanting now always grant 10 xp.
