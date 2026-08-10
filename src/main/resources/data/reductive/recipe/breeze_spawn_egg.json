@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#=#",
-    "WSW",
-    "#=#"
+    "T#T",
+    "#S#",
+    "W#W"
   ],
   "key": {
+    "T": "minecraft:trial_key",
     "#": "minecraft:breeze_rod",
-    "=": "minecraft:copper_ingot",
-    "W": "minecraft:wind_charge",
-    "S": "reductive:spawn_core_greater"
+    "S": "reductive:spawn_core_greater",
+    "W": "minecraft:wind_charge"
   },
   "result": {
     "id": "minecraft:breeze_spawn_egg"

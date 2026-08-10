@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_coal_chunk": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:coal_chunk"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_coal_chunk"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:coal_recipe"
+    ]
+  }
+}

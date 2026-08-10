@@ -169,44 +169,15 @@ public class IndustrialChainsawItem extends Item {
         return 1.0f;
     }
 
-    public static void applyBladeProperties(ItemStack stack) {
-        String blade = stack.get(ReductiveComponents.BLADE_TYPE);
-        if (blade == null) return;
-
-        BladeProperties properties = switch (blade) {
-            case "iron" -> new BladeProperties(512, 14, Items.IRON_INGOT, 7.0F);
-            case "gold" -> new BladeProperties(192, 22, Items.GOLD_INGOT, 6.0F);
-            case "diamond" -> new BladeProperties(2304, 10, Items.DIAMOND, 8.0F);
-            case "netherite" -> new BladeProperties(3456, 15, Items.NETHERITE_INGOT, 9.0F);
-            default -> null;
-        };
-        if (properties == null) return;
-
-        Integer currentMax = stack.get(DataComponents.MAX_DAMAGE);
-        if (currentMax == null || currentMax != properties.durability()) {
-            stack.set(DataComponents.MAX_DAMAGE, properties.durability());
-        }
-
-        Enchantable enchantable = new Enchantable(properties.enchantability());
-        if (!enchantable.equals(stack.get(DataComponents.ENCHANTABLE))) {
-            stack.set(DataComponents.ENCHANTABLE, enchantable);
-        }
-
-        Repairable repairable = new Repairable(HolderSet.direct(properties.repairItem().builtInRegistryHolder()));
-        if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
-            stack.set(DataComponents.REPAIRABLE, repairable);
-        }
-    }
-
     private record BladeProperties(int durability, int enchantability, Item repairItem, float attackDamage) {}
 
     @Override
     public void onCraftedPostProcess(ItemStack stack, Level world) {
-        applyBladeProperties(stack);
+        ChainsawItem.applyBladeProperties(stack);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel world, Entity entity, @Nullable EquipmentSlot slot) {
-        applyBladeProperties(stack);
+        ChainsawItem.applyBladeProperties(stack);
     }
 }

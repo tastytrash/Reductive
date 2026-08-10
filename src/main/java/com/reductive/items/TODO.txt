@@ -1,18 +1,7 @@
 slingshot can shoot flint pieces?
 
-make item recipe unlocks, currently only unlocks after crafting
-
- two tiers of mob cores, one costs the other and a nether star fragment
-
- greater;
-ender pearl | nether star fragment | ender pearl
-echo shard | lesser core | echo shard
-ender pearl  | nether star fragment | ender pearl
-
-
-
 change chainsaw speeds ?
 
 fix industrial drill and chainsaw not working in creative - mineBlock isnt called in creative
 
-slingshot multishot doesnt spread like a crossbow
+sorting/filter hopper

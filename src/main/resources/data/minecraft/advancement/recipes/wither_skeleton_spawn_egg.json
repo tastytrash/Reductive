@@ -1,0 +1,79 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_bone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_coal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:coal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_stone_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stone_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_wither_skeleton_skull": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:wither_skeleton_skull"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_spawn_core_greater": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:spawn_core_greater"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_bone",
+      "has_minecraft_coal",
+      "has_minecraft_stone_sword",
+      "has_minecraft_wither_skeleton_skull",
+      "has_reductive_spawn_core_greater"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:wither_skeleton_spawn_egg"
+    ]
+  }
+}

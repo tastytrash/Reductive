@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_pebble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:pebble"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_pebble"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:cobblestone_recipe"
+    ]
+  }
+}

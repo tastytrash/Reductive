@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_chainsaw_blade_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:chainsaw_blade_gold"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_chainsaw_body_industrial": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:chainsaw_body_industrial"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_chainsaw_blade_gold",
+      "has_reductive_chainsaw_body_industrial"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:industrial_chainsaw_gold"
+    ]
+  }
+}

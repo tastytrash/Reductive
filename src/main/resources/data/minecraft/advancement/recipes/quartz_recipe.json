@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_quartz_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:quartz_shard"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_quartz_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:quartz_recipe"
+    ]
+  }
+}

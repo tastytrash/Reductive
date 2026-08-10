@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_totem_of_undying": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:totem_of_undying"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_emerald_jewel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:emerald_jewel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_spawn_core_greater": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:spawn_core_greater"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_totem_of_undying",
+      "has_reductive_emerald_jewel",
+      "has_reductive_spawn_core_greater"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:evoker_spawn_egg"
+    ]
+  }
+}

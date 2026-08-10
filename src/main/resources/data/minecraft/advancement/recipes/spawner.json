@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_#minecraft_eggs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "#minecraft:eggs"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_iron_bars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_bars"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_nether_star_fragment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:nether_star_fragment"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_#minecraft_eggs",
+      "has_minecraft_iron_bars",
+      "has_reductive_nether_star_fragment"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:spawner"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_chorus_fruit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:chorus_fruit"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_shulker_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:shulker_box"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_shulker_shell": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:shulker_shell"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_spawn_core_greater": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:spawn_core_greater"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_chorus_fruit",
+      "has_minecraft_shulker_box",
+      "has_minecraft_shulker_shell",
+      "has_reductive_spawn_core_greater"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:shulker_spawn_egg"
+    ]
+  }
+}

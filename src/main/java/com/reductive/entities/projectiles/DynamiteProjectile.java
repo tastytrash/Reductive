@@ -1,7 +1,6 @@
 package com.reductive.entities.projectiles;
 
 import com.reductive.ReductiveItemRegistry;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
@@ -13,12 +12,6 @@ public class DynamiteProjectile extends  ThrowableItemProjectile {
     public DynamiteProjectile(EntityType<? extends DynamiteProjectile> type, Level world) {
         super(type, world);
     }
-
-    private ParticleOptions getParticleParameters() {
-        ItemStack itemStack = this.getItem();
-        return null;
-    }
-
 
     @Override
     protected Item getDefaultItem() {

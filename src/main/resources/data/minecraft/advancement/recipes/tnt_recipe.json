@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_dynamite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:dynamite"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_dynamite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:tnt_recipe"
+    ]
+  }
+}

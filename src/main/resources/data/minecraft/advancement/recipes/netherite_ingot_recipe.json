@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_netherite_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:netherite_nugget"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_netherite_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:netherite_ingot_recipe"
+    ]
+  }
+}

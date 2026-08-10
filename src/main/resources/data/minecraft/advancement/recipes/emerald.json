@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_emerald_jewel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:emerald_jewel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_emerald_jewel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:emerald"
+    ]
+  }
+}

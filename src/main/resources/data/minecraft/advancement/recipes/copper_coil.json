@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_copper_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:copper_nugget"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_redstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_copper_nugget",
+      "has_minecraft_redstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:copper_coil"
+    ]
+  }
+}

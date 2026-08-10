@@ -3,15 +3,14 @@
 	"id": "reductive",
 	"version": "${version}",
 	"name": "reductive",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod about refining blocks down into smaller parts and crafting them into new resources, tools, and blocks.",
 	"authors": [
-		"Me!"
+		"tastytrash"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/tastytrash/Reductive"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/reductive/icon.png",
 	"environment": "*",
 	"entrypoints": {

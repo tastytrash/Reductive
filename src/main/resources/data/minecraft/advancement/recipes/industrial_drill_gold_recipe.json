@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_drill_body_industrial": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:drill_body_industrial"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_drill_tip_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:drill_tip_gold"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_drill_body_industrial",
+      "has_reductive_drill_tip_gold"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:industrial_drill_gold_recipe"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_drill_body_industrial": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:drill_body_industrial"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_drill_tip_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:drill_tip_diamond"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_drill_body_industrial",
+      "has_reductive_drill_tip_diamond"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:industrial_drill_diamond_recipe"
+    ]
+  }
+}

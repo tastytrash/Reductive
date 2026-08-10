@@ -5,15 +5,17 @@ import com.reductive.ReductiveItemRegistry;
 import com.reductive.entities.projectiles.DynamiteProjectile;
 import com.reductive.entities.projectiles.PebbleProjectile;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
+import net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.WindCharge;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import java.util.function.Predicate;
 import net.minecraft.sounds.SoundEvents;
@@ -25,12 +27,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class SlingshotItem extends ProjectileWeaponItem {
 
     public static final int RANGE = 15;
     public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) ->
-            stack.is(ReductiveItemRegistry.PEBBLE) || stack.is(Items.FIRE_CHARGE) || stack.is(ReductiveItemRegistry.DYNAMITE);
+            stack.is(ReductiveItemRegistry.PEBBLE) || stack.is(Items.SNOWBALL) || stack.is(Items.WIND_CHARGE) || stack.is(Items.FIRE_CHARGE) || stack.is(ReductiveItemRegistry.DYNAMITE);
 
     public SlingshotItem(Properties settings) {
         super(settings);
@@ -54,37 +58,53 @@ public class SlingshotItem extends ProjectileWeaponItem {
         float pull = getPullProgress(useTicks);
         if (pull < 0.25f) return false;
 
-        if (!world.isClientSide()) {
+        if (!world.isClientSide() && world instanceof ServerLevel serverLevel) {
             float speed = pull * 1.5f;       // adjust speed multiplier if needed
             float divergence = 1.0f;         // spread/inaccuracy
 
             Holder<Enchantment> multishotHolder = world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.MULTISHOT);
-            boolean hasMultishot = EnchantmentHelper.getItemEnchantmentLevel(multishotHolder, stack) > 0;
+            int multishotLevel = EnchantmentHelper.getItemEnchantmentLevel(multishotHolder, stack);
+            int projectileCount = multishotLevel > 0 ? 1 + (multishotLevel * 2) : 1;
+            if (pull < 1f) projectileCount = 1;
 
             Holder<Enchantment> piercingHolder = world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING);
             byte piercingLevel = (byte) EnchantmentHelper.getItemEnchantmentLevel(piercingHolder, stack);
 
-            if (ammoStack.is(ReductiveItemRegistry.PEBBLE)) {
-                spawnPebble(world, player, speed, divergence, 0.0f, piercingLevel);
+            float maxAngle = EnchantmentHelper.processProjectileSpread(serverLevel, stack, player, 0.0F);
+            // fallback to 10
+            if (maxAngle == 0.0F && multishotLevel > 0) maxAngle = 10.0F;
 
-                if (hasMultishot && pull >= 1.0F) {
-                    spawnPebble(world, player, speed, divergence, -8.0f, piercingLevel);
-                    spawnPebble(world, player, speed, divergence, 8.0f, piercingLevel);
-                }
+            float angleStep = projectileCount == 1 ? 0.0F : 2.0F * maxAngle / (float)(projectileCount - 1);
+            float angleOffset = (float)((projectileCount - 1) % 2) * angleStep / 2.0F;
+            float direction = 1.0F;
 
-            } else if (ammoStack.is(Items.FIRE_CHARGE)) {
-                spawnProjectile(world, player, new SmallFireball(world, player, player.getLookAngle()), speed, divergence, 0.0f);
+            // firing loop
+            for (int i = 0; i < projectileCount; ++i) {
+                float angle = angleOffset + direction * (float)((i + 1) / 2) * angleStep;
+                direction = -direction;
 
-                if (hasMultishot && pull >= 1.0F) {
-                    spawnProjectile(world, player, new SmallFireball(world, player, player.getLookAngle()), speed, divergence, -8.0f);
-                    spawnProjectile(world, player, new SmallFireball(world, player, player.getLookAngle()), speed, divergence, 8.0f);
-                }
-            } else if (ammoStack.is(ReductiveItemRegistry.DYNAMITE)) {
-                spawnProjectile(world, player, new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world), speed, divergence, 0.0f);
+                if (ammoStack.is(ReductiveItemRegistry.PEBBLE)) {
+                    PebbleProjectile pebble = new PebbleProjectile(ReductiveEntityRegistry.PEBBLE, world);
+                    pebble.setPierceLevel(piercingLevel);
+                    spawnProjectile(world, player, pebble, speed, divergence, angle);
+                } else if (ammoStack.is(Items.SNOWBALL)) {
+                    Snowball snowball = new Snowball(EntityTypes.SNOWBALL, world);
+                    // pierce mixin?
+                    spawnProjectile(world, player, snowball, speed, divergence, angle);
+                } else if (ammoStack.is(Items.WIND_CHARGE)) {
+                    WindCharge windCharge = new WindCharge(EntityTypes.WIND_CHARGE, world);
+                    spawnProjectile(world, player, windCharge, speed, divergence, angle);
 
-                if (hasMultishot && pull >= 1.0F) {
-                    spawnProjectile(world, player, new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world), speed, divergence, -8.0f);
-                    spawnProjectile(world, player, new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world), speed, divergence, 8.0f);
+                } else if (ammoStack.is(Items.FIRE_CHARGE)) {
+                    Vec3 rotatedVector = getSpreadVelocityVector(player, angle);
+                    SmallFireball fireball = new SmallFireball(world, player, rotatedVector);
+
+                    fireball.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
+                    world.addFreshEntity(fireball);
+
+                } else if (ammoStack.is(ReductiveItemRegistry.DYNAMITE)) {
+                    DynamiteProjectile dynamite = new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world);
+                    spawnProjectile(world, player, dynamite, speed, divergence, angle);
                 }
             }
 
@@ -110,16 +130,25 @@ public class SlingshotItem extends ProjectileWeaponItem {
     private void spawnProjectile(Level world, Player player, Projectile projectile, float speed, float divergence, float yawOffset) {
         projectile.setOwner(player);
         projectile.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
-        projectile.shootFromRotation(player, player.getXRot(), player.getYRot() + yawOffset, 0.0F, speed, divergence);
+        Vec3 spreadVector = getSpreadVelocityVector(player, yawOffset);
+
+        projectile.shoot(spreadVector.x, spreadVector.y, spreadVector.z, speed, divergence);
 
         world.addFreshEntity(projectile);
     }
 
-    private void spawnPebble(Level world, Player player, float speed, float divergence, float yawOffset, byte pierceLevel) {
-        PebbleProjectile pebble = new PebbleProjectile(ReductiveEntityRegistry.PEBBLE, world);
-        pebble.setPierceLevel(pierceLevel);
+    private Vec3 getSpreadVelocityVector(Player player, float angle) {
+        Vec3 upVector = player.getUpVector(1.0F);
 
-        spawnProjectile(world, player, pebble, speed, divergence, yawOffset);
+        Quaternionf upQuaternion = (new Quaternionf()).setAngleAxis(
+                angle * ((float)Math.PI / 180F),
+                upVector.x, upVector.y, upVector.z
+        );
+
+        Vec3 viewVec = player.getViewVector(1.0F);
+        Vector3f shotVector = viewVec.toVector3f().rotate(upQuaternion);
+
+        return new Vec3(shotVector);
     }
 
     public void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {

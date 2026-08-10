@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_#minecraft_eggs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "#minecraft:eggs"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_amethyst_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:amethyst_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_emerald_jewel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:emerald_jewel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_#minecraft_eggs",
+      "has_minecraft_amethyst_shard",
+      "has_reductive_emerald_jewel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:spawn_core_lesser"
+    ]
+  }
+}

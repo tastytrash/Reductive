@@ -1,0 +1,92 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crafting_table"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_iron_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_nugget"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_redstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_copper_coil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:copper_coil"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_quartz_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:quartz_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_redstone_processor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:redstone_processor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_crafting_table",
+      "has_minecraft_iron_nugget",
+      "has_minecraft_redstone",
+      "has_reductive_copper_coil",
+      "has_reductive_quartz_shard",
+      "has_reductive_redstone_processor"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:portable_crafter"
+    ]
+  }
+}

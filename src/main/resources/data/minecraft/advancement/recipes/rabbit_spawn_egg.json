@@ -1,0 +1,79 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_dandelion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dandelion"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_rabbit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rabbit"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_rabbit_foot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rabbit_foot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_rabbit_hide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rabbit_hide"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_spawn_core_lesser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:spawn_core_lesser"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_minecraft_dandelion",
+      "has_minecraft_rabbit",
+      "has_minecraft_rabbit_foot",
+      "has_minecraft_rabbit_hide",
+      "has_reductive_spawn_core_lesser"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:rabbit_spawn_egg"
+    ]
+  }
+}
