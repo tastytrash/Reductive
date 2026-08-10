@@ -3,8 +3,7 @@
   "package": "com.reductive.mixin.client",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "ClientPlayerEntityMixin",
-    "ExampleClientMixin"
+    "ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

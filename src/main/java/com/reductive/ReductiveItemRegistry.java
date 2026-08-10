@@ -3,7 +3,6 @@ package com.reductive;
 import com.reductive.datagen.ReductiveComponents;
 import com.reductive.items.*;
 
-import java.util.function.Function;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,6 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.DamageResistant;
+
+import java.util.function.Function;
 
 public class ReductiveItemRegistry {
     public static ToolMaterial DRILL_TOOL_MATERIAL = new ToolMaterial(

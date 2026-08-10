@@ -1,6 +1,7 @@
 package com.reductive.items;
 
 import com.reductive.entities.projectiles.ThrownLapisExperienceBottle;
+
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.server.level.ServerLevel;

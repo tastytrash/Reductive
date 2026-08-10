@@ -1,7 +1,14 @@
 slingshot can shoot flint pieces?
 
-change chainsaw speeds ?
+check chainsaw speeds in game
 
 fix industrial drill and chainsaw not working in creative - mineBlock isnt called in creative
 
-sorting/filter hopper
+sorting/filter hopper?
+
+something for fishing?
+
+wireless redstone transmitter?
+
+some way to combine potions?
+

@@ -1,29 +1,26 @@
 package com.reductive.items;
 
-import com.reductive.Reductive;
 import com.reductive.datagen.ReductiveComponents;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.Identifier;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+
 import org.jetbrains.annotations.Nullable;
 
 public class DrillItem extends Item {
@@ -44,7 +41,6 @@ public class DrillItem extends Item {
 
         return super.mineBlock(stack, world, state, pos, miner);
     }
-
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
@@ -90,7 +86,7 @@ public class DrillItem extends Item {
             stack.set(DataComponents.ENCHANTABLE, enchantable);
         }
 
-        Repairable repairable = new Repairable(HolderSet.direct(properties.repairItem().builtInRegistryHolder()));
+        Repairable repairable = new Repairable(HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(properties.repairItem())));
         if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
             stack.set(DataComponents.REPAIRABLE, repairable);
         }

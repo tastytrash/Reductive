@@ -17,9 +17,6 @@
 		"main": [
 			"com.reductive.Reductive"
 		],
-        "fabric-datagen": [
-          "com.reductive.ReductiveDataGenerator"
-        ],
 		"client": [
 			"com.reductive.ReductiveClient",
             "com.reductive.EntityRenderersRegistry"

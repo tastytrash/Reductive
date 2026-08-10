@@ -1,21 +1,12 @@
 package com.reductive.items;
 
-import com.reductive.Reductive;
 import com.reductive.datagen.ReductiveComponents;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.protocol.game.ClientboundBlockDestructionPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -24,16 +15,18 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class IndustrialDrillItem extends Item {
     private final Item bodyType;
@@ -43,7 +36,6 @@ public class IndustrialDrillItem extends Item {
         this.bodyType = bodyType;
     }
 
-
     @Override
     public boolean mineBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (stack.nextDamageWillBreak()) {
@@ -51,7 +43,6 @@ public class IndustrialDrillItem extends Item {
             stack.shrink(1);
             miner.handleExtraItemsCreatedOnUse(bodyOnly);
             world.playSound(null, miner.getX(), miner.getY(), miner.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);}
-
 
         boolean result = super.mineBlock(stack, world, state, pos, miner);
 
@@ -174,7 +165,7 @@ public class IndustrialDrillItem extends Item {
             stack.set(DataComponents.ENCHANTABLE, enchantable);
         }
 
-        Repairable repairable = new Repairable(HolderSet.direct(properties.repairItem().builtInRegistryHolder()));
+        Repairable repairable = new Repairable(HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(properties.repairItem())));
         if (!repairable.equals(stack.get(DataComponents.REPAIRABLE))) {
             stack.set(DataComponents.REPAIRABLE, repairable);
         }

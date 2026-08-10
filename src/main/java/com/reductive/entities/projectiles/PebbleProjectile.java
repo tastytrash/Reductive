@@ -72,7 +72,6 @@ public class PebbleProjectile extends ThrowableItemProjectile {
             if (this.pierceLevel > 0) {
                 this.pierceLevel--;
             } else {
-                System.out.println("test");
                 this.discard(); // discard if no more pierce
             }
         }

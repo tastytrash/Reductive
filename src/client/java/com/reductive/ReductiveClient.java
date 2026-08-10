@@ -1,6 +1,7 @@
 package com.reductive;
 
 import com.reductive.datagen.ReductiveComponents;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -43,7 +44,6 @@ public class ReductiveClient implements ClientModInitializer {
             String capitalized = material.substring(0, 1).toUpperCase() + material.substring(1);
             String label = isDrill ? "Tip" : "Blade";
 
-            // list.add(Component.empty());
             list.add(Component.literal(label + ": " + capitalized).withStyle(formatting));
 
             // chainsaw max blocks

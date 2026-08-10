@@ -1,6 +1,7 @@
 package com.reductive.entities.projectiles;
 
 import com.reductive.ReductiveItemRegistry;
+
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
@@ -9,6 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
 public class DynamiteProjectile extends  ThrowableItemProjectile {
+    public static final float EXPLOSION_POWER = 3.0f;
+
     public DynamiteProjectile(EntityType<? extends DynamiteProjectile> type, Level world) {
         super(type, world);
     }
@@ -31,7 +34,7 @@ public class DynamiteProjectile extends  ThrowableItemProjectile {
             this.level().explode(
                     this,
                     this.getX(), this.getY(), this.getZ(),
-                    3.0f,
+                    EXPLOSION_POWER,
                     Level.ExplosionInteraction.TNT
             );
             this.discard();

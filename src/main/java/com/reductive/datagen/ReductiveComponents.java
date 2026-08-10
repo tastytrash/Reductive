@@ -1,7 +1,8 @@
 package com.reductive.datagen;
 
-import com.mojang.serialization.Codec;
 import com.reductive.Reductive;
+
+import com.mojang.serialization.Codec;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,7 +20,6 @@ public class ReductiveComponents {
             Identifier.fromNamespaceAndPath(Reductive.MOD_ID, "blade"),
             DataComponentType.<String>builder().persistent(Codec.STRING).build()
     );
-
 
     public static void initialize() {
         System.out.println("Registered ModComponents");
