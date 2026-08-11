@@ -67,8 +67,12 @@ public class ReductiveItemRegistry {
 
     // utility
     public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
+
     public static final Item LAPIS_BOTTLE = register("lapis_bottle", Item::new, new Item.Properties());
     public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)));
+
+    public static final Item LURE_TREASURE = register("lure_treasure", Item::new, new Item.Properties());
+
     public static final Item PORTABLE_CRAFTER = register("portable_crafter", PortableCrafterItem::new, new Item.Properties().stacksTo(1));
 
     // drill tips

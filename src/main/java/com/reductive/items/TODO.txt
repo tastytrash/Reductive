@@ -7,6 +7,12 @@ fix industrial drill and chainsaw not working in creative - mineBlock isnt calle
 sorting/filter hopper?
 
 something for fishing?
+    - Lures?
+        - Treasure: guaranteed or higher chance to get treasure loot table loot
+        - Prismarine: Nautilus shells, prismarine drops, sponges
+        - Abyssal: Amethyst shards, echo shards, glow inc sacs
+
+    - Better rod?
 
 wireless redstone transmitter?
 

@@ -3,6 +3,7 @@
   "package": "com.reductive.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "FishingHookMixin",
     "ThrownExperienceBottleMixin"
   ],
   "injectors": {

@@ -33,8 +33,12 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.DYNAMITE);
 
                         entries.accept(ReductiveItemRegistry.MATCHSTICK);
+
                         entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);
                         entries.accept(ReductiveItemRegistry.LAPIS_EXPERIENCE_BOTTLE);
+
+                        entries.accept(ReductiveItemRegistry.LURE_TREASURE);
+
                         entries.accept(ReductiveItemRegistry.PORTABLE_CRAFTER);
 
                         entries.accept(ReductiveItemRegistry.DRILL_TIP_IRON);
