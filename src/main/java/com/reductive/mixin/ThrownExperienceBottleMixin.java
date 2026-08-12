@@ -13,7 +13,7 @@ public class ThrownExperienceBottleMixin {
             method = "onHit",
             at = @At("STORE"),
             name = "xpCount")
-    private int setXpCount(int xpCount) {
+    private int reductive$setXpCount(int xpCount) {
         return 10;
     }
 }

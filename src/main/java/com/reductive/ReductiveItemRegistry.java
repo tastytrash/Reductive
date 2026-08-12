@@ -12,6 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.DamageResistant;
@@ -69,9 +70,16 @@ public class ReductiveItemRegistry {
     public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
 
     public static final Item LAPIS_BOTTLE = register("lapis_bottle", Item::new, new Item.Properties());
-    public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)));
+    public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true));
 
-    public static final Item LURE_TREASURE = register("lure_treasure", Item::new, new Item.Properties());
+    public static final Item BAIT_TREASURE = register("bait_treasure", Item::new, new Item.Properties());
+
+    // fishing rods
+    public static final Item FISHING_ROD_COPPER = register("fishing_rod_copper", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(128));
+    public static final Item FISHING_ROD_IRON = register("fishing_rod_iron", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(192));
+    public static final Item FISHING_ROD_GOLD = register("fishing_rod_gold", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(32));
+    public static final Item FISHING_ROD_DIAMOND = register("fishing_rod_diamond", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(384));
+    public static final Item FISHING_ROD_NETHERITE = register("fishing_rod_netherite", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(512));
 
     public static final Item PORTABLE_CRAFTER = register("portable_crafter", PortableCrafterItem::new, new Item.Properties().stacksTo(1));
 

@@ -22,6 +22,7 @@ public class Reductive implements ModInitializer {
         ReductiveComponents.initialize();
         ReductiveBlockRegistry.initialize();
         ReductiveBlockEntityRegistry.initialize();
+        ReductiveLootTableRegistry.initialize();
     }
 
     public static Identifier id(String path) {

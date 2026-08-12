@@ -3,7 +3,8 @@
   "package": "com.reductive.mixin.client",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+    "FishingHookRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

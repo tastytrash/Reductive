@@ -13,6 +13,10 @@ something for fishing?
         - Abyssal: Amethyst shards, echo shards, glow inc sacs
 
     - Better rod?
+        - Tiers of fishing rods
+        - Crafted from metal rods instead of sticks
+        - Different tiers catch different amounts of loot at once
+    - Traps?
 
 wireless redstone transmitter?
 

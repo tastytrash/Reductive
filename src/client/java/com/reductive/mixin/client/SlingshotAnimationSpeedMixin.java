@@ -24,7 +24,7 @@ public class SlingshotAnimationSpeedMixin {
     private float slingshotAnimationProgress = 0.0F;
 
     @Inject(method = "updateUsingItem", at = @At("HEAD"))
-    private void speedUpSlingshotAnimationSmooth(ItemStack useItem, CallbackInfo ci) {
+    private void reductive$speedUpSlingshotAnimationSmooth(ItemStack useItem, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (useItem.getItem() instanceof SlingshotItem && entity.isUsingItem()) {

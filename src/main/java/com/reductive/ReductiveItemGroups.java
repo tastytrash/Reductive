@@ -37,7 +37,13 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);
                         entries.accept(ReductiveItemRegistry.LAPIS_EXPERIENCE_BOTTLE);
 
-                        entries.accept(ReductiveItemRegistry.LURE_TREASURE);
+                        entries.accept(ReductiveItemRegistry.BAIT_TREASURE);
+
+                        entries.accept(ReductiveItemRegistry.FISHING_ROD_COPPER);
+                        entries.accept(ReductiveItemRegistry.FISHING_ROD_IRON);
+                        entries.accept(ReductiveItemRegistry.FISHING_ROD_GOLD);
+                        entries.accept(ReductiveItemRegistry.FISHING_ROD_DIAMOND);
+                        entries.accept(ReductiveItemRegistry.FISHING_ROD_NETHERITE);
 
                         entries.accept(ReductiveItemRegistry.PORTABLE_CRAFTER);
 

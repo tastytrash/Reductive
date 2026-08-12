@@ -22,7 +22,13 @@
   "item.reductive.lapis_bottle": "Lapis Infused Bottle",
   "item.reductive.lapis_experience_bottle": "Lapis Bottle o' Enchanting",
 
-  "item.reductive.lure_treasure": "Treasure Lure",
+  "item.reductive.bait_treasure": "Treasure Bait",
+
+  "item.reductive.fishing_rod_copper": "Copper Fishing Rod",
+  "item.reductive.fishing_rod_iron": "Iron Fishing Rod",
+  "item.reductive.fishing_rod_gold": "Gold Fishing Rod",
+  "item.reductive.fishing_rod_diamond": "Diamond Fishing Rod",
+  "item.reductive.fishing_rod_netherite": "Netherite Fishing Rod",
 
   "item.reductive.portable_crafter": "Portable Crafter",
 

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "reductive:item/lure_treasure"
+    "model": "reductive:item/bait_treasure"
   }
 }

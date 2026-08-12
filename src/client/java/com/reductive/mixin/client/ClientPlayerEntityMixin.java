@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ClientPlayerEntityMixin {
 
     @Inject(method = "swing", at = @At("HEAD"), cancellable = true)
-    private void onSwingHand(InteractionHand hand, CallbackInfo ci) {
+    private void reductive$onSwingHand(InteractionHand hand, CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
 
         // cancel swing animation for drills
