@@ -27,7 +27,7 @@ import java.util.WeakHashMap;
 @Mixin(FishingHookRenderer.class)
 public class FishingHookRendererMixin {
     @Unique
-    private static final Identifier REDUCTIVE_FISHING_NET_TEXTURE = Reductive.id("textures/item/fishing_net.png");
+    private static final Identifier REDUCTIVE_FISHING_NET_TEXTURE = Reductive.id("textures/entity/fishing_net.png");
     @Unique
     private static final ThreadLocal<FishingHookRenderState> REDUCTIVE_RENDER_STATE = new ThreadLocal<>();
     @Unique

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "reductive:gold_rod",
+    "count": 4
+  }
+}

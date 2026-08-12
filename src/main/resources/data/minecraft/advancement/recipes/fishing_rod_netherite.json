@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_fishing_rod_diamond": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["reductive:fishing_rod_diamond"] }] } },
+    "has_minecraft_netherite_ingot": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:netherite_ingot"] }] } }
+  },
+  "requirements": [["has_reductive_fishing_rod_diamond", "has_minecraft_netherite_ingot"]],
+  "rewards": { "recipes": ["reductive:fishing_rod_netherite"] }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_iron_rod": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["reductive:iron_rod"] }] } },
+    "has_reductive_fishing_net": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["reductive:fishing_net"] }] } }
+  },
+  "requirements": [["has_reductive_iron_rod", "has_reductive_fishing_net"]],
+  "rewards": { "recipes": ["reductive:fishing_rod_iron"] }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    " S ",
+    "S S"
+  ],
+  "key": {
+    "S": "minecraft:string"
+  },
+  "result": {
+    "id": "reductive:fishing_net"
+  }
+}

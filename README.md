@@ -16,6 +16,8 @@ A Fabric mod for Minecraft that adds utility items and blocks that improve QoL, 
 - **Dynamite**: Throwable less powerful tnt.
 - **Lapis Bottle o' Enchanting**: Throw to gain 100 xp.
 - **Portable Crafter**: A portable crafting table.
+- **Copper, Iron, Gold, and Diamond Fishing Rods**: Tiered fishing rods that can catch multiple items at once.
+
 
 ### Materials & Resources
 - **Pebble**: Smaller cobblestone.
@@ -27,9 +29,12 @@ A Fabric mod for Minecraft that adds utility items and blocks that improve QoL, 
 - **Nether Star Fragment**: Smaller nether star.
 - **Netherite Nugget**: Smaller netherite ingot.
 
+
 ### Advanced Crafting Materials
 - **Copper Coil**: An advanced crafting component.
 - **Redstone Processor**: An advanced crafting component.
+- **Copper, Iron, Gold, and Diamond Rods**: Crafting components.
+- **Fishing Net**: A fishing rod component.
 - **Lapis Infused Bottle**: A bottle for storing experience.
 - **Lesser Spawn Core**: Component for crafting certain passive/neutral mob spawn eggs.
 - **Greater Spawn Core**: Component for crafting certain hostile/neutral mob spawn eggs.

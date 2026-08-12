@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": "reductive:fishing_rod_diamond",
+  "addition": "minecraft:netherite_ingot",
+  "result": "reductive:fishing_rod_netherite",
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

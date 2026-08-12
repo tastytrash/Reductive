@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  R",
+    " RS",
+    "R N"
+  ],
+  "key": {
+    "R": "reductive:diamond_rod",
+    "S": "minecraft:string",
+    "N": "reductive:fishing_net"
+  },
+  "result": {
+    "id": "reductive:fishing_rod_diamond"
+  }
+}

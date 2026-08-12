@@ -53,6 +53,12 @@ public class ReductiveItemRegistry {
 
     public static final Item COPPER_COIL = register("copper_coil", Item::new, new Item.Properties());
     public static final Item REDSTONE_PROCESSOR = register("redstone_processor", Item::new, new Item.Properties());
+    public static final Item FISHING_NET = register("fishing_net", Item::new, new Item.Properties());
+    public static final Item COPPER_ROD = register("copper_rod", Item::new, new Item.Properties());
+    public static final Item IRON_ROD = register("iron_rod", Item::new, new Item.Properties());
+    public static final Item GOLD_ROD = register("gold_rod", Item::new, new Item.Properties());
+    public static final Item DIAMOND_ROD = register("diamond_rod", Item::new, new Item.Properties());
+
 
     // weapons & combat
     public static final Item SLINGSHOT = register(

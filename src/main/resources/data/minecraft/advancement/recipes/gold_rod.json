@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["minecraft:gold_ingot"] }] }
+    }
+  },
+  "requirements": [["has_minecraft_gold_ingot"]],
+  "rewards": { "recipes": ["reductive:gold_rod"] }
+}

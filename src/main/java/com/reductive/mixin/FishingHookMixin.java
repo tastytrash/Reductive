@@ -11,7 +11,9 @@ import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,8 +25,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Mixin(FishingHook.class)
-public class FishingHookMixin {
-    @Unique Predicate<ItemStack> SUPPORTED_LURES = (stack) -> stack.is(ReductiveItemRegistry.BAIT_TREASURE);
+public abstract class FishingHookMixin {
+    @Shadow
+    public abstract @Nullable Player getPlayerOwner();
+
+    @Unique private static final Predicate<ItemStack> SUPPORTED_LURES = (stack) -> stack.is(ReductiveItemRegistry.BAIT_TREASURE);
     @Unique boolean lureUsed;
     @Unique LootTable currentLootTable;
     @Unique
@@ -126,11 +131,61 @@ public class FishingHookMixin {
             at = @At("STORE"),
             name = "items")
     private List<ItemStack> reductive$rollExtraLoot(List<ItemStack> items) {
-        for (int i = 0; i < 10; i++) {
+        Player player = this.getPlayerOwner();
+        if (player == null) return items;
+        ItemStack rod = player.getMainHandItem();
+
+        int maxExtraRolls = 0;
+
+        if (rod.is(ReductiveItemRegistry.FISHING_ROD_COPPER)) {
+            maxExtraRolls = 1;
+        } else if (rod.is(ReductiveItemRegistry.FISHING_ROD_IRON)) {
+            maxExtraRolls = 2;
+        } else if (rod.is(ReductiveItemRegistry.FISHING_ROD_GOLD)) {
+            maxExtraRolls = 4;
+        } else if (rod.is(ReductiveItemRegistry.FISHING_ROD_DIAMOND)) {
+            maxExtraRolls = 5;
+        } else if (rod.is(ReductiveItemRegistry.FISHING_ROD_NETHERITE)) {
+            maxExtraRolls = 7;
+        }
+
+        int extraRolls = 0;
+
+        for (int i = 0; i < maxExtraRolls; i++) {
+            float chance = getChance(maxExtraRolls, (float) i);
+
+            System.out.println("Roll " + (i + 1) + ": " + chance);
+
+            if (player.getRandom().nextFloat() < chance) {
+                extraRolls++;
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i < extraRolls; i++) {
             items.addAll(currentLootTable.getRandomItems(currentParams));
         }
 
         return items;
+    }
+
+    @Unique
+    private static float getChance(int maxExtraRolls, float i) {
+        if (maxExtraRolls == 1) return 0.33f;
+
+        float progress = i / (maxExtraRolls - 1);
+
+        // higher start chance for lower max
+        float startChance = 0.40f + (maxExtraRolls - 2) * 0.1375f;
+
+        // lower end chance for higher max
+        float endChance = 0.15f - (maxExtraRolls - 2) * 0.025f;
+
+        startChance = Math.min(startChance, 0.95f);
+        endChance = Math.max(endChance, 0.05f);
+
+        return startChance + (endChance - startChance) * progress;
     }
 
     @Unique

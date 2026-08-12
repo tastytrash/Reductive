@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "reductive:fishing_rod_copper",
+    "reductive:fishing_rod_iron",
+    "reductive:fishing_rod_gold",
+    "reductive:fishing_rod_diamond",
+    "reductive:fishing_rod_netherite"
+  ]
+}
