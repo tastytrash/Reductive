@@ -29,6 +29,33 @@ public class ReductiveClient implements ClientModInitializer {
 
             if (!isDrill && !isChainsaw) return;
 
+            for (int i = 0; i < list.size(); i++) {
+                Component line = list.get(i);
+                String text = line.getString();
+
+                 if (text.contains("Attack Damage")) {
+                    String numStr = text.replaceAll("[^0-9.]", "");
+                     try {
+                        double baseVal = Double.parseDouble(numStr);
+                        double finalDmg = baseVal + 1;
+                        String formattedDmg = finalDmg == (int) finalDmg ? String.valueOf((int) finalDmg) : String.valueOf(finalDmg);
+
+                        list.set(i, Component.literal(" " + formattedDmg + " Attack Damage").withStyle(ChatFormatting.DARK_GREEN));
+                    } catch (Exception _) {}
+                }
+
+                else if (text.contains("Attack Speed")) {
+                    String numStr = text.replaceAll("[^0-9.]", "");
+                     try {
+                        double baseVal = Double.parseDouble(numStr);
+                        double finalSpeed = 4.0 - baseVal;
+                        String formattedSpeed = finalSpeed == (int) finalSpeed ? String.valueOf((int) finalSpeed) : String.format("%.1f", finalSpeed);
+
+                        list.set(i, Component.literal(" " + formattedSpeed + " Attack Speed").withStyle(ChatFormatting.DARK_GREEN));
+                    } catch (Exception _) {}
+                }
+            }
+
             String material = isDrill ? itemStack.get(ReductiveComponents.TIP_TYPE) : itemStack.get(ReductiveComponents.BLADE_TYPE);
 
             if (material == null) return;
@@ -47,7 +74,7 @@ public class ReductiveClient implements ClientModInitializer {
             list.add(Component.literal(label + ": " + capitalized).withStyle(formatting));
 
             // chainsaw max blocks
-            if (isChainsaw) {
+            if (itemStack.is(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL)) {
                 int maxBlocks = switch (material) {
                     case "iron" -> 7;
                     case "gold" -> 3;

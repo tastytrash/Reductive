@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ExperienceTankBlock extends Block implements EntityBlock {
+public class    ExperienceTankBlock extends Block implements EntityBlock {
     public static final MapCodec<ExperienceTankBlock> CODEC = simpleCodec(ExperienceTankBlock::new);
 
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
@@ -94,6 +94,10 @@ public class ExperienceTankBlock extends Block implements EntityBlock {
                 int playerXp = getPlayerXp(player);
 
                 if (storedXp >= MAX_XP || playerXp <= 0) return InteractionResult.PASS;
+
+                if (level.isClientSide()) {
+                    return InteractionResult.SUCCESS;
+                }
 
                 int tankCapacity = MAX_XP - storedXp;
 

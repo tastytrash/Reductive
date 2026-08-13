@@ -157,8 +157,6 @@ public class IndustrialChainsawItem extends Item {
         return 1.0f;
     }
 
-    private record BladeProperties(int durability, int enchantability, Item repairItem, float attackDamage) {}
-
     @Override
     public void onCraftedPostProcess(ItemStack stack, Level world) {
         ChainsawItem.applyBladeProperties(stack);
