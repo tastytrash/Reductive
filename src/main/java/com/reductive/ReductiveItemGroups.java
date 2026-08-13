@@ -23,6 +23,11 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.NETHERITE_NUGGET);
                         entries.accept(ReductiveItemRegistry.NETHER_STAR_FRAGMENT);
 
+                        entries.accept(ReductiveItemRegistry.COPPER_ROD);
+                        entries.accept(ReductiveItemRegistry.IRON_ROD);
+                        entries.accept(ReductiveItemRegistry.GOLD_ROD);
+                        entries.accept(ReductiveItemRegistry.DIAMOND_ROD);
+
                         entries.accept(ReductiveItemRegistry.SPAWN_CORE_LESSER);
                         entries.accept(ReductiveItemRegistry.SPAWN_CORE_GREATER);
 
@@ -37,12 +42,12 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);
                         entries.accept(ReductiveItemRegistry.LAPIS_EXPERIENCE_BOTTLE);
 
+                        entries.accept(ReductiveItemRegistry.BAIT_PRISMARINE);
                         entries.accept(ReductiveItemRegistry.BAIT_TREASURE);
+                        entries.accept(ReductiveItemRegistry.BAIT_ABYSSAL);
+
                         entries.accept(ReductiveItemRegistry.FISHING_NET);
-                        entries.accept(ReductiveItemRegistry.COPPER_ROD);
-                        entries.accept(ReductiveItemRegistry.IRON_ROD);
-                        entries.accept(ReductiveItemRegistry.GOLD_ROD);
-                        entries.accept(ReductiveItemRegistry.DIAMOND_ROD);
+
                         entries.accept(ReductiveItemRegistry.FISHING_ROD_COPPER);
                         entries.accept(ReductiveItemRegistry.FISHING_ROD_IRON);
                         entries.accept(ReductiveItemRegistry.FISHING_ROD_GOLD);

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:string",
+    "minecraft:glow_berries"
+  ],
+  "result": {
+    "id": "reductive:bait_abyssal",
+    "count": 4
+  }
+}

@@ -79,6 +79,8 @@ public class ReductiveItemRegistry {
     public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true));
 
     public static final Item BAIT_TREASURE = register("bait_treasure", Item::new, new Item.Properties());
+    public static final Item BAIT_PRISMARINE = register("bait_prismarine", Item::new, new Item.Properties());
+    public static final Item BAIT_ABYSSAL = register("bait_abyssal", Item::new, new Item.Properties());
 
     // fishing rods
     public static final Item FISHING_ROD_COPPER = register("fishing_rod_copper", FishingRodItem::new, new Item.Properties().stacksTo(1).durability(128));

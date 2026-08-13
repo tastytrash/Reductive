@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_#minecraft_eggs": {
+    "has_minecraft_eggs": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -40,7 +40,7 @@
   },
   "requirements": [
     [
-      "has_#minecraft_eggs",
+      "has_minecraft_eggs",
       "has_minecraft_iron_bars",
       "has_reductive_nether_star_fragment"
     ]

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_#minecraft_wool": {
+    "has_minecraft_wool": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -52,7 +52,7 @@
   },
   "requirements": [
     [
-      "has_#minecraft_wool",
+      "has_minecraft_wool",
       "has_minecraft_mutton",
       "has_minecraft_wheat",
       "has_reductive_spawn_core_lesser"

@@ -2,6 +2,8 @@ slingshot should shoot flint pieces?
 
 make fireballs despawn from slingshot ?
 
+matchsticks should light tnt and creepers
+
 fix industrial drill and chainsaw not working in creative - mineBlock isnt called in creative
 
 sorting/filter hopper?

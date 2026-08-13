@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_#minecraft_beds": {
+    "has_minecraft_beds": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -40,7 +40,7 @@
   },
   "requirements": [
     [
-      "has_#minecraft_beds",
+      "has_minecraft_beds",
       "has_minecraft_phantom_membrane",
       "has_reductive_spawn_core_greater"
     ]

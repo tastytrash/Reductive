@@ -29,7 +29,11 @@ public abstract class FishingHookMixin {
     @Shadow
     public abstract @Nullable Player getPlayerOwner();
 
-    @Unique private static final Predicate<ItemStack> SUPPORTED_LURES = (stack) -> stack.is(ReductiveItemRegistry.BAIT_TREASURE);
+    @Unique private static final Predicate<ItemStack> SUPPORTED_LURES = (stack) ->
+            stack.is(ReductiveItemRegistry.BAIT_TREASURE)
+            || stack.is(ReductiveItemRegistry.BAIT_PRISMARINE)
+            || stack.is(ReductiveItemRegistry.BAIT_ABYSSAL);
+
     @Unique boolean lureUsed;
     @Unique LootTable currentLootTable;
     @Unique
@@ -88,6 +92,10 @@ public abstract class FishingHookMixin {
             if (SUPPORTED_LURES.test(lureStack) && !lureStack.isEmpty()) {
                 if (lureStack.is(ReductiveItemRegistry.BAIT_TREASURE)) {
                     currentLootTable = getLootTable(ReductiveLootTableRegistry.BAIT_TREASURE, hook);
+                } else if (lureStack.is(ReductiveItemRegistry.BAIT_PRISMARINE)) {
+                    currentLootTable = getLootTable(ReductiveLootTableRegistry.BAIT_PRISMARINE, hook);
+                } else if (lureStack.is(ReductiveItemRegistry.BAIT_ABYSSAL)) {
+                    currentLootTable = getLootTable(ReductiveLootTableRegistry.BAIT_ABYSSAL, hook);
                 }
 
                 if (!owner.isCreative()) lureStack.shrink(1);
@@ -153,8 +161,6 @@ public abstract class FishingHookMixin {
 
         for (int i = 0; i < maxExtraRolls; i++) {
             float chance = getChance(maxExtraRolls, (float) i);
-
-            System.out.println("Roll " + (i + 1) + ": " + chance);
 
             if (player.getRandom().nextFloat() < chance) {
                 extraRolls++;

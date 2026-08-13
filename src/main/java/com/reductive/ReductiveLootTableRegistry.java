@@ -15,6 +15,8 @@ public class ReductiveLootTableRegistry {
     private static final Set<ResourceKey<LootTable>> IMMUTABLE_LOCATIONS;
 
     public static final ResourceKey<LootTable> BAIT_TREASURE;
+    public static final ResourceKey<LootTable> BAIT_PRISMARINE;
+    public static final ResourceKey<LootTable> BAIT_ABYSSAL;
 
     private static ResourceKey<LootTable> register(final String location) {
         return register(ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("reductive", location)));
@@ -35,6 +37,8 @@ public class ReductiveLootTableRegistry {
     static {
         IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
         BAIT_TREASURE = register("gameplay/fishing/bait_treasure");
+        BAIT_PRISMARINE = register("gameplay/fishing/bait_prismarine");
+        BAIT_ABYSSAL = register("gameplay/fishing/bait_abyssal");
     }
 
     public static void initialize() {}

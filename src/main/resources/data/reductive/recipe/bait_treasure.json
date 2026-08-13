@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:string",
+    "minecraft:gold_nugget"
+  ],
+  "result": {
+    "id": "reductive:bait_treasure",
+    "count": 4
+  }
+}

@@ -18,6 +18,10 @@ A Fabric mod for Minecraft that adds utility items and blocks that improve QoL, 
 - **Portable Crafter**: A portable crafting table.
 - **Copper, Iron, Gold, and Diamond Fishing Rods**: Tiered fishing rods that can catch multiple items at once.
 
+### Fishing Baits
+- **Treasure Bait**: Crafted from string and gold nuggets. Increases treasure drops when fishing.
+- **Prismarine Bait**: Crafted from string and cooked cod. Increases ocean-themed drops including prismarine, sponges, and tridents.
+- **Abyssal Bait**: Crafted from string and glow berries. Increases cave-themed drops including amethyst, sculk, and Swift Sneak books.
 
 ### Materials & Resources
 - **Pebble**: Smaller cobblestone.

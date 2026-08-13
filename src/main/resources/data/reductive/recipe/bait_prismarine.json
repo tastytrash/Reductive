@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:string",
+    "minecraft:cooked_cod"
+  ],
+  "result": {
+    "id": "reductive:bait_prismarine",
+    "count": 4
+  }
+}

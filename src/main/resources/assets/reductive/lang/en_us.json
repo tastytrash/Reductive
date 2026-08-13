@@ -8,6 +8,11 @@
   "item.reductive.netherite_nugget": "Netherite Nugget",
   "item.reductive.nether_star_fragment": "Nether Star Fragment",
 
+  "item.reductive.copper_rod": "Copper Rod",
+  "item.reductive.iron_rod": "Iron Rod",
+  "item.reductive.gold_rod": "Gold Rod",
+  "item.reductive.diamond_rod": "Diamond Rod",
+
   "item.reductive.spawn_core_lesser": "Lesser Spawn Core",
   "item.reductive.spawn_core_greater": "Greater Spawn Core",
 
@@ -22,13 +27,11 @@
   "item.reductive.lapis_bottle": "Lapis Infused Bottle",
   "item.reductive.lapis_experience_bottle": "Lapis Bottle o' Enchanting",
 
+  "item.reductive.bait_prismarine": "Prismarine Bait",
   "item.reductive.bait_treasure": "Treasure Bait",
-  "item.reductive.fishing_net": "Fishing Net",
-  "item.reductive.copper_rod": "Copper Rod",
-  "item.reductive.iron_rod": "Iron Rod",
-  "item.reductive.gold_rod": "Gold Rod",
-  "item.reductive.diamond_rod": "Diamond Rod",
+  "item.reductive.bait_abyssal": "Abyssal Bait",
 
+  "item.reductive.fishing_net": "Fishing Net",
   "item.reductive.fishing_rod_copper": "Copper Fishing Rod",
   "item.reductive.fishing_rod_iron": "Iron Fishing Rod",
   "item.reductive.fishing_rod_gold": "Gold Fishing Rod",
