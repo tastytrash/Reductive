@@ -26,8 +26,7 @@ A Fabric mod that adds utility items and blocks that improve QoL, mitigate tedio
 
 ### Blocks
 - **Experience Tank**: Stores up to 1600 XP. Use a lapis bottle to extract 100 XP, or a normal bottle for 10 XP. Standard Bottle o' Enchanting now grants 10 XP.
-
-### Materials
+- **Recycler**: Recycles tools/armour (anything with durability), and returns their crafting materials scaled by remaining durability. Requires fuel.
 
 <details>
   <summary>Refined Materials (Click to expand)</summary>

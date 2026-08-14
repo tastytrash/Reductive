@@ -2,6 +2,7 @@ package com.reductive;
 
 import com.reductive.blocks.ExperienceTankBlock;
 
+import com.reductive.blocks.MaterialRecyclerBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -26,6 +27,13 @@ public class ReductiveBlockRegistry {
                     .noOcclusion()
                     .isSuffocating(Blocks::never)
                     .lightLevel(ExperienceTankBlock::getLuminance)
+    );
+
+    public static final Block MATERIAL_RECYCLER = register(
+            ReductiveBlockItemIds.MATERIAL_RECYCLER,
+            MaterialRecyclerBlock::new,
+            BlockBehaviour.Properties.of()
+                    .lightLevel(state -> state.getValue(MaterialRecyclerBlock.LIT) ? 13 : 0)
     );
 
     private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties) {

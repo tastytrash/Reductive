@@ -4,18 +4,18 @@ make fireballs despawn from slingshot ?
 
 matchsticks should light tnt and creepers
 
+make coal chunks fuel
+
 fix industrial drill and chainsaw not working in creative - mineBlock isnt called in creative
 
 sorting/filter hopper?
 
 something for fishing?
-
-    ADD THESE BEFORE NEXT RELEASE
-    - Lures?
-        - Prismarine: Nautilus shells, prismarine drops, sponges
-        - Abyssal: Amethyst shards, echo shards, glow inc sacs
-
     - Traps?
+
+Material Recycler
+ - salvages weapons armour and tools back into their valuable materials/metals
+ - gives 100% of the materials at full durability, scales with durability
 
 
 wireless redstone transmitter?

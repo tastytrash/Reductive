@@ -62,6 +62,7 @@
   "item.reductive.industrial_engine": "Industrial Engine",
 
   "block.reductive.experience_tank": "Experience Tank",
+  "block.reductive.material_recycler": "Recycler",
 
   "itemGroup.reductive": "Reductive"
 }

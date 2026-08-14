@@ -2,7 +2,7 @@ package com.reductive.blocks;
 
 import com.mojang.serialization.MapCodec;
 import com.reductive.ReductiveItemRegistry;
-import com.reductive.blockentity.ExperienceTankBlockEntity;
+import com.reductive.blockentities.ExperienceTankBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -84,7 +84,7 @@ public class    ExperienceTankBlock extends Block implements EntityBlock {
 
             return InteractionResult.SUCCESS;
 
-            // use without item
+            // use without bottle
         } else {
             if (!player.getAbilities().mayBuild) {
                 return InteractionResult.PASS;

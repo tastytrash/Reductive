@@ -22,6 +22,7 @@ public class Reductive implements ModInitializer {
         ReductiveComponents.initialize();
         ReductiveBlockRegistry.initialize();
         ReductiveBlockEntityRegistry.initialize();
+        ReductiveMenuRegistry.initialize();
         ReductiveLootTableRegistry.initialize();
     }
 

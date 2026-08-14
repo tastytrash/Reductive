@@ -78,6 +78,7 @@ public class ReductiveItemGroups {
                         entries.accept(ReductiveItemRegistry.INDUSTRIAL_ENGINE);
 
                         entries.accept(ReductiveBlockRegistry.EXPERIENCE_TANK.asItem());
+                        entries.accept(ReductiveBlockRegistry.MATERIAL_RECYCLER.asItem());
                     })
                     .build()
     );
