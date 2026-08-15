@@ -1,9 +1,8 @@
-package com.reductive;
+package com.reductive.registries;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.Collections;

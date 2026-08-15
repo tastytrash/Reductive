@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.reductive.mixin.client",
+  "package": "com.reductive.mixins.client",
   "compatibilityLevel": "JAVA_25",
   "client": [
     "ClientPlayerEntityMixin",

@@ -1,12 +1,14 @@
 package com.reductive;
 
+import com.reductive.registries.ReductiveBlockRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
-public class ReductiveItemGroups {
+public class ReductiveCreativeTab {
     public static final CreativeModeTab REDUCTIVE = Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
             com.reductive.Reductive.id("reductive"),

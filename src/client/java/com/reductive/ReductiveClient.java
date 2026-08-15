@@ -2,6 +2,8 @@ package com.reductive;
 
 import com.reductive.datagen.ReductiveComponents;
 
+import com.reductive.registries.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveMenuRegistry;
 import com.reductive.screens.MaterialRecyclerScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;

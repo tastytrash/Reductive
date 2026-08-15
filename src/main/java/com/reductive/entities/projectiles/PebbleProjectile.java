@@ -1,6 +1,6 @@
 package com.reductive.entities.projectiles;
 
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -14,8 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-
-import java.util.HashSet;
 
 public class PebbleProjectile extends ThrowableItemProjectile {
     public PebbleProjectile(EntityType<? extends ThrowableItemProjectile> type, Level world) {

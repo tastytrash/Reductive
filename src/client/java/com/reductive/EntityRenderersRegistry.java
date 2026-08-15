@@ -1,5 +1,6 @@
 package com.reductive;
 
+import com.reductive.registries.ReductiveEntityRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;

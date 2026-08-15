@@ -1,19 +1,17 @@
 package com.reductive.blockentities;
 
-import com.reductive.ReductiveBlockEntityRegistry;
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveBlockEntityRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.blockentities.menus.MaterialRecyclerMenu;
 import com.reductive.blocks.MaterialRecyclerBlock;
 import com.reductive.helpers.ImplementedContainer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.*;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -34,18 +32,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MaterialRecyclerBlockEntity extends BlockEntity implements ImplementedContainer, MenuProvider {
+public class MaterialRecyclerBlockEntity extends BlockEntity implements ImplementedContainer, MenuProvider, WorldlyContainer {
     private static final int FUEL_SLOT = 0;
     private static final int INPUT_START = 1;
     private static final int INPUT_END = 10;
     private static final int OUTPUT_START = 10;
     private static final int OUTPUT_END = 14;
 
+    private static final int DEFAULT_COOKING_TIME = 50;
+
+    private static final int[] SLOTS_FOR_UP = new int[]{0};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{10, 11, 12, 13};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+
     private final NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private int litTimeRemaining;
     private int litTotalTime;
     private int cookingTimer;
-    private int cookingTotalTime = 100;
+    private int cookingTotalTime = DEFAULT_COOKING_TIME;
+
 
     protected final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -79,6 +84,44 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
         super(ReductiveBlockEntityRegistry.MATERIAL_RECYCLER_BLOCK_ENTITY, pos, state);
     }
 
+
+    public int[] getSlotsForFace(final Direction direction) {
+        if (direction == Direction.DOWN) {
+            return SLOTS_FOR_DOWN;
+        } else {
+            return direction == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
+        }
+    }
+
+    public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction direction) {
+        if (direction == Direction.UP) {
+            return slot == FUEL_SLOT && canPlaceItem(slot, stack);
+        }
+
+        if (direction != Direction.DOWN) {
+            return slot >= INPUT_START && slot < INPUT_END && canPlaceItem(slot, stack);
+        }
+
+        return false;
+    }
+
+    public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction direction) {
+        return direction == Direction.DOWN && slot >= OUTPUT_START && slot < OUTPUT_END;
+    }
+
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        if (slot == FUEL_SLOT) {
+            return level != null && level.fuelValues().isFuel(stack);
+        }
+
+        if (slot >= INPUT_START && slot < INPUT_END) {
+            return stack.isDamageableItem();
+        }
+
+        return false;
+    }
+
     @Override public NonNullList<ItemStack> getItems() { return this.items; }
     @Override public boolean stillValid(Player player) { return Container.stillValidBlockEntity(this, player); }
     @Override public @NonNull Component getDisplayName() { return Component.translatable("block.reductive.material_recycler"); }
@@ -95,7 +138,7 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
         this.litTimeRemaining = input.getIntOr("LitTimeRemaining", 0);
         this.litTotalTime = input.getIntOr("LitTotalTime", 0);
         this.cookingTimer = input.getIntOr("CookingTimer", 0);
-        this.cookingTotalTime = input.getIntOr("CookingTotalTime", 100);
+        this.cookingTotalTime = input.getIntOr("CookingTotalTime", DEFAULT_COOKING_TIME);
     }
 
     @Override
@@ -133,7 +176,7 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
                 entity.cookingTimer++;
                 if (entity.cookingTimer >= entity.cookingTotalTime) {
                     entity.cookingTimer = 0;
-                    entity.cookingTotalTime = 200;
+                    entity.cookingTotalTime = DEFAULT_COOKING_TIME;
                     entity.recycleNextIngredient();
                     changed = true;
                 }
@@ -202,6 +245,7 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
 
     private static List<ItemStack> getItemsFromDurability(ItemStack stack) {
         float durabilityPercent = 1.0f - ((float) stack.getDamageValue() / stack.getMaxDamage());
+        if (durabilityPercent > 0.9f) durabilityPercent = 1.0f;
         List<ItemStack> result = new ArrayList<>();
         List<ItemStack> recipeItems = RECYCLE_MAP.get(stack.getItem());
 
@@ -236,6 +280,10 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
         CONVERSION_MAP.put(Items.IRON_INGOT, new ItemConversion(Items.IRON_NUGGET, 9));
         CONVERSION_MAP.put(Items.GOLD_INGOT, new ItemConversion(Items.GOLD_NUGGET, 9));
         CONVERSION_MAP.put(Items.COPPER_INGOT, new ItemConversion(Items.COPPER_NUGGET, 9));
+        CONVERSION_MAP.put(ReductiveItemRegistry.COPPER_ROD, new ItemConversion(Items.COPPER_INGOT, 2));
+        CONVERSION_MAP.put(ReductiveItemRegistry.IRON_ROD, new ItemConversion(Items.IRON_INGOT, 2));
+        CONVERSION_MAP.put(ReductiveItemRegistry.GOLD_ROD, new ItemConversion(Items.GOLD_INGOT, 2));
+        CONVERSION_MAP.put(ReductiveItemRegistry.DIAMOND_ROD, new ItemConversion(Items.DIAMOND, 2));
     }
 
     private static final Map<Item, List<ItemStack>> RECYCLE_MAP = new HashMap<>();
@@ -253,6 +301,13 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
         RECYCLE_MAP.put(Items.STONE_HOE, List.of(new ItemStack(Items.COBBLESTONE, 2), new ItemStack(Items.STICK, 2)));
         RECYCLE_MAP.put(Items.STONE_SWORD, List.of(new ItemStack(Items.COBBLESTONE, 2), new ItemStack(Items.STICK, 1)));
         RECYCLE_MAP.put(Items.STONE_SPEAR, List.of(new ItemStack(Items.COBBLESTONE, 1), new ItemStack(Items.STICK, 2)));
+
+        RECYCLE_MAP.put(Items.COPPER_PICKAXE, List.of(new ItemStack(Items.COPPER_INGOT, 3), new ItemStack(Items.STICK, 2)));
+        RECYCLE_MAP.put(Items.COPPER_AXE, List.of(new ItemStack(Items.COPPER_INGOT, 3), new ItemStack(Items.STICK, 2)));
+        RECYCLE_MAP.put(Items.COPPER_SHOVEL, List.of(new ItemStack(Items.COPPER_INGOT, 1), new ItemStack(Items.STICK, 2)));
+        RECYCLE_MAP.put(Items.COPPER_HOE, List.of(new ItemStack(Items.COPPER_INGOT, 2), new ItemStack(Items.STICK, 2)));
+        RECYCLE_MAP.put(Items.COPPER_SWORD, List.of(new ItemStack(Items.COPPER_INGOT, 2), new ItemStack(Items.STICK, 1)));
+        RECYCLE_MAP.put(Items.COPPER_SPEAR, List.of(new ItemStack(Items.COPPER_INGOT, 1), new ItemStack(Items.STICK, 2)));
 
         RECYCLE_MAP.put(Items.IRON_PICKAXE, List.of(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.STICK, 2)));
         RECYCLE_MAP.put(Items.IRON_AXE, List.of(new ItemStack(Items.IRON_INGOT, 3), new ItemStack(Items.STICK, 2)));
@@ -330,12 +385,25 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
 
         RECYCLE_MAP.put(Items.WARPED_FUNGUS_ON_A_STICK, List.of(new ItemStack(Items.FISHING_ROD, 1), new ItemStack(Items.WARPED_FUNGUS, 1)));
 
-        RECYCLE_MAP.put(Items.ELYTRA, List.of(new ItemStack(Items.PHANTOM_MEMBRANE, 5), new ItemStack(Items.LEATHER, 2)));
+        RECYCLE_MAP.put(Items.ELYTRA, List.of(new ItemStack(Items.PHANTOM_MEMBRANE, 4), new ItemStack(Items.LEATHER, 2)));
 
         RECYCLE_MAP.put(Items.TRIDENT, List.of(new ItemStack(Items.PRISMARINE_SHARD, 5), new ItemStack(Items.PRISMARINE_CRYSTALS, 2)));
 
         RECYCLE_MAP.put(Items.MACE, List.of(new ItemStack(Items.HEAVY_CORE, 1), new ItemStack(Items.BREEZE_ROD, 1)));
 
         RECYCLE_MAP.put(Items.BRUSH, List.of(new ItemStack(Items.COPPER_INGOT, 1), new ItemStack(Items.STICK, 1), new ItemStack(Items.FEATHER, 1)));
+
+        RECYCLE_MAP.put(ReductiveItemRegistry.SLINGSHOT, List.of(new ItemStack(Items.STICK, 3), new ItemStack(Items.STRING, 1), new ItemStack(Items.LEATHER, 1)));
+
+        RECYCLE_MAP.put(ReductiveItemRegistry.FISHING_ROD_COPPER, List.of(new ItemStack(ReductiveItemRegistry.FISHING_NET, 1), new ItemStack(ReductiveItemRegistry.COPPER_ROD, 3), new ItemStack(Items.STRING, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.FISHING_ROD_IRON, List.of(new ItemStack(ReductiveItemRegistry.FISHING_NET, 1), new ItemStack(ReductiveItemRegistry.IRON_ROD, 3), new ItemStack(Items.STRING, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.FISHING_ROD_GOLD, List.of(new ItemStack(ReductiveItemRegistry.FISHING_NET, 1), new ItemStack(ReductiveItemRegistry.GOLD_ROD, 3), new ItemStack(Items.STRING, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.FISHING_ROD_DIAMOND, List.of(new ItemStack(ReductiveItemRegistry.FISHING_NET, 1), new ItemStack(ReductiveItemRegistry.DIAMOND_ROD, 3), new ItemStack(Items.STRING, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.FISHING_ROD_NETHERITE, List.of(new ItemStack(ReductiveItemRegistry.FISHING_NET, 1), new ItemStack(ReductiveItemRegistry.DIAMOND_ROD, 3), new ItemStack(Items.STRING, 1), new ItemStack(Items.NETHERITE_INGOT, 1)));
+
+        RECYCLE_MAP.put(ReductiveItemRegistry.DRILL_BASIC, List.of(new ItemStack(ReductiveItemRegistry.DRILL_BODY_BASIC, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.DRILL_INDUSTRIAL, List.of(new ItemStack(ReductiveItemRegistry.DRILL_BODY_INDUSTRIAL, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.CHAINSAW_BASIC, List.of(new ItemStack(ReductiveItemRegistry.CHAINSAW_BODY_BASIC, 1)));
+        RECYCLE_MAP.put(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL, List.of(new ItemStack(ReductiveItemRegistry.CHAINSAW_BODY_INDUSTRIAL, 1)));
     }
 }

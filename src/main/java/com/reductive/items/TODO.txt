@@ -2,21 +2,16 @@ slingshot should shoot flint pieces?
 
 make fireballs despawn from slingshot ?
 
-matchsticks should light tnt and creepers
+make industrial drill and chainsaw not drop blocks in creative (low priority)
 
-make coal chunks fuel
+add recycler recipe
 
-fix industrial drill and chainsaw not working in creative - mineBlock isnt called in creative
+portable crafter recipe might be too hard... nerf redstone processor recipe?
 
 sorting/filter hopper?
 
 something for fishing?
     - Traps?
-
-Material Recycler
- - salvages weapons armour and tools back into their valuable materials/metals
- - gives 100% of the materials at full durability, scales with durability
-
 
 wireless redstone transmitter?
 

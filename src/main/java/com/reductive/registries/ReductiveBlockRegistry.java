@@ -1,5 +1,6 @@
-package com.reductive;
+package com.reductive.registries;
 
+import com.reductive.ReductiveBlockItemIds;
 import com.reductive.blocks.ExperienceTankBlock;
 
 import com.reductive.blocks.MaterialRecyclerBlock;

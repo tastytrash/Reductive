@@ -1,6 +1,6 @@
 package com.reductive.entities.projectiles;
 
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;

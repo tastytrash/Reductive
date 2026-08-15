@@ -1,7 +1,7 @@
 package com.reductive.blocks;
 
 import com.mojang.serialization.MapCodec;
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.blockentities.ExperienceTankBlockEntity;
 
 import net.minecraft.core.BlockPos;

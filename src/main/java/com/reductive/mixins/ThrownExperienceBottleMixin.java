@@ -1,4 +1,4 @@
-package com.reductive.mixin;
+package com.reductive.mixins;
 
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownExperienceBottle;
 

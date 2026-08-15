@@ -1,7 +1,7 @@
-package com.reductive.mixin;
+package com.reductive.mixins;
 
-import com.reductive.ReductiveItemRegistry;
-import com.reductive.ReductiveLootTableRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveLootTableRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;

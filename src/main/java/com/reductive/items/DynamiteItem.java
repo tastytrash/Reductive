@@ -1,6 +1,6 @@
 package com.reductive.items;
 
-import com.reductive.ReductiveEntityRegistry;
+import com.reductive.registries.ReductiveEntityRegistry;
 import com.reductive.entities.projectiles.DynamiteProjectile;
 
 import net.minecraft.server.level.ServerLevel;

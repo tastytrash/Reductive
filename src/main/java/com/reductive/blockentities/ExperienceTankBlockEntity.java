@@ -1,6 +1,6 @@
 package com.reductive.blockentities;
 
-import com.reductive.ReductiveBlockEntityRegistry;
+import com.reductive.registries.ReductiveBlockEntityRegistry;
 import com.reductive.blocks.ExperienceTankBlock;
 
 import net.minecraft.core.BlockPos;

@@ -1,8 +1,8 @@
-package com.reductive.mixin.client;
+package com.reductive.mixins.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.reductive.Reductive;
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.client.renderer.entity.state.FishingHookRenderState;

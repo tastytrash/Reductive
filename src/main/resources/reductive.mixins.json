@@ -1,10 +1,11 @@
 {
   "required": true,
-  "package": "com.reductive.mixin",
+  "package": "com.reductive.mixins",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "FishingHookMixin",
-    "ThrownExperienceBottleMixin"
+    "ThrownExperienceBottleMixin",
+    "TntBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

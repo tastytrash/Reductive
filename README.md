@@ -7,7 +7,7 @@ A Fabric mod that adds utility items and blocks that improve QoL, mitigate tedio
 ### Tools
 - **Drill**: Handheld drill for faster mining, breaks blocks a wooden pickaxe/shovel can
 - **Industrial Drill**: Upgraded drill that breaks in a 3x3 area
-- **Chainsaw**: Cuts wood/organic blocks more efficiently, breaks anything a wooden axe/hoe can
+- **Chainsaw**: Cuts wood/organic blocks more efficiently, breaks anything an axe/hoe can
 - **Industrial Chainsaw**: Breaks multiple wood blocks at once
 - **Slingshot**: Fires pebbles, dynamite, or fire charges (supports crossbow enchantments)
 

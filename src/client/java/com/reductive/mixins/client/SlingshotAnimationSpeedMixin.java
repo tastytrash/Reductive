@@ -1,4 +1,4 @@
-package com.reductive.mixin.client;
+package com.reductive.mixins.client;
 
 import com.reductive.items.SlingshotItem;
 

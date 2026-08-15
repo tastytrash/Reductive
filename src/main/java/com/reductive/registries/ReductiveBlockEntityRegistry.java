@@ -1,5 +1,6 @@
-package com.reductive;
+package com.reductive.registries;
 
+import com.reductive.Reductive;
 import com.reductive.blockentities.ExperienceTankBlockEntity;
 
 import com.reductive.blockentities.MaterialRecyclerBlockEntity;

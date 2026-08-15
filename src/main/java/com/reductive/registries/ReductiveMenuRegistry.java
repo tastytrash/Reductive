@@ -1,5 +1,6 @@
-package com.reductive;
+package com.reductive.registries;
 
+import com.reductive.Reductive;
 import com.reductive.blockentities.menus.MaterialRecyclerMenu;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;

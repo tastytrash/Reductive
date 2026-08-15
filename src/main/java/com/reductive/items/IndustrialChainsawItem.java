@@ -37,7 +37,6 @@ public class IndustrialChainsawItem extends Item {
                 miner.handleExtraItemsCreatedOnUse(bodyOnly);
                 world.playSound(null, miner.getX(), miner.getY(), miner.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0f, 1.0f);}
 
-
         boolean result = super.mineBlock(stack, world, state, pos, miner);
 
         if (!(world instanceof ServerLevel serverWorld) || !(miner instanceof ServerPlayer player)) {
@@ -143,8 +142,9 @@ public class IndustrialChainsawItem extends Item {
         if (blade == null) return 1.0f;
 
         boolean isAxeBlock = state.is(BlockTags.MINEABLE_WITH_AXE);
+        boolean isHoeBlock = state.is(BlockTags.MINEABLE_WITH_HOE);
 
-        if (isAxeBlock) {
+        if (isAxeBlock || isHoeBlock) {
             return switch (blade) {
                 case "iron" -> 20.0f;
                 case "gold" -> 44.0f;

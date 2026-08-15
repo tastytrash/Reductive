@@ -1,7 +1,7 @@
 package com.reductive.blocks;
 
 import com.mojang.serialization.MapCodec;
-import com.reductive.ReductiveBlockEntityRegistry;
+import com.reductive.registries.ReductiveBlockEntityRegistry;
 import com.reductive.blockentities.MaterialRecyclerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

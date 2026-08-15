@@ -1,7 +1,7 @@
 package com.reductive.items;
 
-import com.reductive.ReductiveEntityRegistry;
-import com.reductive.ReductiveItemRegistry;
+import com.reductive.registries.ReductiveEntityRegistry;
+import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.entities.projectiles.DynamiteProjectile;
 import com.reductive.entities.projectiles.PebbleProjectile;
 
