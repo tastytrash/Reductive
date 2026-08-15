@@ -8,6 +8,8 @@ add recycler recipe
 
 portable crafter recipe might be too hard... nerf redstone processor recipe?
 
+more clean up and bug fixes before next release, maybe add one new item/block/feature
+
 sorting/filter hopper?
 
 something for fishing?
