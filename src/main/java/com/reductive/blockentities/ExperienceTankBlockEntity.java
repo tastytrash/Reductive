@@ -6,6 +6,8 @@ import com.reductive.blocks.ExperienceTankBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 public class ExperienceTankBlockEntity extends BlockEntity {
     private int storedXp = 0;
@@ -25,22 +27,15 @@ public class ExperienceTankBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(
-            net.minecraft.world.level.storage.ValueInput input
-    ) {
+    protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
-
         storedXp = input.getIntOr("StoredXp", 0);
-
         storedXp = Math.clamp(storedXp, 0, ExperienceTankBlock.MAX_XP);
     }
 
     @Override
-    protected void saveAdditional(
-            net.minecraft.world.level.storage.ValueOutput output
-    ) {
+    protected void saveAdditional(ValueOutput output) {
         output.putInt("StoredXp", storedXp);
-
         super.saveAdditional(output);
     }
 }

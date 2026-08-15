@@ -20,8 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SlingshotAnimationSpeedMixin {
 
     @Shadow protected int useItemRemaining;
-    @Unique
-    private float slingshotAnimationProgress = 0.0F;
+    @Unique private float slingshotAnimationProgress = 0.0F;
 
     @Inject(method = "updateUsingItem", at = @At("HEAD"))
     private void reductive$speedUpSlingshotAnimationSmooth(ItemStack useItem, CallbackInfo ci) {

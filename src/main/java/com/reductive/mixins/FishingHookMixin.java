@@ -36,10 +36,8 @@ public abstract class FishingHookMixin {
 
     @Unique boolean lureUsed;
     @Unique LootTable currentLootTable;
-    @Unique
-    private LootParams currentParams;
-    @Unique
-    private static final ItemStack VANILLA_FISHING_ROD = new ItemStack(Items.FISHING_ROD);
+    @Unique private LootParams currentParams;
+    @Unique private static final ItemStack VANILLA_FISHING_ROD = new ItemStack(Items.FISHING_ROD);
 
     @Redirect(
             method = "shouldStopFishing",

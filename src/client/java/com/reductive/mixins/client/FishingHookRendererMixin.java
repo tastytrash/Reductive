@@ -26,14 +26,10 @@ import java.util.WeakHashMap;
 
 @Mixin(FishingHookRenderer.class)
 public class FishingHookRendererMixin {
-    @Unique
-    private static final Identifier REDUCTIVE_FISHING_NET_TEXTURE = Reductive.id("textures/entity/fishing_net.png");
-    @Unique
-    private static final ThreadLocal<FishingHookRenderState> REDUCTIVE_RENDER_STATE = new ThreadLocal<>();
-    @Unique
-    private static final Map<FishingHookRenderState, Boolean> REDUCTIVE_FISHING_NET_HOOKS = new WeakHashMap<>();
-    @Unique
-    private static final Set<Item> REDUCTIVE_FISHING_RODS = Set.of(
+    @Unique private static final Identifier REDUCTIVE_FISHING_NET_TEXTURE = Reductive.id("textures/entity/fishing_net.png");
+    @Unique private static final ThreadLocal<FishingHookRenderState> REDUCTIVE_RENDER_STATE = new ThreadLocal<>();
+    @Unique private static final Map<FishingHookRenderState, Boolean> REDUCTIVE_FISHING_NET_HOOKS = new WeakHashMap<>();
+    @Unique private static final Set<Item> REDUCTIVE_FISHING_RODS = Set.of(
             ReductiveItemRegistry.FISHING_ROD_COPPER,
             ReductiveItemRegistry.FISHING_ROD_IRON,
             ReductiveItemRegistry.FISHING_ROD_GOLD,

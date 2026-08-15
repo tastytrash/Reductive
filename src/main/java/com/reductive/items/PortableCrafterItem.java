@@ -67,7 +67,7 @@ public class PortableCrafterItem extends Item {
 
                 if (optional.isPresent()) {
                     RecipeHolder<net.minecraft.world.item.crafting.CraftingRecipe> recipeHolder = optional.get();
-                    ResultContainer resultContainer = (ResultContainer) this.resultSlots;
+                    ResultContainer resultContainer = this.resultSlots;
 
                     if (resultContainer.setRecipeUsed(serverPlayer, recipeHolder)) {
                         itemStack = recipeHolder.value().assemble(craftingInput);

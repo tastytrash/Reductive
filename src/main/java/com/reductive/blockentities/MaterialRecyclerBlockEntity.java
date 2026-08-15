@@ -255,12 +255,14 @@ public class MaterialRecyclerBlockEntity extends BlockEntity implements Implemen
             ItemConversion conversion = CONVERSION_MAP.get(item.getItem());
             if (conversion != null) {
                 int pieces = (int) (item.getCount() * durabilityPercent * conversion.ratio);
+                if (pieces == 0 && durabilityPercent > 0) pieces = 1;
                 int fullCount = pieces / conversion.ratio;
                 int remainder = pieces % conversion.ratio;
                 if (fullCount > 0) result.add(new ItemStack(item.getItem(), fullCount));
                 if (remainder > 0) result.add(new ItemStack(conversion.targetItem, remainder));
             } else {
                 int count = (int) (item.getCount() * durabilityPercent);
+                if (count == 0 && durabilityPercent > 0) count = 1;
                 if (count > 0) result.add(item.copyWithCount(count));
             }
         }

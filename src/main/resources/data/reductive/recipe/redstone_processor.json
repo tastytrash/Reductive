@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#.#",
-    "CcC",
+    " . ",
+    "CiC",
     "oQo"
   ],
   "key": {
-    "#": "minecraft:redstone_torch",
-    ".": "minecraft:redstone",
+    ".": "minecraft:redstone_torch",
     "C": "reductive:copper_coil",
-    "c": "minecraft:comparator",
+    "i": "minecraft:iron_nugget",
     "o": "reductive:quartz_shard",
     "Q": "minecraft:quartz"
   },

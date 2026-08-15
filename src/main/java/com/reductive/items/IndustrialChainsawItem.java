@@ -113,9 +113,9 @@ public class IndustrialChainsawItem extends Item {
             serverWorld.destroyBlock(targetPos, false, miner);
 
             if (stack.isEmpty()) break;
+            stack.hurtWithoutBreaking(1, player);
 
         }
-        stack.hurtWithoutBreaking(1, player);
 
         return result;
     }

@@ -21,7 +21,5 @@ public class ReductiveComponents {
             DataComponentType.<String>builder().persistent(Codec.STRING).build()
     );
 
-    public static void initialize() {
-        System.out.println("Registered ModComponents");
-    }
+    public static void initialize() {}
 }
