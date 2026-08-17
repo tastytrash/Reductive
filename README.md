@@ -24,6 +24,8 @@ A Fabric mod that adds utility items and blocks that improve QoL, mitigate tedio
 - **Dynamite**: Throwable weaker TNT
 - **Lapis Bottle o' Enchanting**: Throw to gain 100 XP
 - **Garbage Bundle**: Deletes items put into it, keeps the latest item put in
+- **Item Magnet**: When held in main or offhand, pulls nearby items within 8 blocks towards you
+- **Bandage**: Applies regeneration for 6 seconds and removes all negative effects
 
 ### Blocks
 - **Experience Tank**: Stores up to 1600 XP. Use a lapis bottle to extract 100 XP, or a normal bottle for 10 XP. Standard Bottle o' Enchanting now grants 10 XP.
