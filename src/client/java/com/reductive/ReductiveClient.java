@@ -2,6 +2,7 @@ package com.reductive;
 
 import com.reductive.datagen.ReductiveComponents;
 
+import com.reductive.items.GarbageBundleItem;
 import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.registries.ReductiveMenuRegistry;
 import com.reductive.screens.MaterialRecyclerScreen;
@@ -12,12 +13,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BundleContents;
 
 public class ReductiveClient implements ClientModInitializer {
 	private EngineSound engineSound;
@@ -27,6 +30,24 @@ public class ReductiveClient implements ClientModInitializer {
         MenuScreens.register(ReductiveMenuRegistry.MATERIAL_RECYCLER_MENU, MaterialRecyclerScreen::new);
 
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
+            if (itemStack.getItem() instanceof GarbageBundleItem) {
+                BundleContents contents = itemStack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+
+                // Ensure the list has at least a title before trying to insert directly below it
+                if (!list.isEmpty()) {
+                    if (contents.items().isEmpty()) {
+                        // Inserting at index 1 places the text right under the "Garbage Bundle" item name
+                        list.add(1, Component.translatable("item.reductive.garbage_bundle.empty.description")
+                                .withStyle(ChatFormatting.GRAY));
+                    } else {
+                        // Optional: Places a status line right under the title when full
+                        list.add(1, Component.translatable("item.reductive.garbage_bundle.full.description").withStyle(ChatFormatting.RED));
+                        list.add(2, Component.translatable("item.reductive.garbage_bundle.full.description2").withStyle(ChatFormatting.RED));
+                    }
+                }
+                return; // Exit early
+            }
+
             boolean isDrill = itemStack.is(ReductiveItemRegistry.DRILL_BASIC)
                     || itemStack.is(ReductiveItemRegistry.DRILL_INDUSTRIAL);
 
@@ -77,7 +98,7 @@ public class ReductiveClient implements ClientModInitializer {
             String capitalized = material.substring(0, 1).toUpperCase() + material.substring(1);
             String label = isDrill ? "Tip" : "Blade";
 
-            list.add(Component.literal(label + ": " + capitalized).withStyle(formatting));
+            list.add(1, Component.literal(label + ": " + capitalized).withStyle(formatting));
 
             // chainsaw max blocks
             if (itemStack.is(ReductiveItemRegistry.CHAINSAW_INDUSTRIAL)) {
@@ -89,8 +110,8 @@ public class ReductiveClient implements ClientModInitializer {
                     default -> 0;
                 };
 
-                list.add(Component.literal("Breaks " + maxBlocks + " blocks")
-                        .withStyle(formatting));
+                list.add(2, Component.literal("Breaks " + maxBlocks + " blocks")
+                        .withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
             }
         });
 

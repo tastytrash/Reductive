@@ -1,5 +1,6 @@
 package com.reductive.items;
 
+import com.reductive.entities.projectiles.TorchProjectile;
 import com.reductive.registries.ReductiveEntityRegistry;
 import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.entities.projectiles.DynamiteProjectile;
@@ -36,7 +37,12 @@ public class SlingshotItem extends ProjectileWeaponItem {
 
     public static final int RANGE = 15;
     public static final Predicate<ItemStack> SLING_PROJECTILES = (stack) ->
-            stack.is(ReductiveItemRegistry.PEBBLE) || stack.is(Items.SNOWBALL) || stack.is(Items.WIND_CHARGE) || stack.is(Items.FIRE_CHARGE) || stack.is(ReductiveItemRegistry.DYNAMITE);
+            stack.is(ReductiveItemRegistry.PEBBLE)
+                    || stack.is(Items.SNOWBALL)
+                    || stack.is(Items.WIND_CHARGE)
+                    || stack.is(Items.FIRE_CHARGE)
+                    || stack.is(ReductiveItemRegistry.DYNAMITE)
+                    || stack.is(Items.TORCH);
 
     public SlingshotItem(Properties settings) {
         super(settings);
@@ -68,6 +74,11 @@ public class SlingshotItem extends ProjectileWeaponItem {
             int multishotLevel = EnchantmentHelper.getItemEnchantmentLevel(multishotHolder, stack);
             int projectileCount = multishotLevel > 0 ? 1 + (multishotLevel * 2) : 1;
             if (pull < 1f) projectileCount = 1;
+            
+            // count torches outside the stack
+            if (ammoStack.is(Items.TORCH) && !player.isCreative()) {
+                projectileCount = Math.min(projectileCount, player.getInventory().countItem(Items.TORCH));
+            }
 
             Holder<Enchantment> piercingHolder = world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING);
             byte piercingLevel = (byte) EnchantmentHelper.getItemEnchantmentLevel(piercingHolder, stack);
@@ -107,10 +118,19 @@ public class SlingshotItem extends ProjectileWeaponItem {
                 } else if (ammoStack.is(ReductiveItemRegistry.DYNAMITE)) {
                     DynamiteProjectile dynamite = new DynamiteProjectile(ReductiveEntityRegistry.DYNAMITE, world);
                     spawnProjectile(world, player, dynamite, speed, divergence, angle);
+                } else if (ammoStack.is(Items.TORCH)) {
+                    TorchProjectile torch = new TorchProjectile(ReductiveEntityRegistry.TORCH, world);
+                    spawnProjectile(world, player, torch, speed, divergence, angle);
                 }
             }
 
-            if (!player.isCreative()) draw(stack, ammoStack, player);
+            if (!player.isCreative()) {
+                if (ammoStack.is(Items.TORCH)) {
+                    consumeTorches(player, projectileCount);
+                } else {
+                    draw(stack, ammoStack, player);
+                }
+            }
             stack.hurtAndBreak(1, player, user.getUsedItemHand());
         }
 
@@ -195,5 +215,17 @@ public class SlingshotItem extends ProjectileWeaponItem {
     @Override
     public int getDefaultProjectileRange() {
         return RANGE;
+    }
+
+    private void consumeTorches(Player player, int amount) {
+        int remaining = amount;
+        for (ItemStack stack : player.getInventory().getNonEquipmentItems()) {
+            if (stack.is(Items.TORCH)) {
+                int toRemove = Math.min(remaining, stack.getCount());
+                stack.shrink(toRemove);
+                remaining -= toRemove;
+                if (remaining <= 0) break;
+            }
+        }
     }
 }

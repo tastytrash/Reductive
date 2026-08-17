@@ -9,7 +9,7 @@ A Fabric mod that adds utility items and blocks that improve QoL, mitigate tedio
 - **Industrial Drill**: Upgraded drill that breaks in a 3x3 area
 - **Chainsaw**: Cuts wood/organic blocks more efficiently, breaks anything an axe/hoe can
 - **Industrial Chainsaw**: Breaks multiple wood blocks at once
-- **Slingshot**: Fires pebbles, dynamite, or fire charges (supports crossbow enchantments)
+- **Slingshot**: Fires pebbles, dynamite, torches, wind charges, or fire charges (supports crossbow enchantments)
 
 ### Fishing
 - **Tiered Fishing Rods** (Copper/Iron/Gold/Diamond/Netherite): Catch multiple items at once
@@ -23,6 +23,7 @@ A Fabric mod that adds utility items and blocks that improve QoL, mitigate tedio
 - **Matchstick**: Single-use flint and steel
 - **Dynamite**: Throwable weaker TNT
 - **Lapis Bottle o' Enchanting**: Throw to gain 100 XP
+- **Garbage Bundle**: Deletes items put into it, keeps the latest item put in
 
 ### Blocks
 - **Experience Tank**: Stores up to 1600 XP. Use a lapis bottle to extract 100 XP, or a normal bottle for 10 XP. Standard Bottle o' Enchanting now grants 10 XP.

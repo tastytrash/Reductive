@@ -4,6 +4,7 @@ import com.reductive.Reductive;
 import com.reductive.entities.projectiles.DynamiteProjectile;
 import com.reductive.entities.projectiles.PebbleProjectile;
 
+import com.reductive.entities.projectiles.TorchProjectile;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,10 @@ public class ReductiveEntityRegistry {
 
     public static final EntityType<DynamiteProjectile> DYNAMITE
             = register("dynamite", EntityType.Builder.of(DynamiteProjectile::new, MobCategory.MISC).sized(0.25f, 0.25f));
+
+    public static final EntityType<TorchProjectile> TORCH
+            = register("torch", EntityType.Builder.of(TorchProjectile::new, MobCategory.MISC).sized(0.25f, 0.25f));
+
 
     public static void initialize() {}
 

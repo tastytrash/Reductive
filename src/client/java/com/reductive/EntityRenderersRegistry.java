@@ -10,5 +10,6 @@ public class EntityRenderersRegistry implements ClientModInitializer {
     public void onInitializeClient() {
         EntityRenderers.register(ReductiveEntityRegistry.PEBBLE, context -> new ThrownItemRenderer<>(context, 0.75F, false));
         EntityRenderers.register(ReductiveEntityRegistry.DYNAMITE, context -> new ThrownItemRenderer<>(context, 1.0F, false));
+        EntityRenderers.register(ReductiveEntityRegistry.TORCH, context -> new ThrownItemRenderer<>(context, 0.75F, false));
     }
 }

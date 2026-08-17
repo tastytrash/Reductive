@@ -12,11 +12,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.DamageResistant;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.function.Function;
 
@@ -60,6 +59,7 @@ public class ReductiveItemRegistry {
     public static final Item GOLD_ROD = register("gold_rod", Item::new, new Item.Properties());
     public static final Item DIAMOND_ROD = register("diamond_rod", Item::new, new Item.Properties());
 
+    public static final Item GARBAGE_BUNDLE = register("garbage_bundle", GarbageBundleItem::new, new Item.Properties().stacksTo(1).component(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
 
     // weapons & combat
     public static final Item SLINGSHOT = register(
@@ -75,6 +75,7 @@ public class ReductiveItemRegistry {
 
     // utility
     public static final Item MATCHSTICK = register("matchstick", MatchstickItem::new, new Item.Properties());
+    public static final Item MAGNET = register("magnet", MagnetItem::new, new Item.Properties().stacksTo(1));
 
     public static final Item LAPIS_BOTTLE = register("lapis_bottle", Item::new, new Item.Properties());
     public static final Item LAPIS_EXPERIENCE_BOTTLE = register("lapis_experience_bottle", LapisExperienceBottleItem::new, new Item.Properties().rarity((Rarity.UNCOMMON)).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true));

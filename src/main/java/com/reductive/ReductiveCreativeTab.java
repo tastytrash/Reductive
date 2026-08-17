@@ -40,6 +40,8 @@ public class ReductiveCreativeTab {
                         entries.accept(ReductiveItemRegistry.DYNAMITE);
 
                         entries.accept(ReductiveItemRegistry.MATCHSTICK);
+                        entries.accept(ReductiveItemRegistry.MAGNET);
+                        entries.accept(ReductiveItemRegistry.GARBAGE_BUNDLE);
 
                         entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);
                         entries.accept(ReductiveItemRegistry.LAPIS_EXPERIENCE_BOTTLE);

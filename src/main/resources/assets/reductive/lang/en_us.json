@@ -23,6 +23,12 @@
   "item.reductive.dynamite": "Dynamite",
 
   "item.reductive.matchstick": "Matchstick",
+  "item.reductive.magnet": "Item Magnet",
+
+  "item.reductive.garbage_bundle": "Garbage Bundle",
+  "item.reductive.garbage_bundle.empty.description": "Deletes items put inside.",
+  "item.reductive.garbage_bundle.full.description": "Putting in an item",
+  "item.reductive.garbage_bundle.full.description2": "will delete this item",
 
   "item.reductive.lapis_bottle": "Lapis Infused Bottle",
   "item.reductive.lapis_experience_bottle": "Lapis Bottle o' Enchanting",

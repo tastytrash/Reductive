@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "key": {
+    "#": "minecraft:cactus",
+    "/": "minecraft:bundle"
+  },
+  "result": {
+    "id": "reductive:garbage_bundle"
+  }
+}

@@ -41,7 +41,7 @@ public class FishingHookRendererMixin {
             method = "extractRenderState(Lnet/minecraft/world/entity/projectile/FishingHook;Lnet/minecraft/client/renderer/entity/state/FishingHookRenderState;F)V",
             at = @At("TAIL")
     )
-    private void reductive$recordFishingNetTexture(FishingHook hook, FishingHookRenderState state, float partialTick, CallbackInfo ci) {
+    private void reductive$fishingNetTexture(FishingHook hook, FishingHookRenderState state, float partialTick, CallbackInfo ci) {
         Player owner = hook.getPlayerOwner();
         boolean usesFishingNetTexture = owner != null && (
                 REDUCTIVE_FISHING_RODS.contains(owner.getMainHandItem().getItem())

@@ -4,18 +4,15 @@ make fireballs despawn from slingshot ?
 
 make industrial drill and chainsaw not drop blocks in creative (low priority)
 
-add recycler recipe
+hopper/auto bundle, lots of storage, automatically picks up items already in it, only allows stackable items?
+nevermind make it a shulker box
 
-portable crafter recipe might be too hard... nerf redstone processor recipe?
+totem of rebirth? you die, but you keep your inventory
 
-more clean up and bug fixes before next release, maybe add one new item/block/feature
+better shields
+ - knockback
+ - thorns
 
-sorting/filter hopper?
+ healing item, like a bandage, and removes all negative effects
 
-something for fishing?
-    - Traps?
-
-wireless redstone transmitter?
-
-some way to combine potions?
-
+ offhand item that gains food when killing?

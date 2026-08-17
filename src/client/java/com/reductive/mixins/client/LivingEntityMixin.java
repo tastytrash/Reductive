@@ -17,13 +17,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public class SlingshotAnimationSpeedMixin {
+public class LivingEntityMixin {
 
     @Shadow protected int useItemRemaining;
     @Unique private float slingshotAnimationProgress = 0.0F;
-
+    // for quick charge
     @Inject(method = "updateUsingItem", at = @At("HEAD"))
-    private void reductive$speedUpSlingshotAnimationSmooth(ItemStack useItem, CallbackInfo ci) {
+    private void reductive$speedUpSlingshotAnimation(ItemStack useItem, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (useItem.getItem() instanceof SlingshotItem && entity.isUsingItem()) {
