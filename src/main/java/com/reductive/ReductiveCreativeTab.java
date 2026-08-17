@@ -41,6 +41,7 @@ public class ReductiveCreativeTab {
 
                         entries.accept(ReductiveItemRegistry.MATCHSTICK);
                         entries.accept(ReductiveItemRegistry.MAGNET);
+                        entries.accept(ReductiveItemRegistry.BANDAGE);
                         entries.accept(ReductiveItemRegistry.GARBAGE_BUNDLE);
 
                         entries.accept(ReductiveItemRegistry.LAPIS_BOTTLE);

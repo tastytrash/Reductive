@@ -24,6 +24,7 @@
 
   "item.reductive.matchstick": "Matchstick",
   "item.reductive.magnet": "Item Magnet",
+  "item.reductive.bandage": "Bandage",
 
   "item.reductive.garbage_bundle": "Garbage Bundle",
   "item.reductive.garbage_bundle.empty.description": "Deletes items put inside.",

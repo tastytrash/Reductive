@@ -16,3 +16,5 @@ better shields
  healing item, like a bandage, and removes all negative effects
 
  offhand item that gains food when killing?
+
+ item magnet recipe
