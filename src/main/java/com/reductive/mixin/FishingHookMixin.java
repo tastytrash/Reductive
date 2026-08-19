@@ -1,4 +1,4 @@
-package com.reductive.mixins;
+package com.reductive.mixin;
 
 import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.registries.ReductiveLootTableRegistry;

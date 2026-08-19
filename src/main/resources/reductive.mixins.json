@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.reductive.mixins",
+  "package": "com.reductive.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "FishingHookMixin",

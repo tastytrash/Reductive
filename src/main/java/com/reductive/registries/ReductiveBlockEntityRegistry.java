@@ -4,6 +4,7 @@ import com.reductive.Reductive;
 import com.reductive.blockentities.ExperienceTankBlockEntity;
 
 import com.reductive.blockentities.MaterialRecyclerBlockEntity;
+import com.reductive.blockentities.EnchantExtractorBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,6 +19,9 @@ public class ReductiveBlockEntityRegistry {
 
     public static final BlockEntityType<MaterialRecyclerBlockEntity> MATERIAL_RECYCLER_BLOCK_ENTITY =
             register("material_recycler", MaterialRecyclerBlockEntity::new, ReductiveBlockRegistry.MATERIAL_RECYCLER);
+
+    public static final BlockEntityType<EnchantExtractorBlockEntity> ENCHANT_EXTRACTOR_BLOCK_ENTITY =
+            register("enchant_extractor", EnchantExtractorBlockEntity::new, ReductiveBlockRegistry.ENCHANT_EXTRACTOR);
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String name, FabricBlockEntityTypeBuilder.Factory<? extends T> entityFactory, Block... blocks) {
         Identifier id = Identifier.fromNamespaceAndPath(Reductive.MOD_ID, name);

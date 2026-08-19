@@ -17,6 +17,7 @@ public class ReductiveCreativeTab {
                     .title(Component.translatable("itemGroup.reductive"))
                     .displayItems((displayContext, entries) -> {
                         entries.accept(ReductiveItemRegistry.PEBBLE);
+                        entries.accept(ReductiveItemRegistry.OBSIDIAN_CHIP);
                         entries.accept(ReductiveItemRegistry.COAL_CHUNK);
                         entries.accept(ReductiveItemRegistry.LAPIS_FRAGMENT);
                         entries.accept(ReductiveItemRegistry.EMERALD_JEWEL);
@@ -84,6 +85,7 @@ public class ReductiveCreativeTab {
 
                         entries.accept(ReductiveBlockRegistry.EXPERIENCE_TANK.asItem());
                         entries.accept(ReductiveBlockRegistry.MATERIAL_RECYCLER.asItem());
+                        entries.accept(ReductiveBlockRegistry.ENCHANT_EXTRACTOR.asItem());
                     })
                     .build()
     );

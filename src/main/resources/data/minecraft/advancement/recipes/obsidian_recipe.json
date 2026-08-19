@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_obsidian_chip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:obsidian_chip"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_obsidian_chip"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:obsidian_recipe"
+    ]
+  }
+}

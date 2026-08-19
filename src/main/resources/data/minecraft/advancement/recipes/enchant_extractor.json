@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reductive_obsidian_chip": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:obsidian_chip"
+            ]
+          }
+        ]
+      }
+    },
+    "has_reductive_diamond_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reductive:diamond_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_minecraft_grindstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:grindstone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reductive_obsidian_chip",
+      "has_reductive_diamond_shard",
+      "has_minecraft_grindstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "reductive:enchant_extractor"
+    ]
+  }
+}

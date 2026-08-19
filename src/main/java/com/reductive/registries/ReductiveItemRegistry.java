@@ -15,6 +15,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.DamageResistant;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.function.Function;
@@ -47,6 +48,7 @@ public class ReductiveItemRegistry {
     public static final Item DIAMOND_SHARD = register("diamond_shard", Item::new, new Item.Properties());
     public static final Item NETHERITE_NUGGET = register("netherite_nugget", Item::new, new Item.Properties());
     public static final Item NETHER_STAR_FRAGMENT = register("nether_star_fragment", Item::new, new Item.Properties().rarity(Rarity.RARE).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true).delayedComponent(DataComponents.DAMAGE_RESISTANT, (context) -> new DamageResistant(context.getOrThrow(DamageTypeTags.IS_EXPLOSION))));
+    public static final Item OBSIDIAN_CHIP = register("obsidian_chip", Item::new, new Item.Properties());
 
     public static final Item SPAWN_CORE_LESSER = register("spawn_core_lesser", Item::new, new Item.Properties());
     public static final Item SPAWN_CORE_GREATER = register("spawn_core_greater", Item::new, new Item.Properties());
@@ -59,7 +61,7 @@ public class ReductiveItemRegistry {
     public static final Item GOLD_ROD = register("gold_rod", Item::new, new Item.Properties());
     public static final Item DIAMOND_ROD = register("diamond_rod", Item::new, new Item.Properties());
 
-    public static final Item GARBAGE_BUNDLE = register("garbage_bundle", GarbageBundleItem::new, new Item.Properties().stacksTo(1).component(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
+    public static final Item GARBAGE_BUNDLE = register("garbage_bundle", GarbageBundleItem::new, new Item.Properties().stacksTo(1).component(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 
     // weapons & combat
     public static final Item SLINGSHOT = register(

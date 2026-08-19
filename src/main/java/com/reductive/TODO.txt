@@ -1,5 +1,3 @@
-slingshot should shoot flint pieces?
-
 make fireballs despawn from slingshot ?
 
 make industrial drill and chainsaw not drop blocks in creative (low priority)
@@ -13,8 +11,12 @@ better shields
  - knockback
  - thorns
 
- healing item, like a bandage, and removes all negative effects
+something for farming
+ - planting seeds
+
+enchantment extractor, puts items enchantments on a book for a cost of xp
+ - either make it like a furnace or a grindstone
+
+ experience enchant
 
  offhand item that gains food when killing?
-
- item magnet recipe

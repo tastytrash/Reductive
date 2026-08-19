@@ -1,10 +1,11 @@
 {
   "required": true,
-  "package": "com.reductive.mixins.client",
+  "package": "com.reductive.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
     "ClientPlayerEntityMixin",
-    "FishingHookRendererMixin"
+    "FishingHookRendererMixin",
+    "BundleTooltipComponentMixin"
   ],
   "injectors": {
     "defaultRequire": 1

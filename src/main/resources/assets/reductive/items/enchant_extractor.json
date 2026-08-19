@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "reductive:block/enchant_extractor"
+  }
+}

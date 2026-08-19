@@ -1,4 +1,4 @@
-package com.reductive.mixins.client;
+package com.reductive.mixin;
 
 import com.reductive.items.*;
 

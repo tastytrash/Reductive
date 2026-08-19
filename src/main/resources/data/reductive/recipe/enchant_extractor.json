@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DOD",
+    "OGO",
+    "DOD"
+  ],
+  "key": {
+    "O": "reductive:obsidian_chip",
+    "D": "reductive:diamond_shard",
+    "G": "minecraft:grindstone"
+  },
+  "result": {
+    "id": "reductive:enchant_extractor"
+  }
+}

@@ -6,6 +6,7 @@ import com.reductive.items.GarbageBundleItem;
 import com.reductive.registries.ReductiveItemRegistry;
 import com.reductive.registries.ReductiveMenuRegistry;
 import com.reductive.screens.MaterialRecyclerScreen;
+import com.reductive.screens.EnchantExtractorScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -28,6 +29,7 @@ public class ReductiveClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
         MenuScreens.register(ReductiveMenuRegistry.MATERIAL_RECYCLER_MENU, MaterialRecyclerScreen::new);
+        MenuScreens.register(ReductiveMenuRegistry.ENCHANT_EXTRACTOR_MENU, EnchantExtractorScreen::new);
 
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
             if (itemStack.getItem() instanceof GarbageBundleItem) {

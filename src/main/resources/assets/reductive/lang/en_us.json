@@ -7,6 +7,7 @@
   "item.reductive.diamond_shard": "Diamond Shard",
   "item.reductive.netherite_nugget": "Netherite Nugget",
   "item.reductive.nether_star_fragment": "Nether Star Fragment",
+  "item.reductive.obsidian_chip": "Obsidian Chip",
 
   "item.reductive.copper_rod": "Copper Rod",
   "item.reductive.iron_rod": "Iron Rod",
@@ -70,6 +71,8 @@
 
   "block.reductive.experience_tank": "Experience Tank",
   "block.reductive.material_recycler": "Recycler",
+  "block.reductive.enchant_extractor": "Enchantment Extractor",
+  "container.reductive.enchant_extractor": "Disenchant & Extract",
 
   "itemGroup.reductive": "Reductive"
 }

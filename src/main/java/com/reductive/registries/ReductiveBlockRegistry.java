@@ -4,6 +4,7 @@ import com.reductive.ReductiveBlockItemIds;
 import com.reductive.blocks.ExperienceTankBlock;
 
 import com.reductive.blocks.MaterialRecyclerBlock;
+import com.reductive.blocks.EnchantExtractorBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -35,6 +36,15 @@ public class ReductiveBlockRegistry {
             MaterialRecyclerBlock::new,
             BlockBehaviour.Properties.of()
                     .lightLevel(state -> state.getValue(MaterialRecyclerBlock.LIT) ? 13 : 0)
+    );
+
+    public static final Block ENCHANT_EXTRACTOR = register(
+            ReductiveBlockItemIds.ENCHANT_EXTRACTOR,
+            EnchantExtractorBlock::new,
+            BlockBehaviour.Properties.of()
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F)
+                    .sound(SoundType.STONE)
     );
 
     private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties) {
